@@ -1,0 +1,9 @@
+# Claude Code / Playwright MCP output
+tmp/
+.playwright-mcp/
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
