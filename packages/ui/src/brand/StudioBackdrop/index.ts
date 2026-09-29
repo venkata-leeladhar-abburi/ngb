@@ -1,0 +1,1 @@
+export { StudioBackdrop } from "./StudioBackdrop";
