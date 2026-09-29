@@ -13,7 +13,8 @@ type StudioBackdropProps<T extends ElementType> = {
 /**
  * Full-bleed section background (board 03 Surfaces). The red studio is brightest at the centre and
  * darkens towards the edges; bone text on it is at least 4.7:1. The night variant's fine grain is a
- * photo texture that arrives with the imagery (Phase 5).
+ * photo texture that arrives with the imagery (Phase 5). It sets no position, so it can be used as a
+ * fixed overlay (mobile menu); add `relative` yourself when children are absolutely positioned.
  */
 export function StudioBackdrop<T extends ElementType = "div">({
   as,
@@ -25,7 +26,7 @@ export function StudioBackdrop<T extends ElementType = "div">({
   const Component: ElementType = as ?? "div";
   return (
     <Component
-      className={`relative ${variant === "red" ? "bg-brand" : "bg-page"} text-primary ${className ?? ""}`}
+      className={`${variant === "red" ? "bg-brand" : "bg-page"} text-primary ${className ?? ""}`}
       style={variant === "red" ? { backgroundImage: "var(--gradient-studio)" } : undefined}
       {...props}
     >

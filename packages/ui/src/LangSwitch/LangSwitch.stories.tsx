@@ -15,3 +15,18 @@ type Story = StoryObj<typeof meta>;
 export const English: Story = {};
 export const Telugu: Story = { args: { current: "te" } };
 export const Focus: Story = { parameters: { pseudo: { focusVisible: ['a[lang="te"]'] } } };
+
+/** Desktop nav and mobile header (board 07, screen A1). */
+export const Inline: Story = { args: { variant: "inline" } };
+
+/** Inside the red mobile menu: both bone, current underlined. */
+export const InlineOnRed: Story = {
+  args: { variant: "inline", tone: "red" },
+  decorators: [
+    (Story) => (
+      <div className="bg-brand p-24">
+        <Story />
+      </div>
+    ),
+  ],
+};

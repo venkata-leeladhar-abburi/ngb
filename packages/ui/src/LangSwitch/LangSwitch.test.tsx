@@ -14,7 +14,8 @@ describe("LangSwitch", () => {
     expect(telugu).not.toHaveAttribute("aria-current");
     expect(telugu).toHaveAttribute("href", "/te/programs");
     expect(telugu).toHaveAttribute("lang", "te");
-    expect(telugu).toHaveAttribute("hreflang", "te");
+    expect(telugu).toHaveAttribute("hreflang", "te-IN");
+    expect(english).toHaveAttribute("hreflang", "en-IN");
   });
 
   it("marks Telugu as current on Telugu pages", () => {
@@ -24,5 +25,23 @@ describe("LangSwitch", () => {
       "aria-current",
       "true",
     );
+  });
+
+  it("has an inline style for headers that keeps the same links and names", () => {
+    render(<LangSwitch current="en" enHref="/" teHref="/te" variant="inline" />);
+
+    const english = screen.getByRole("link", { name: "EN, English" });
+    expect(english).toHaveAttribute("aria-current", "true");
+    expect(english).toHaveClass("text-primary");
+    expect(screen.getByRole("link", { name: "తె, తెలుగు" })).toHaveClass("text-muted");
+  });
+
+  it("never uses muted text on red", () => {
+    render(<LangSwitch current="en" enHref="/" teHref="/te" variant="inline" tone="red" />);
+
+    for (const link of screen.getAllByRole("link")) {
+      expect(link).not.toHaveClass("text-muted");
+      expect(link).toHaveClass("text-primary");
+    }
   });
 });
