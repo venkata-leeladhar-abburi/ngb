@@ -27,11 +27,12 @@ If a doc and the code disagree, stop and ask. Never invent copy, prices, numbers
 ## Commands
 - `pnpm dev` - run the site (http://localhost:3000); `pnpm storybook` - components (http://localhost:6006)
 - `pnpm lint` / `pnpm typecheck` / `pnpm test` - run before saying any task is done
-- `pnpm test --filter <pkg> -- <pattern>` - run one test file; prefer this over the full suite while working
-- `pnpm e2e` - Playwright journeys; `pnpm e2e --project=android` for 360 px
-- `pnpm tokens:build` - regenerate CSS variables after editing `tokens.json`
-- `pnpm db:generate` then `pnpm db:migrate` - schema changes (never edit an applied migration)
+- `pnpm --filter <pkg> test -- <pattern>` - run one test file (e.g. `pnpm --filter @ngb/ui test -- Button`); prefer this while working
+- `pnpm test:stories` - every Storybook story in a real browser with axe; any violation fails
+- `pnpm e2e` - Playwright journeys (builds first); `pnpm --filter @ngb/e2e e2e --project=android` for 360 px only
 - `pnpm lhci` - Lighthouse CI against the local production build
+- `pnpm format` - Prettier; `pnpm build` - production build of everything
+- Not yet: `pnpm tokens:build` (added in Phase 3), `pnpm db:generate` / `pnpm db:migrate` (Phase 7). Do not call them before they exist.
 
 ## Repo map
 - `packages/tokens` - tokens.json -> CSS variables + Tailwind theme
@@ -121,4 +122,5 @@ A task is done only when all of these hold, and you have shown me the evidence:
 - Rush Driver has no Telugu glyphs; Telugu headings must switch to Anek Telugu.
 - Check that the GT America build includes the ₹ glyph; fall back per glyph if not.
 - BMI uses Asian cut-offs (18.5 to 22.9 healthy). Protein target is about 1.6 g per kg.
-- Rush Driver and GT America require paid web licences; font files live in `apps/web/fonts/` (private repo only).
+- Rush Driver and GT America require paid web licences; font files live in `apps/web/fonts/` (git-ignored until licensed).
+- Tool versions are newer than your training data (Next 16.3, Turborepo 2.11, Storybook 10, Vitest 4, ESLint 10, Tailwind 4). Before changing their config, read the installed docs (e.g. `node_modules/turbo/docs/`) or the package's own README.
