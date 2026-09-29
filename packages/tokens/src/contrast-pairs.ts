@@ -50,7 +50,7 @@ export const approvedPairs: readonly ContrastPair[] = [
     use: "Most popular tag",
   },
   {
-    foreground: "color.action.primary",
+    foreground: "color.text.brand",
     background: "color.bg.page",
     minimum: 3,
     board: 3.3,

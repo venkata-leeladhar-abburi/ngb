@@ -32,6 +32,7 @@ export const COLOR_UTILITIES: readonly (readonly [cssVar: string, path: string])
   ["--text-color-primary", "color.text.primary"],
   ["--text-color-muted", "color.text.muted"],
   ["--text-color-accent", "color.text.accent"],
+  ["--text-color-brand", "color.text.brand"],
   ["--text-color-on-gold", "color.text.on-gold"],
   ["--text-color-good", "color.status.good"],
   ["--border-color-subtle", "color.border.subtle"],
