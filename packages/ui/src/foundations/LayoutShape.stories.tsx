@@ -1,6 +1,7 @@
 import { cssVars, tokens } from "@ngb/tokens";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { ChamferBox } from "../brand/ChamferBox";
 import { FoundationPage, FoundationSection, pxText } from "./parts";
 
 const meta = {
@@ -16,10 +17,6 @@ const spacing = Object.entries(cssVars)
   .map(([path, cssVar]) => ({ step: path.slice("primitive.space.".length), cssVar }));
 
 const px = (value: string) => value.replace("px", "");
-
-/** Cut corners top-right and bottom-left. Documentation only: components use ChamferBox (Phase 4). */
-const chamfer = (size: string) =>
-  `polygon(0 0, calc(100% - ${size}) 0, 100% ${size}, 100% 100%, ${size} 100%, 0 calc(100% - ${size}))`;
 
 function LayoutShapePage() {
   const { breakpoint, grid } = tokens.layout;
@@ -85,23 +82,26 @@ function LayoutShapePage() {
       <FoundationSection title="Shape">
         <ul className="grid grid-cols-2 items-end gap-32 md:grid-cols-5">
           <li>
-            <div
+            <ChamferBox
               aria-hidden="true"
-              className="flex h-(--button-height) items-center justify-center bg-action px-24 font-label text-label font-bold uppercase"
-              style={{ clipPath: chamfer("var(--shape-chamfer-button)") }}
+              focusRing="none"
+              fill="bg-action"
+              className="flex h-(--button-height) items-center justify-center px-24 font-label text-label font-bold uppercase"
             >
-              Start my plan
-            </div>
+              <span>Start my plan</span>
+            </ChamferBox>
             <p className="mt-12 text-muted">Button cut {px(tokens.shape.chamfer.button)} px</p>
           </li>
           <li>
-            <div
+            <ChamferBox
               aria-hidden="true"
-              className="inline-flex bg-popular px-12 py-4 font-label text-label font-bold text-on-gold uppercase"
-              style={{ clipPath: chamfer("var(--shape-chamfer-tag)") }}
+              cut="tag"
+              focusRing="none"
+              fill="bg-popular"
+              className="inline-flex px-12 py-4 font-label text-label font-bold text-on-gold uppercase"
             >
-              Pro
-            </div>
+              <span>Pro</span>
+            </ChamferBox>
             <p className="mt-12 text-muted">Tag cut {px(tokens.shape.chamfer.tag)} px</p>
           </li>
           <li>
@@ -132,7 +132,7 @@ function LayoutShapePage() {
             aria-hidden="true"
             className="relative h-128 w-64 overflow-hidden rounded-card border border-strong"
           >
-            <div className="inset-x-0 bottom-0 absolute h-1/3 bg-band" />
+            <div className="absolute inset-x-0 bottom-0 h-1/3 bg-band" />
           </div>
           <div className="flex items-center gap-(--spacing-target-gap)">
             <div aria-hidden="true" className="size-target bg-action" />

@@ -104,7 +104,7 @@ function TypographyPage() {
               key={role}
               className="border-t border-subtle py-16 md:grid md:grid-cols-4 md:items-center md:gap-24"
             >
-              <div className="md:mb-0 mb-12">
+              <div className="mb-12 md:mb-0">
                 <p className="font-data uppercase">
                   {role}{" "}
                   <span className="text-muted">

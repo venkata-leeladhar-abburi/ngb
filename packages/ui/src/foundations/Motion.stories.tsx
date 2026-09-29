@@ -49,7 +49,7 @@ function MotionPage() {
         <ul className="mt-24 flex flex-col gap-24">
           {names.map((name) => (
             <li key={name} className="md:grid md:grid-cols-4 md:items-center md:gap-24">
-              <p className="md:mb-0 mb-8">
+              <p className="mb-8 md:mb-0">
                 <span className="block font-data">
                   motion.{name} {tokens.motion.duration[name]}
                 </span>
@@ -60,7 +60,7 @@ function MotionPage() {
                 <div className="@container relative h-32 overflow-hidden rounded-card border border-subtle">
                   <span
                     aria-hidden="true"
-                    className="top-0 left-0 absolute block size-32 bg-action ease-out"
+                    className="absolute top-0 left-0 block size-32 bg-action ease-out"
                     style={{
                       transitionProperty: "transform",
                       transitionDuration: `var(--motion-${name})`,
