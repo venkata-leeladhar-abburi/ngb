@@ -1,0 +1,19 @@
+{
+  "name": "@ngb/e2e",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "e2e": "playwright test",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@ngb/config": "workspace:*",
+    "@playwright/test": "1.63.0",
+    "@types/node": "24.19.0",
+    "eslint": "10.11.0",
+    "typescript": "6.0.3"
+  }
+}

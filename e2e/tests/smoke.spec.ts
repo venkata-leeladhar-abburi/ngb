@@ -1,0 +1,50 @@
+import AxeBuilder from "@axe-core/playwright";
+import { expect, test } from "@playwright/test";
+
+test.describe("home page", () => {
+  test("loads with one h1, English lang and a working skip link", async ({ page }) => {
+    const response = await page.goto("/");
+
+    expect(response?.status()).toBe(200);
+    await expect(page.locator("html")).toHaveAttribute("lang", "en");
+    await expect(page.locator("h1")).toHaveCount(1);
+
+    await page.keyboard.press("Tab");
+    await expect(page.getByRole("link", { name: "Skip to content" })).toBeFocused();
+  });
+
+  test("has no WCAG 2.2 AA violations", async ({ page }) => {
+    await page.goto("/");
+
+    const results = await new AxeBuilder({ page })
+      .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])
+      .analyze();
+
+    expect(results.violations).toEqual([]);
+  });
+
+  test("sends the security headers", async ({ request }) => {
+    const response = await request.get("/");
+    const headers = response.headers();
+
+    expect(headers["content-security-policy"]).toContain("frame-ancestors 'none'");
+    expect(headers["strict-transport-security"]).toContain("max-age=63072000");
+    expect(headers["x-content-type-options"]).toBe("nosniff");
+    expect(headers["x-powered-by"]).toBeUndefined();
+  });
+});
+
+test("unknown pages return 404 with the not-found copy", async ({ page }) => {
+  const response = await page.goto("/this-page-does-not-exist");
+
+  expect(response?.status()).toBe(404);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("This page skipped leg day.");
+});
+
+test("health endpoint is up and never cached", async ({ request }) => {
+  const response = await request.get("/api/health");
+
+  expect(response.status()).toBe(200);
+  expect(response.headers()["cache-control"]).toContain("no-store");
+  expect(await response.json()).toMatchObject({ status: "ok" });
+});
