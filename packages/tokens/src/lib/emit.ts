@@ -119,17 +119,28 @@ export function build(tree: TokenTree): BuildOutput {
     ),
     "",
     `  /* Type scale (board 04): fluid from ${fluidFrom} px to ${fluidTo} px viewports */`,
-    ...children("type").map((role) => {
+    ...children("line-height").map((key) =>
+      declare(`--leading-${key}`, text(`line-height.${key}`), `line-height.${key}`),
+    ),
+    ...children("letter-spacing").map((key) =>
+      declare(`--tracking-${key}`, text(`letter-spacing.${key}`), `letter-spacing.${key}`),
+    ),
+    ...children("type").flatMap((role) => {
       const mobile = pixels(`type.${role}.mobile`);
       const desktop = pixels(`type.${role}.desktop`);
       cssVars[`type.${role}.mobile`] = `--text-${role}`;
       cssVars[`type.${role}.desktop`] = `--text-${role}`;
-      return declare(`--text-${role}`, fluid(mobile, desktop, fluidFrom, fluidTo));
+      // Optional per-role line height and tracking, applied automatically by the text-<role> class.
+      const modifiers = children(`type.${role}`)
+        .filter((key) => key === "line-height" || key === "letter-spacing")
+        .map((key) => {
+          const path = `type.${role}.${key}`;
+          const reference = referenceOf(getToken(tree, path).$value);
+          const target = reference === undefined ? undefined : cssVars[reference];
+          return declare(`--text-${role}--${key}`, target ? `var(${target})` : text(path), path);
+        });
+      return [declare(`--text-${role}`, fluid(mobile, desktop, fluidFrom, fluidTo)), ...modifiers];
     }),
-    ...children("line-height").map((key) =>
-      declare(`--leading-${key}`, text(`line-height.${key}`), `line-height.${key}`),
-    ),
-    "  --text-body--line-height: var(--leading-body);",
     "",
     "  /* Spacing (board 05): p-16 = 16 px. Only the scale steps exist. */",
     ...children("primitive.space").map((key) =>
@@ -312,9 +323,13 @@ export function build(tree: TokenTree): BuildOutput {
     "    line-height: var(--leading-body);",
     "  }",
     "",
+    "  /* Telugu needs room for vowel signs above and below, so every role uses the Telugu line height. */",
     "  :lang(te) {",
     "    font-family: var(--font-telugu-body);",
     "    line-height: var(--leading-telugu);",
+    ...children("type")
+      .filter((role) => children(`type.${role}`).includes("line-height"))
+      .map((role) => `    --text-${role}--line-height: var(--leading-telugu);`),
     "  }",
     "",
     "  ::selection {",

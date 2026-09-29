@@ -77,6 +77,26 @@ describe("generated theme", () => {
     );
   });
 
+  it("binds line height and tracking to the type roles", async () => {
+    const theme = files["theme.css"];
+    expect(theme).toContain("--text-mega--line-height: var(--leading-display);");
+    expect(theme).toContain("--text-h1--line-height: var(--leading-heading);");
+    expect(theme).toContain("--text-body--line-height: var(--leading-body);");
+    expect(theme).toContain("--text-label--letter-spacing: var(--tracking-label);");
+    const css = await tailwind(["text-label", "text-hero", "tracking-label", "leading-heading"]);
+    expect(css).toContain("letter-spacing: var(--tw-tracking, var(--text-label--letter-spacing))");
+    expect(css).toContain("line-height: var(--tw-leading, var(--text-hero--line-height))");
+    expect(css).toContain(".tracking-label");
+    expect(css).toContain(".leading-heading");
+  });
+
+  it("gives Telugu text room for vowel signs in every role", () => {
+    const telugu = /:lang\(te\) \{([^}]*)\}/.exec(files["base.css"])?.[1] ?? "";
+    for (const role of ["mega", "hero", "display", "h1", "body"]) {
+      expect(telugu).toContain(`--text-${role}--line-height: var(--leading-telugu);`);
+    }
+  });
+
   it("points component tokens at semantic variables", () => {
     expect(files["tokens.css"]).toContain("--button-primary-bg: var(--background-color-action);");
     expect(files["tokens.css"]).toContain("--program-card-featured-glow: var(--shadow-sells);");

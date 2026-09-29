@@ -70,7 +70,7 @@ Each colour exists only in its role: `bg-page` works, `text-page` does not.
 | Borders, focus | `border-subtle` `border-strong` `border-focus` `outline-focus` `ring-focus` | `color.border.*`, `color.focus` |
 | Type roles | `text-mega` `text-hero` `text-display` `text-h1` `text-h2` `text-h3` `text-lead` `text-body` `text-label` `text-readout` (fluid 360 to 1440 px) | `type.*` |
 | Faces, weights | `font-display` `font-heading` `font-label` `font-body` `font-data` `font-telugu-heading` `font-telugu-body`; `font-regular` `font-medium` `font-bold` `font-extrabold` `font-black` | `font.*`, `font-weight.*` |
-| Line height | `leading-body` (1.65) `leading-telugu` (1.75) | `line-height.*` |
+| Line height, tracking | Built into the roles: `text-mega` `text-hero` `text-display` = 0.85, `text-h1` = 1.05, `text-body` = 1.65, `text-label` = 0.3em tracking. Also `leading-display` `leading-heading` `leading-body` `leading-telugu`, `tracking-label` | `line-height.*`, `letter-spacing.*`, `type.<role>.line-height` |
 | Spacing | `p-16` = 16 px; steps 4 8 12 16 24 32 48 64 96 128 144 only. `pt-section-top` `pb-section-bottom` (fluid), `px-page` (grid margin per breakpoint), `gap-gutter`, `h-nav`, `min-h-target` `min-w-target`, `gap-target-gap` | `primitive.space.*`, `space.*`, `layout.*` |
 | Widths | `max-w-content` (1248 px) `max-w-measure` (75ch) `max-w-lead` (60ch) | `layout.content-max`, `measure.*` |
 | Shape, depth | `rounded-card`; `shadow-rest` `shadow-hover` `shadow-sells` `shadow-focus` | `shape.radius.*`, `shadow.*` |
@@ -80,7 +80,7 @@ Each colour exists only in its role: `bg-page` works, `text-page` does not.
 Values that are not utilities are CSS variables, used as `bg-(--gradient-ember)`, `z-(--layer-nav)`, `size-(--icon-lg)`:
 `--gradient-ember` `--gradient-ghost`, `--shape-chamfer-button|tool-card|tag`, `--shape-lean`, `--motion-lift-button|card`, `--icon-sm|md|lg|xl`, `--layer-base|raised|sticky|nav|overlay|toast`, and the component tier (`--button-primary-bg`, `--program-card-featured-glow`, ...; full list in `dist/tokens.css`).
 In TypeScript: `import { tokens, cssVars, contrast } from "@ngb/tokens"` (resolved values, token-to-variable map, board 02 ratios).
-Not defined on the boards yet (ask before inventing): label letter-spacing, heading line heights.
+H2, H3, lead and readout use the browser default line height until a board defines one; ask before inventing.
 
 ## Ember gradient
 Radial, core at 36% / 24%: #FFE58A 0%, #FFA23A 15%, #FF5A1F 32%, #E3261B 52%, #A3110F 74%, #2A0605 100%. Token: `gradient.ember`.

@@ -148,13 +148,17 @@ function TypographyPage() {
       </FoundationSection>
 
       <FoundationSection title="Rules">
-        <ul className="grid gap-24 md:grid-cols-5">
+        <ul className="grid gap-24 md:grid-cols-3">
           <li>Body never below {pxText(tokens.type.body.mobile)}.</li>
           <li>
             {measure["body-min"]} to {measure["body-max"]} characters per line.
           </li>
           <li>
             Line height {tokens["line-height"].body} English, {tokens["line-height"].telugu} Telugu.
+          </li>
+          <li>
+            Display line height {tokens["line-height"].display}, headings{" "}
+            {tokens["line-height"].heading}; labels tracked {tokens["letter-spacing"].label}.
           </li>
           <li>No italics in body text.</li>
           <li>Max 2 typefaces per component.</li>
