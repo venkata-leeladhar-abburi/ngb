@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+/* Scan the shared components for class names. */
+@source "../../../packages/ui/src";
+
+/* Phase 3: import the token CSS from @ngb/tokens here (CSS variables + @theme). No raw values in this file. */

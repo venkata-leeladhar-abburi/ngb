@@ -1,0 +1,14 @@
+{
+  "home": {
+    "headline": "I did it from zero. Now it's your turn.",
+    "sub": "12-week plans built on Telugu food, for hostel, home or gym. Coached by Nawin, in your language."
+  },
+  "notFound": {
+    "headline": "This page skipped leg day.",
+    "sub": "We couldn't find it. Let's get you back to training.",
+    "home": "Home"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content"
+  }
+}

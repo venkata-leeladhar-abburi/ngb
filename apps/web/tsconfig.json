@@ -1,0 +1,8 @@
+{
+  "extends": "@ngb/config/tsconfig/nextjs.json",
+  "compilerOptions": {
+    "paths": { "@/*": ["./*"] }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.mjs", ".next/types/**/*.ts"],
+  "exclude": ["node_modules", ".next"]
+}
