@@ -104,9 +104,14 @@ export function build(tree: TokenTree): BuildOutput {
     "  --ring-color-focus: var(--outline-color-focus);",
     "",
     "  /* Typefaces and weights (board 04) */",
-    ...children("font").map((key) =>
-      declare(`--font-${key}`, fontFamily(value(`font.${key}`)), `font.${key}`),
-    ),
+    ...children("font").map((key) => {
+      // The primitive family carries the CSS variable its font loader sets (next/font in apps/web).
+      const primitive = referenceOf(getToken(tree, `font.${key}`).$value);
+      const loader =
+        primitive === undefined ? undefined : getToken(tree, primitive).$extensions?.["ngb"];
+      const cssVariable = (loader as { cssVariable?: string } | undefined)?.cssVariable;
+      return declare(`--font-${key}`, fontFamily(value(`font.${key}`), cssVariable), `font.${key}`);
+    }),
     "  --default-font-family: var(--font-body);",
     "  --default-mono-font-family: var(--font-data);",
     ...children("font-weight").map((key) =>

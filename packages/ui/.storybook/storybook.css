@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./fonts.css";
 
 /* Same tokens as the site, so stories render exactly like production. */
 @import "@ngb/tokens/theme.css";

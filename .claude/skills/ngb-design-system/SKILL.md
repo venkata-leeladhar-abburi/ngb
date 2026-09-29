@@ -116,7 +116,8 @@ Only one `shadow.sells` per screen (Von Restorff). If a design shows two, keep t
 - Type all display and label text in sentence case; uppercase with `text-transform`. Rush Driver's lowercase draws small caps, so this is safe visually.
 - No italics in body text. Max 2 typefaces per component. Body never below 16 px.
 - Telugu: Anek Telugu ExtraBold (condensed width) for headings, skewed with `transform: skewX(-8deg)` because it has no italic; Noto Sans Telugu 400 to 600 for body, line height 1.75. Load both only on `/te`. Test every Telugu headline at 360 px: it runs 20 to 30% longer.
-- Fonts via `next/font/local` from `apps/web/fonts/`, `display: swap`, subset to Latin + ₹. Preload only Rush Driver and GT America Standard Regular.
+- Fonts: `apps/web/app/fonts.ts` loads the woff2 files in `apps/web/fonts/web/` with `next/font/local` (`display: swap`, Arial-matched fallbacks, CLS 0). `pnpm --filter @ngb/web fonts` rebuilds them from the sources: Latin = every character in `docs/copy` + ₹; Telugu = the whole Telugu block. It also writes Storybook's `fonts.css`. Preloaded: Rush Driver and GT America Standard (400 + 700). Telugu faces download only where Telugu text uses them.
+- Faces shipped: Rush Driver Italic; GT America Compressed Black Italic, Extended Bold, Standard Regular + Bold, Mono Regular; Anek Telugu Condensed ExtraBold; Noto Sans Telugu 400 to 600. Need another weight? Add it to `FONTS` in `apps/web/scripts/fonts.ts` and `app/fonts.ts`.
 
 ## Layout, spacing and shape (board 05)
 - Grid: desktop 1440 = 12 columns, 96 px margins, 24 px gutters (content 1248 px). Tablet 768 = 8 columns, 32 px margins. Mobile 360 = 4 columns, 16 px margins.

@@ -25,8 +25,10 @@ __screenshots__/
 # Deploy
 .vercel/
 
-# Font files: trial licences, keep out of git until the web licences are bought
-apps/web/fonts/
+# Font sources stay local; only the subsetted woff2 files in fonts/web/ are committed
+# (pnpm --filter @ngb/web fonts regenerates them).
+apps/web/fonts/*
+!apps/web/fonts/web/
 
 # Claude Code / Playwright MCP output
 tmp/

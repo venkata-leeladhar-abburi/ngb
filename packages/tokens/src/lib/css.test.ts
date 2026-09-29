@@ -30,6 +30,9 @@ describe("css formatting", () => {
     expect(fontFamily(["GT America Mono", "ui-monospace", "monospace"])).toBe(
       '"GT America Mono", ui-monospace, monospace',
     );
+    expect(fontFamily(["Rush Driver", "sans-serif"], "--font-rush-driver")).toBe(
+      'var(--font-rush-driver, "Rush Driver"), sans-serif',
+    );
   });
 
   it("formats shadows, gradients and easing", () => {

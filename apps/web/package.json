@@ -10,7 +10,8 @@
     "lint": "eslint . && stylelint \"**/*.css\" --allow-empty-input",
     "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
-    "lhci": "lhci autorun"
+    "lhci": "lhci autorun",
+    "fonts": "node scripts/fonts.ts"
   },
   "dependencies": {
     "@ngb/tokens": "workspace:*",
@@ -25,11 +26,15 @@
     "@lhci/cli": "0.15.1",
     "@ngb/config": "workspace:*",
     "@tailwindcss/postcss": "4.3.3",
+    "@types/fontkit": "2.0.9",
     "@types/node": "24.19.0",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
+    "@types/subset-font": "2.3.0",
     "eslint": "10.11.0",
+    "fontkit": "2.0.4",
     "stylelint": "17.15.0",
+    "subset-font": "2.9.0",
     "tailwindcss": "4.3.3",
     "typescript": "6.0.3",
     "vitest": "4.1.11"

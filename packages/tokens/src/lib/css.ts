@@ -39,12 +39,17 @@ export function fluid(min: number, max: number, from: number, to: number): strin
   return `clamp(${rem(min)}, ${rem(intercept)} + ${round(slope * 100)}vw, ${rem(max)})`;
 }
 
-export function fontFamily(value: unknown): string {
+/**
+ * A font stack. With `cssVariable`, the first family is wrapped as `var(--x, "Family")` so a font
+ * loader (next/font) can supply its optimised family, and anything else falls back to the name.
+ */
+export function fontFamily(value: unknown, cssVariable?: string): string {
   if (!Array.isArray(value)) throw new Error(`Expected a font family list, got ${String(value)}`);
   return value
-    .map((name: unknown) => {
+    .map((name: unknown, index) => {
       if (typeof name !== "string") throw new Error("Font family names must be strings");
-      return GENERIC_FAMILIES.has(name) ? name : `"${name}"`;
+      const css = GENERIC_FAMILIES.has(name) ? name : `"${name}"`;
+      return index === 0 && cssVariable ? `var(${cssVariable}, ${css})` : css;
     })
     .join(", ");
 }

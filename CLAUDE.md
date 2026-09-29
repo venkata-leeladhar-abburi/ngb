@@ -123,5 +123,6 @@ A task is done only when all of these hold, and you have shown me the evidence:
 - Rush Driver has no Telugu glyphs; Telugu headings must switch to Anek Telugu.
 - Check that the GT America build includes the ₹ glyph; fall back per glyph if not.
 - BMI uses Asian cut-offs (18.5 to 22.9 healthy). Protein target is about 1.6 g per kg.
-- Rush Driver and GT America require paid web licences; font files live in `apps/web/fonts/` (git-ignored until licensed).
+- Fonts: sources in `apps/web/fonts/` (git-ignored), subsetted woff2 in `apps/web/fonts/web/` (committed), loaded in `apps/web/app/fonts.ts`. After changing a font or adding copy with new characters, run `pnpm --filter @ngb/web fonts` and read its coverage report.
+- The GT America and Rush Driver files are trial cuts: no punctuation (`! ? : ' " ( )` etc.) and no ₹. Those characters render in the metric-matched fallback font. Licensed files with the same names fix it with no code change.
 - Tool versions are newer than your training data (Next 16.3, Turborepo 2.11, Storybook 10, Vitest 4, ESLint 10, Tailwind 4). Before changing their config, read the installed docs (e.g. `node_modules/turbo/docs/`) or the package's own README.

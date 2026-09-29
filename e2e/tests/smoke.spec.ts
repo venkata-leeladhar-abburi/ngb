@@ -31,6 +31,18 @@ test.describe("home page", () => {
     await expect(page.locator("h1")).toHaveCSS("color", "rgb(237, 227, 214)");
   });
 
+  test("loads the brand body font, and no Telugu fonts on English pages", async ({ page }) => {
+    await page.goto("/");
+    await page.evaluate(() => document.fonts.ready);
+
+    await expect(page.locator("body")).toHaveCSS("font-family", /^gtStandard/);
+    const loaded = await page.evaluate(() =>
+      [...document.fonts].filter((face) => face.status === "loaded").map((face) => face.family),
+    );
+    expect(loaded.join(" ")).toContain("gtStandard");
+    expect(loaded.join(" ")).not.toMatch(/anekTelugu|notoTelugu/);
+  });
+
   test("sends the security headers", async ({ request }) => {
     const response = await request.get("/");
     const headers = response.headers();

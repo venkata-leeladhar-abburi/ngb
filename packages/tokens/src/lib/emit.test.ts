@@ -68,6 +68,15 @@ describe("generated theme", () => {
     expect(files["tokens.css"]).not.toContain("primitive");
   });
 
+  it("lets next/font supply each family, falling back to the family name", () => {
+    expect(files["theme.css"]).toContain(
+      '--font-display: var(--font-rush-driver, "Rush Driver"), sans-serif;',
+    );
+    expect(files["theme.css"]).toContain(
+      '--font-telugu-body: var(--font-noto-telugu, "Noto Sans Telugu"), sans-serif;',
+    );
+  });
+
   it("points component tokens at semantic variables", () => {
     expect(files["tokens.css"]).toContain("--button-primary-bg: var(--background-color-action);");
     expect(files["tokens.css"]).toContain("--program-card-featured-glow: var(--shadow-sells);");

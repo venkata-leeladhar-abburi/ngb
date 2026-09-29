@@ -5,6 +5,8 @@ import type { ReactNode } from "react";
 import { env } from "@/env";
 import { SkipLink } from "@/sections/SkipLink";
 
+import { fontVariables } from "./fonts";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -25,7 +27,7 @@ export const viewport: Viewport = {
 // Phase 6 adds the /te root with lang="te" and hreflang alternates.
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={fontVariables}>
       <body>
         <SkipLink />
         {children}

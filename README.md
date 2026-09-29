@@ -55,4 +55,5 @@ Layering is one-way: tokens → ui → sections → pages. Lint enforces it.
 
 ## Fonts
 
-GT America and Rush Driver in `apps/web/fonts/` are trial files and are git-ignored. Buy the web licences, replace the files, then remove the line from `.gitignore`.
+Sources live in `apps/web/fonts/` (git-ignored). `pnpm --filter @ngb/web fonts` subsets them into small woff2 files in `apps/web/fonts/web/` (committed), reports any character the copy needs that a font lacks, and regenerates Storybook's `@font-face` file.
+The GT America and Rush Driver files are trial versions without punctuation or ₹; replace the sources with licensed files and rerun the command.
