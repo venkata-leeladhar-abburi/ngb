@@ -3,6 +3,8 @@
  * The only place in the codebase that writes clip-path (ngb-design-system skill).
  */
 
+import type { CSSProperties } from "react";
+
 export type Cut = "button" | "tool-card" | "tag";
 
 /** Moving a 45° cut edge by a distance d changes the cut size by d × (2 − √2). */
@@ -13,6 +15,10 @@ export const cutSize = (cut: Cut): string => `var(--shape-chamfer-${cut})`;
 /** A cut grown outward (positive distance) while keeping its edge parallel to the original. */
 export const growCut = (cut: string, distance: string): string =>
   `calc(${cut} + ${distance} * ${DIAGONAL})`;
+
+/** A cut shrunk inward by a distance (for a shape inset inside a border), edge kept parallel. */
+export const shrinkCut = (cut: string, distance: string): string =>
+  `calc(${cut} - ${distance} * ${DIAGONAL})`;
 
 /** The six corners of a chamfered box, inset from the edges by `inset`. */
 function corners(cut: string, inset = "0%"): string[] {
@@ -39,3 +45,9 @@ export function chamferRing(cut: string, width: string): string {
   const inner = corners(`calc(${cut} - ${width} * ${DIAGONAL})`, width);
   return `polygon(evenodd, ${[...outer, outer[0], ...inner, inner[0]].join(", ")})`;
 }
+
+/**
+ * Clips an element to the chamfer shape. For a component's inner track (segmented controls) so a
+ * selected fill follows the cut corners. Outer shapes, borders and focus rings use ChamferBox.
+ */
+export const chamferClip = (cut: Cut): CSSProperties => ({ clipPath: chamfer(cutSize(cut)) });

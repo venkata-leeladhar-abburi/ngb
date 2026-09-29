@@ -1,2 +1,10 @@
 export { ChamferBox } from "./ChamferBox";
-export { chamfer, chamferRing, cutSize, growCut, type Cut } from "./chamfer";
+export {
+  chamfer,
+  chamferClip,
+  chamferRing,
+  cutSize,
+  growCut,
+  shrinkCut,
+  type Cut,
+} from "./chamfer";

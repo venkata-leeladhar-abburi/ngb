@@ -1,6 +1,6 @@
 import type { ComponentPropsWithRef, ElementType, ReactNode } from "react";
 
-import { chamfer, chamferRing, cutSize, growCut, type Cut } from "./chamfer";
+import { chamfer, chamferRing, cutSize, growCut, shrinkCut, type Cut } from "./chamfer";
 
 type ChamferBoxProps<T extends ElementType> = {
   /** Element to render: "button", "a", a Next.js Link... Defaults to `div`. */
@@ -11,6 +11,12 @@ type ChamferBoxProps<T extends ElementType> = {
   fill?: string;
   /** Classes for a chamfered border layer (its colour). Omit for no border. */
   border?: string;
+  /**
+   * Hollow: the border is a ring with a see-through middle, for shapes with no solid fill (secondary
+   * button). Otherwise the border is a solid shape under an inset fill, which looks the same and lets
+   * contrast checkers (which ignore clip-path) see the real fill behind the text.
+   */
+  hollow?: boolean;
   /** Border thickness as a CSS length (a token variable). */
   borderWidth?: string;
   /** Keyboard focus ring: signal red, bone for studio-red grounds, or none for non-interactive boxes. */
@@ -26,22 +32,19 @@ const RING_OFFSET = "(var(--focus-ring-gap) + var(--focus-ring-width))";
  * A box with NGB's cut corners. Shadows and focus rings cannot be drawn on a clip-path element,
  * so the element stays unclipped and the shape is drawn by layers behind the content (the layers come
  * first in the DOM and every other direct child is positioned, so content paints on top without z-index):
- * a clipped fill, an optional chamfered border, and a chamfered focus ring outside the box.
+ * an optional chamfered border, a clipped fill, and a chamfered focus ring outside the box.
  * State variants for the layers use the `chamfer` group: `group-hover/chamfer:`, `group-active/chamfer:`.
  *
- * The fill and border layers stay hit-testable (no pointer-events: none): accessibility checkers find a
- * text's background by hit-testing and would otherwise measure contrast against the wrong colour. Clicks on
- * them still reach the element. Only the ring, which sits outside the box, ignores the pointer.
- *
- * The fill and border layers must stay hit-testable (no pointer-events: none): accessibility checkers
- * find a text's background by hit-testing, and would otherwise measure contrast against the wrong colour.
- * Clicks on them still reach the element. Only the ring, which sits outside the box, ignores the pointer.
+ * The fill and border layers stay hit-testable (no pointer-events: none) and never use negative z-index:
+ * accessibility checkers work out a text's background from these layers. Clicks on them still reach the
+ * element. Only the ring, which sits outside the box, ignores the pointer.
  */
 export function ChamferBox<T extends ElementType = "div">({
   as,
   cut = "button",
   fill,
   border,
+  hollow = false,
   borderWidth = "var(--focus-ring-width)",
   focusRing = "default",
   className,
@@ -69,20 +72,24 @@ export function ChamferBox<T extends ElementType = "div">({
           }}
         />
       )}
-      {fill && (
-        <span
-          aria-hidden="true"
-          data-chamfer="fill"
-          className={`absolute inset-0 ${fill}`}
-          style={{ clipPath: chamfer(size) }}
-        />
-      )}
       {border && (
         <span
           aria-hidden="true"
           data-chamfer="border"
           className={`absolute inset-0 ${border}`}
-          style={{ clipPath: chamferRing(size, borderWidth) }}
+          style={{ clipPath: hollow ? chamferRing(size, borderWidth) : chamfer(size) }}
+        />
+      )}
+      {fill && (
+        <span
+          aria-hidden="true"
+          data-chamfer="fill"
+          className={`absolute ${fill}`}
+          style={
+            border && !hollow
+              ? { inset: borderWidth, clipPath: chamfer(shrinkCut(size, borderWidth)) }
+              : { inset: 0, clipPath: chamfer(size) }
+          }
         />
       )}
       {children}

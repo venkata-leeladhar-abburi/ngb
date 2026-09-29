@@ -60,6 +60,29 @@ describe("ChamferBox", () => {
     expect(container.querySelector('[data-chamfer="ring"]')).toHaveClass("pointer-events-none");
   });
 
+  it("draws a solid border under an inset fill, or a see-through ring when hollow", () => {
+    const { container, rerender } = render(
+      <ChamferBox fill="bg-card" border="bg-(--border-color-strong)" borderWidth="var(--w)">
+        Chip
+      </ChamferBox>,
+    );
+    const border = () => container.querySelector<HTMLElement>('[data-chamfer="border"]');
+    const fill = () => container.querySelector<HTMLElement>('[data-chamfer="fill"]');
+    expect(border()?.style.clipPath).not.toContain("evenodd");
+    expect(fill()?.style.inset).toBe("var(--w)");
+    expect(border()?.compareDocumentPosition(fill() as Node)).toBe(
+      Node.DOCUMENT_POSITION_FOLLOWING,
+    );
+
+    rerender(
+      <ChamferBox hollow fill="opacity-0" border="bg-(--text-color-primary)" borderWidth="var(--w)">
+        Try free tools
+      </ChamferBox>,
+    );
+    expect(border()?.style.clipPath).toContain("evenodd");
+    expect(Number.parseFloat(fill()?.style.inset ?? "")).toBe(0);
+  });
+
   it("uses the bone ring on studio red grounds", () => {
     const { container } = render(<ChamferBox focusRing="onRed">On red</ChamferBox>);
 

@@ -6,7 +6,10 @@ import type {
   ReactNode,
 } from "react";
 
+import { CaretRightIcon } from "@phosphor-icons/react/ssr";
+
 import { ChamferBox } from "../brand/ChamferBox";
+import { Icon } from "../Icon";
 
 export type ButtonVariant = "primary" | "secondary" | "onRed";
 
@@ -53,22 +56,6 @@ const VARIANTS: Record<
 };
 
 const DISABLED = { text: "text-(--button-disabled-fg)", fill: "bg-(--button-disabled-bg)" };
-
-/** Caret from board 07. Decorative: the label carries the meaning. */
-function Caret() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 16 16"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.5}
-      className="size-(--icon-sm) shrink-0"
-    >
-      <path d="m6 3 5 5-5 5" />
-    </svg>
-  );
-}
 
 function LoadingBars() {
   return (
@@ -124,7 +111,9 @@ export function Button<T extends ElementType = "button">({
       as={Component}
       cut="button"
       fill={colours.fill}
-      {...(border ? { border, borderWidth: "var(--button-secondary-border-width)" } : {})}
+      {...(border
+        ? { border, hollow: true, borderWidth: "var(--button-secondary-border-width)" }
+        : {})}
       focusRing={style.onRed ? "onRed" : "default"}
       className={`inline-flex h-(--button-height) min-w-target items-center justify-center gap-8 px-24 font-label text-label font-bold whitespace-nowrap uppercase transition-transform ease-out select-none ${colours.text} ${interaction} ${className ?? ""}`}
       {...(isNativeButton ? { type: "button", disabled: disabled || undefined } : {})}
@@ -138,7 +127,7 @@ export function Button<T extends ElementType = "button">({
         <span className={loading ? "opacity-0" : undefined}>{children}</span>
         {loading && <LoadingBars />}
       </span>
-      {showArrow && <Caret />}
+      {showArrow && <Icon icon={CaretRightIcon} size="sm" />}
     </ChamferBox>
   );
 }
