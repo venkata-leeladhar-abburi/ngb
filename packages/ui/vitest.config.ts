@@ -15,6 +15,8 @@ export default defineConfig({
         extends: true,
         test: {
           name: "unit",
+          // Keyboard tests with many user-event steps can pass 5 s when both projects run at once.
+          testTimeout: 15_000,
           environment: "jsdom",
           include: ["src/**/*.test.{ts,tsx}"],
           setupFiles: ["./vitest.setup.ts"],
@@ -26,6 +28,8 @@ export default defineConfig({
         plugins: [storybookTest({ configDir: `${dirname}.storybook` })],
         test: {
           name: "storybook",
+          // Axe on the largest pages (Foundations) can pass 15 s when the whole suite runs in parallel.
+          testTimeout: 30_000,
           browser: {
             enabled: true,
             headless: true,
