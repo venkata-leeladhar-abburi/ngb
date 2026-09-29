@@ -1,0 +1,29 @@
+{
+  "name": "ngb-evolve",
+  "private": true,
+  "packageManager": "pnpm@10.34.6",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "turbo run dev --filter=@ngb/web",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "test:stories": "turbo run test:stories",
+    "e2e": "turbo run e2e",
+    "storybook": "turbo run storybook --filter=@ngb/ui",
+    "build-storybook": "turbo run build-storybook",
+    "lhci": "turbo run lhci --filter=@ngb/web",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@ngb/config": "workspace:*",
+    "prettier": "3.9.9",
+    "prettier-plugin-tailwindcss": "0.8.1",
+    "stylelint": "17.15.0",
+    "turbo": "2.11.5"
+  }
+}

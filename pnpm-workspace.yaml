@@ -1,0 +1,17 @@
+packages:
+  - apps/*
+  - packages/*
+  - e2e
+
+# pnpm blocks install scripts by default; allow only the ones that need native binaries.
+onlyBuiltDependencies:
+  - "@tailwindcss/oxide"
+  - esbuild
+  - sharp
+
+# These plugins work on ESLint 10 (Next.js ships them with ESLint 10 support) but have not widened
+# their peer ranges yet. ESLint 9 is end-of-life, so we stay on 10. Remove once they publish updates.
+peerDependencyRules:
+  allowedVersions:
+    eslint-plugin-jsx-a11y>eslint: "10"
+    eslint-plugin-react>eslint: "10"

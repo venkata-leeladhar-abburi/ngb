@@ -1,9 +1,38 @@
+# Dependencies
+node_modules/
+
+# Build output and caches
+.next/
+.turbo/
+dist/
+storybook-static/
+*.tsbuildinfo
+next-env.d.ts
+
+# Test output
+coverage/
+playwright-report/
+test-results/
+blob-report/
+.lighthouseci/
+__screenshots__/
+
+# Environment (only the example is committed)
+.env
+.env.*
+!.env.example
+
+# Deploy
+.vercel/
+
+# Font files: trial licences, keep out of git until the web licences are bought
+apps/web/fonts/
+
 # Claude Code / Playwright MCP output
 tmp/
 .playwright-mcp/
 
-# macOS
+# OS / editors / Python
 .DS_Store
-
-# Python
+.idea/
 __pycache__/

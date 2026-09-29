@@ -1,0 +1,13 @@
+# Generated / vendored
+pnpm-lock.yaml
+skills-lock.json
+.claude/skills/design-taste-frontend/
+.claude/skills/ui-ux-pro-max/
+
+# Hand-written instructions and source documents: keep exactly as authored
+docs/
+.claude/**/*.md
+CLAUDE.md
+
+# Not ours
+apps/web/fonts/
