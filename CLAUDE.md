@@ -32,7 +32,8 @@ If a doc and the code disagree, stop and ask. Never invent copy, prices, numbers
 - `pnpm e2e` - Playwright journeys (builds first); `pnpm --filter @ngb/e2e e2e --project=android` for 360 px only
 - `pnpm lhci` - Lighthouse CI against the local production build
 - `pnpm format` - Prettier; `pnpm build` - production build of everything
-- Not yet: `pnpm tokens:build` (added in Phase 3), `pnpm db:generate` / `pnpm db:migrate` (Phase 7). Do not call them before they exist.
+- `pnpm tokens:build` - regenerate CSS and `tokens.ts` after editing `packages/tokens/src/tokens.json` (turbo also runs it before dev, build and tests)
+- Not yet: `pnpm db:generate` / `pnpm db:migrate` (Phase 7). Do not call them before they exist.
 
 ## Repo map
 - `packages/tokens` - tokens.json -> CSS variables + Tailwind theme

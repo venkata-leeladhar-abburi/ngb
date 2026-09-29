@@ -2,5 +2,29 @@
   "name": "@ngb/tokens",
   "version": "0.0.0",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "exports": {
+    ".": "./dist/tokens.ts",
+    "./theme.css": "./dist/theme.css",
+    "./tokens.css": "./dist/tokens.css",
+    "./base.css": "./dist/base.css"
+  },
+  "scripts": {
+    "build": "node scripts/build.ts",
+    "dev": "node --watch-path=src --watch-path=scripts scripts/build.ts",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@ngb/config": "workspace:*",
+    "@types/node": "24.19.0",
+    "eslint": "10.11.0",
+    "tailwindcss": "4.3.3",
+    "typescript": "6.0.3",
+    "vitest": "4.1.11"
+  }
 }

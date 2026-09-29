@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import { tokens } from "@ngb/tokens";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 
 import { env } from "@/env";
@@ -14,6 +15,11 @@ export const metadata: Metadata = {
   },
   description:
     "12-week plans built on Telugu food, for hostel, home or gym. Coached by Nawin, in your language.",
+};
+
+export const viewport: Viewport = {
+  themeColor: tokens.color.bg.page,
+  colorScheme: "dark",
 };
 
 // Phase 6 adds the /te root with lang="te" and hreflang alternates.

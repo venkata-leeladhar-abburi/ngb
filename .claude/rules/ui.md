@@ -11,6 +11,7 @@ paths:
 - Three tiers in `packages/tokens/src/tokens.json`: primitive (`red-600`), semantic (`color.action.primary`), component (`button.primary.bg`).
 - Components use semantic or component tokens only, never primitives.
 - After editing tokens run `pnpm tokens:build` and update the Storybook Foundations page.
+- Use token classes (`bg-page`, `text-h1`, `p-16`, `shadow-sells`); the class table is in the `ngb-design-system` skill. Anything else is a CSS variable: `bg-(--gradient-ember)`.
 - Core values (for reference, never hard-code them):
   - Colours: ground #0B0909, carbon #131010, surface #1C1717, line #2E2626, line-strong #7A6C64,
     bone #EDE3D6, bone-muted #A89C92, studio-red #C8080D, deep-red #8E0308, oxblood #42060A,

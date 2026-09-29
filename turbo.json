@@ -11,25 +11,32 @@
       "outputs": [".next/**", "!.next/cache/**", "dist/**"]
     },
     "build-storybook": {
-      "outputs": ["storybook-static/**"]
+      "outputs": ["storybook-static/**"],
+      "dependsOn": ["^build"]
     },
     "dev": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "dependsOn": ["^build"]
     },
     "storybook": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "dependsOn": ["^build"]
     },
-    "lint": {},
+    "lint": {
+      "dependsOn": ["^build"]
+    },
     "typecheck": {
-      "dependsOn": ["^typecheck"]
+      "dependsOn": ["^build", "^typecheck"]
     },
     "test": {
-      "outputs": ["coverage/**"]
+      "outputs": ["coverage/**"],
+      "dependsOn": ["^build"]
     },
     "test:stories": {
-      "outputs": []
+      "outputs": [],
+      "dependsOn": ["^build"]
     },
     "e2e": {
       "dependsOn": ["@ngb/web#build"],

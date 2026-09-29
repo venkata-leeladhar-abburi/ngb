@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@ngb/config": "workspace:*",
+    "@ngb/tokens": "workspace:*",
     "@storybook/addon-a11y": "10.6.0",
     "@storybook/addon-docs": "10.6.0",
     "@storybook/addon-vitest": "10.6.0",

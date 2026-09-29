@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
+/* NGB design tokens: the Tailwind theme (only token utilities exist), CSS variables and base styles. */
+@import "@ngb/tokens/theme.css";
+@import "@ngb/tokens/tokens.css";
+@import "@ngb/tokens/base.css";
+
 /* Scan the shared components for class names. */
 @source "../../../packages/ui/src";
-
-/* Phase 3: import the token CSS from @ngb/tokens here (CSS variables + @theme). No raw values in this file. */

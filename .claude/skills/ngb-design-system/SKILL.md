@@ -59,6 +59,29 @@ bone on studio red 4.7:1; ground on ember gold 11.2:1; studio red on ground 3.3:
 Never: bone-muted on studio red (2.2:1); studio red text under 24 px on black; colour alone for status.
 Any pair not on this list: compute the ratio and state it before using it.
 
+## Tokens in code (Tailwind classes)
+Built by `pnpm tokens:build` into `packages/tokens/dist/`. Tailwind's default theme is removed: `bg-red-500`, `p-5`, `shadow-lg`, `text-xl` do not exist.
+Each colour exists only in its role: `bg-page` works, `text-page` does not.
+
+| Need | Class | Token |
+| --- | --- | --- |
+| Backgrounds | `bg-page` `bg-alt` `bg-card` `bg-brand` `bg-band` `bg-action` `bg-action-pressed` `bg-popular` | `color.bg.*`, `color.action.*`, `color.tag.popular` |
+| Text | `text-primary` `text-muted` `text-accent` `text-on-gold` `text-good` | `color.text.*`, `color.status.good` |
+| Borders, focus | `border-subtle` `border-strong` `border-focus` `outline-focus` `ring-focus` | `color.border.*`, `color.focus` |
+| Type roles | `text-mega` `text-hero` `text-display` `text-h1` `text-h2` `text-h3` `text-lead` `text-body` `text-label` `text-readout` (fluid 360 to 1440 px) | `type.*` |
+| Faces, weights | `font-display` `font-heading` `font-label` `font-body` `font-data` `font-telugu-heading` `font-telugu-body`; `font-regular` `font-medium` `font-bold` `font-extrabold` `font-black` | `font.*`, `font-weight.*` |
+| Line height | `leading-body` (1.65) `leading-telugu` (1.75) | `line-height.*` |
+| Spacing | `p-16` = 16 px; steps 4 8 12 16 24 32 48 64 96 128 144 only. `pt-section-top` `pb-section-bottom` (fluid), `px-page` (grid margin per breakpoint), `gap-gutter`, `h-nav`, `min-h-target` `min-w-target`, `gap-target-gap` | `primitive.space.*`, `space.*`, `layout.*` |
+| Widths | `max-w-content` (1248 px) `max-w-measure` (75ch) `max-w-lead` (60ch) | `layout.content-max`, `measure.*` |
+| Shape, depth | `rounded-card`; `shadow-rest` `shadow-hover` `shadow-sells` `shadow-focus` | `shape.radius.*`, `shadow.*` |
+| Motion | `ease-out`; durations via `duration-(--motion-base)`; plain `transition` defaults to 150 ms + ease-out | `motion.*` |
+| Breakpoints | `md:` 768, `lg:` 1024 (desktop grid and 72 px nav start here), `xl:` 1280, `2xl:` 1440 | `layout.breakpoint.*` |
+
+Values that are not utilities are CSS variables, used as `bg-(--gradient-ember)`, `z-(--layer-nav)`, `size-(--icon-lg)`:
+`--gradient-ember` `--gradient-ghost`, `--shape-chamfer-button|tool-card|tag`, `--shape-lean`, `--motion-lift-button|card`, `--icon-sm|md|lg|xl`, `--layer-base|raised|sticky|nav|overlay|toast`, and the component tier (`--button-primary-bg`, `--program-card-featured-glow`, ...; full list in `dist/tokens.css`).
+In TypeScript: `import { tokens, cssVars, contrast } from "@ngb/tokens"` (resolved values, token-to-variable map, board 02 ratios).
+Not defined on the boards yet (ask before inventing): label letter-spacing, heading line heights.
+
 ## Ember gradient
 Radial, core at 36% / 24%: #FFE58A 0%, #FFA23A 15%, #FF5A1F 32%, #E3261B 52%, #A3110F 74%, #2A0605 100%. Token: `gradient.ember`.
 - Use for: transformation cards, the featured program, story share cards, the final-call glow.

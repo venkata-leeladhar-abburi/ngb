@@ -6,7 +6,7 @@
     "node": ">=24"
   },
   "scripts": {
-    "dev": "turbo run dev --filter=@ngb/web",
+    "dev": "turbo run dev --filter=@ngb/web...",
     "build": "turbo run build",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
@@ -17,7 +17,8 @@
     "build-storybook": "turbo run build-storybook",
     "lhci": "turbo run lhci --filter=@ngb/web",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "tokens:build": "turbo run build --filter=@ngb/tokens"
   },
   "devDependencies": {
     "@ngb/config": "workspace:*",

@@ -1,0 +1,85 @@
+import { compile } from "tailwindcss";
+import { describe, expect, it } from "vitest";
+
+import { build } from "./emit.ts";
+import { loadTokens, type TokenTree } from "./tokens.ts";
+
+const tree = loadTokens(new URL("../tokens.json", import.meta.url));
+const { files, cssVars } = build(tree);
+
+/** Runs the real Tailwind compiler on the generated theme and returns the CSS for the given classes. */
+async function tailwind(classes: string[]): Promise<string> {
+  const compiler = await compile(`${files["theme.css"]}\n@tailwind utilities;`);
+  return compiler.build(classes);
+}
+
+describe("generated theme", () => {
+  it("removes Tailwind's defaults so only tokens produce utilities", async () => {
+    const css = await tailwind([
+      "bg-red-500",
+      "p-5",
+      "shadow-lg",
+      "text-xl",
+      "rounded-lg",
+      "font-sans",
+    ]);
+    expect(css).not.toMatch(/\.(bg-red-500|p-5|shadow-lg|text-xl|rounded-lg|font-sans)\b/);
+  });
+
+  it("creates the semantic utilities", async () => {
+    const css = await tailwind([
+      "bg-page",
+      "text-primary",
+      "border-strong",
+      "p-16",
+      "text-h1",
+      "shadow-sells",
+      "font-display",
+      "max-w-content",
+      "px-page",
+      "rounded-card",
+      "ease-out",
+    ]);
+    for (const cls of [
+      "bg-page",
+      "text-primary",
+      "border-strong",
+      "p-16",
+      "text-h1",
+      "shadow-sells",
+      "font-display",
+      "max-w-content",
+      "px-page",
+      "rounded-card",
+      "ease-out",
+    ]) {
+      expect(css, cls).toContain(`.${cls}`);
+    }
+    expect(css).toContain("var(--spacing-16)");
+  });
+
+  it("allows each colour only in its role", async () => {
+    const css = await tailwind(["text-page", "bg-muted", "border-page", "bg-primary"]);
+    expect(css).not.toMatch(/\.(text-page|bg-muted|border-page|bg-primary)\b/);
+  });
+
+  it("never exposes primitive names or raw scale values outside the spacing scale", () => {
+    expect(files["theme.css"]).not.toContain("primitive");
+    expect(files["tokens.css"]).not.toContain("primitive");
+  });
+
+  it("points component tokens at semantic variables", () => {
+    expect(files["tokens.css"]).toContain("--button-primary-bg: var(--background-color-action);");
+    expect(files["tokens.css"]).toContain("--program-card-featured-glow: var(--shadow-sells);");
+    expect(cssVars["color.bg.page"]).toBe("--background-color-page");
+  });
+
+  it("fails the build when a token is never emitted", () => {
+    const withOrphan: TokenTree = { ...tree, orphan: { $type: "number", $value: 1 } };
+    expect(() => build(withOrphan)).toThrow("not emitted by the build: orphan");
+  });
+
+  it("reports every board 02 pair as passing in tokens.ts", () => {
+    expect(files["tokens.ts"]).not.toContain('"passes": false');
+  });
+});

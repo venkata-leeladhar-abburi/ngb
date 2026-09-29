@@ -1,4 +1,8 @@
 @import "tailwindcss";
 
-/* Phase 3: import the token CSS from @ngb/tokens here so stories render with the NGB theme. */
+/* Same tokens as the site, so stories render exactly like production. */
+@import "@ngb/tokens/theme.css";
+@import "@ngb/tokens/tokens.css";
+@import "@ngb/tokens/base.css";
+
 @source "../src";

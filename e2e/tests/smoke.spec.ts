@@ -23,6 +23,14 @@ test.describe("home page", () => {
     expect(results.violations).toEqual([]);
   });
 
+  test("renders with the NGB design tokens", async ({ page }) => {
+    await page.goto("/");
+
+    // color.bg.page (#0B0909) and color.text.primary (#EDE3D6) from packages/tokens.
+    await expect(page.locator("html")).toHaveCSS("background-color", "rgb(11, 9, 9)");
+    await expect(page.locator("h1")).toHaveCSS("color", "rgb(237, 227, 214)");
+  });
+
   test("sends the security headers", async ({ request }) => {
     const response = await request.get("/");
     const headers = response.headers();
