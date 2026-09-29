@@ -63,14 +63,34 @@ export const approvedPairs: readonly ContrastPair[] = [
     board: 3.5,
     use: "Input borders and UI edges",
   },
+  {
+    foreground: "color.text.primary",
+    background: "primitive.ember.stop-74",
+    minimum: 4.5,
+    board: 6.3,
+    use: "Text on the ember dark zone (74% stop and darker; board 03)",
+  },
 ];
 
-/** Pairs board 02 forbids. Tests confirm they really fail, so nobody "rescues" them. */
-export const forbiddenPairs: readonly Omit<ContrastPair, "minimum">[] = [
+/** Pairs the boards forbid, with the minimum each one fails. Tests confirm they really fail. */
+export interface ForbiddenPair extends Omit<ContrastPair, "minimum"> {
+  /** The WCAG minimum this pair does not reach for its use. */
+  failsBelow: 4.5 | 3;
+}
+
+export const forbiddenPairs: readonly ForbiddenPair[] = [
   {
     foreground: "color.text.muted",
     background: "color.bg.brand",
     board: 2.2,
-    use: "Muted text on studio red",
+    failsBelow: 3,
+    use: "Muted text on studio red (board 02)",
+  },
+  {
+    foreground: "color.text.primary",
+    background: "primitive.ember.stop-52",
+    board: 3.6,
+    failsBelow: 4.5,
+    use: "Text over the bright middle of the ember gradient (board 03)",
   },
 ];

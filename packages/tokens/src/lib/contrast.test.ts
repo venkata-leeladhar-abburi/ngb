@@ -21,7 +21,7 @@ describe("contrast maths", () => {
   });
 });
 
-describe("board 02 pairs", () => {
+describe("board 02 and 03 pairs", () => {
   it.each(approvedPairs)(
     "$use: $foreground on $background meets $minimum:1 and matches the board ($board:1)",
     ({ foreground, background, minimum, board }) => {
@@ -33,10 +33,10 @@ describe("board 02 pairs", () => {
   );
 
   it.each(forbiddenPairs)(
-    "$use stays forbidden (below 3:1)",
-    ({ foreground, background, board }) => {
+    "$use stays forbidden (below $failsBelow:1)",
+    ({ foreground, background, board, failsBelow }) => {
       const ratio = contrastRatio(hex(foreground), hex(background));
-      expect(ratio).toBeLessThan(3);
+      expect(ratio).toBeLessThan(failsBelow);
       expect(Math.abs(ratio - board)).toBeLessThanOrEqual(0.1);
     },
   );
