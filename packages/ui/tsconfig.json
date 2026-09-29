@@ -1,0 +1,7 @@
+{
+  "extends": "@ngb/config/tsconfig/react-library.json",
+  "compilerOptions": {
+    "types": ["vite/client", "@testing-library/jest-dom/vitest", "@vitest/browser-playwright"]
+  },
+  "include": ["src", ".storybook/**/*.ts", "*.ts", "*.mjs"]
+}
