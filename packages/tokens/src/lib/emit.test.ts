@@ -58,6 +58,24 @@ describe("generated theme", () => {
     expect(css).toContain("var(--spacing-16)");
   });
 
+  it("keeps zero values working (inset-0, p-0, translate-y-0...)", async () => {
+    const zero = [
+      "inset-0",
+      "inset-x-0",
+      "top-0",
+      "left-0",
+      "bottom-0",
+      "p-0",
+      "m-0",
+      "gap-0",
+      "translate-y-0",
+    ];
+    const css = await tailwind(zero);
+    for (const cls of zero) {
+      expect(css, cls).toContain(`.${cls}`);
+    }
+  });
+
   it("allows each colour only in its role", async () => {
     const css = await tailwind(["text-page", "bg-muted", "border-page", "bg-primary"]);
     expect(css).not.toMatch(/\.(text-page|bg-muted|border-page|bg-primary)\b/);
@@ -95,6 +113,10 @@ describe("generated theme", () => {
     for (const role of ["mega", "hero", "display", "h1", "body"]) {
       expect(telugu).toContain(`--text-${role}--line-height: var(--leading-telugu);`);
     }
+    expect(telugu).toContain("--font-label: var(--font-telugu-heading);");
+    expect(telugu).toContain("--font-display: var(--font-telugu-heading);");
+    expect(telugu).toContain("--font-body: var(--font-telugu-body);");
+    expect(telugu).toContain("--text-label--letter-spacing: normal;");
   });
 
   it("points component tokens at semantic variables", () => {

@@ -330,6 +330,15 @@ export function build(tree: TokenTree): BuildOutput {
     ...children("type")
       .filter((role) => children(`type.${role}`).includes("line-height"))
       .map((role) => `    --text-${role}--line-height: var(--leading-telugu);`),
+    "    /* Rush Driver and GT America have no Telugu glyphs: display, heading and label roles use Anek Telugu. */",
+    "    --font-display: var(--font-telugu-heading);",
+    "    --font-heading: var(--font-telugu-heading);",
+    "    --font-label: var(--font-telugu-heading);",
+    "    --font-body: var(--font-telugu-body);",
+    "    /* Letter-spacing turns off the ligatures that join Telugu conjuncts, so tracking is removed. */",
+    ...children("type")
+      .filter((role) => children(`type.${role}`).includes("letter-spacing"))
+      .map((role) => `    --text-${role}--letter-spacing: normal;`),
     "  }",
     "",
     "  ::selection {",
