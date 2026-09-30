@@ -21,8 +21,8 @@ interface SwipeRowProps {
 /**
  * A row people swipe sideways (screens A2 on phones, A4): native scroll with snap points, so touch,
  * trackpad and the keyboard (the row is focusable and arrow keys scroll it) all work, with previous and
- * next carets from md. No scroll-jacking and no auto-advance; at each end a caret is muted and
- * aria-disabled but keeps focus.
+ * next carets at every size (the non-drag way to move it, 2.5.7). No scroll-jacking and no
+ * auto-advance; at each end a caret is muted and aria-disabled but keeps focus.
  *
  * **Use for:** a set of equal cards wider than the screen, like member results.
  *
@@ -75,7 +75,7 @@ export function SwipeRow({
 
   return (
     <div role="region" aria-label={label} className={className}>
-      <div className="mb-8 hidden justify-end gap-8 md:flex">
+      <div className="mb-8 flex justify-end gap-8">
         <button
           type="button"
           aria-label={previousLabel}

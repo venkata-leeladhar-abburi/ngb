@@ -84,7 +84,10 @@ export function ProgramCard({
         <span aria-hidden="true" className="h-16 w-4 bg-action" />
         {weeks} {weeksLabel}
       </p>
-      <p className="mt-8 font-display text-h1 leading-display italic">{rupees.format(priceInr)}</p>
+      {/* Digits only: lang="en" keeps Rush Driver on Telugu pages (base.css [lang|="en"]). */}
+      <p lang="en" className="mt-8 font-display text-h1 leading-display italic">
+        {rupees.format(priceInr)}
+      </p>
       <p className="mt-8 font-data text-body">
         {rupees.format(perDayPrice(priceInr, weeks))} {perDayLabel}
       </p>

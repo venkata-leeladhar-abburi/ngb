@@ -2,7 +2,7 @@
 
 import { CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react/ssr";
 import * as Slider from "@radix-ui/react-slider";
-import { useState, type ReactNode } from "react";
+import { useRef, useState, type MouseEvent, type ReactNode } from "react";
 
 import { LEAN_SAFE_INSET, LeanFrame } from "../brand/LeanFrame";
 import { Icon } from "../Icon";
@@ -29,7 +29,7 @@ function Placeholder({ label, tone }: { label: string; tone: "before" | "after" 
   return (
     <div
       aria-hidden="true"
-      className={`flex size-full items-start py-24 font-label text-label uppercase ${tone === "before" ? "bg-alt text-muted" : "text-primary"}`}
+      className={`flex size-full items-start py-24 font-label text-label uppercase ${tone === "before" ? "bg-alt text-muted" : "justify-end text-primary"}`}
       style={{
         paddingInline: LEAN_SAFE_INSET,
         ...(tone === "after" ? { backgroundImage: "var(--gradient-ember)" } : {}),
@@ -62,10 +62,20 @@ export function TransformationCard({
   className,
 }: TransformationCardProps) {
   const [value, setValue] = useState(50);
+  const track = useRef<HTMLSpanElement>(null);
+  // A tap anywhere on the photos moves the divider there (no dragging needed, 2.5.7).
+  const jump = (event: MouseEvent<HTMLDivElement>) => {
+    const box = track.current?.getBoundingClientRect();
+    if (!box || box.width === 0) return;
+    const ratio = Math.min(Math.max((event.clientX - box.left) / box.width, 0), 1);
+    setValue(Math.round(ratio * 100));
+  };
   return (
     <article className={className}>
       <LeanFrame className="aspect-3/4 w-full bg-card">
-        <div className="@container relative size-full">
+        {/* Pointer only: keyboard users move the slider with the arrow keys. */}
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+        <div className="@container relative size-full" onClick={jump}>
           <div className="absolute inset-0">
             {before ?? <Placeholder label="Before" tone="before" />}
           </div>
@@ -81,7 +91,11 @@ export function TransformationCard({
               {after ?? <Placeholder label="After" tone="after" />}
             </div>
           </div>
+          {/* The upper two thirds: the handle sits clear of the name and result at the bottom. Only the
+              handle takes drags, so a sideways swipe on the photo scrolls the row and an upward one
+              scrolls the page. */}
           <Slider.Root
+            ref={track}
             value={[value]}
             onValueChange={([next]) => {
               if (next !== undefined) setValue(next);
@@ -89,7 +103,7 @@ export function TransformationCard({
             min={0}
             max={100}
             step={1}
-            className="absolute inset-y-0 flex cursor-ew-resize touch-none items-center select-none"
+            className="pointer-events-none absolute top-0 bottom-1/3 flex items-center select-none"
             style={{ insetInline: LEAN_SAFE_INSET }}
           >
             <Slider.Track className="relative h-full grow">
@@ -98,7 +112,7 @@ export function TransformationCard({
             <Slider.Thumb
               aria-label={sliderLabel}
               aria-valuetext={`${value}% before, ${100 - value}% after`}
-              className="group/thumb relative flex h-full w-4 items-center justify-center bg-(--text-color-primary) outline-hidden"
+              className="group/thumb pointer-events-auto relative flex h-full w-4 cursor-ew-resize touch-none items-center justify-center bg-(--text-color-primary) outline-hidden"
             >
               <span className="flex size-target shrink-0 items-center justify-center bg-(--text-color-primary) text-on-gold group-focus-visible/thumb:outline-2 group-focus-visible/thumb:outline-offset-2 group-focus-visible/thumb:outline-(--focus-ring-color)">
                 <Icon icon={CaretLeftIcon} size="sm" />

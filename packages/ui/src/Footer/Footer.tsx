@@ -59,7 +59,8 @@ export function Footer({
   className,
 }: FooterProps) {
   const Link: ElementType = linkAs ?? "a";
-  const linkClass = "inline-flex min-h-target items-center text-muted hover:text-primary";
+  const linkClass =
+    "inline-flex min-h-target min-w-target items-center text-muted hover:text-primary";
   return (
     <footer className={`relative overflow-hidden bg-page text-primary ${className ?? ""}`}>
       <PosterWord tone="watermark" className="absolute inset-x-0 top-16 text-center">
@@ -76,9 +77,10 @@ export function Footer({
           </Link>
           <p className="mt-16 max-w-lead text-muted">{brandLine}</p>
         </div>
-        {columns.map((column) => (
+        {columns.map((column, index) => (
           <nav
-            key={column.title}
+            // Fixed columns in order; titles may repeat while Telugu copy is TODO(te).
+            key={index}
             aria-label={column.title}
             className="lg:border-l lg:border-subtle lg:pl-24"
           >

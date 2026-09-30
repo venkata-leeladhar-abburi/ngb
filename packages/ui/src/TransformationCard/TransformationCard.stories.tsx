@@ -30,10 +30,13 @@ export const TapToMove: Story = {
     const slider = canvas.getByRole("slider", { name: "Before and after" });
     const track = canvasElement.querySelector<HTMLElement>('[data-orientation="horizontal"]');
     if (!track) throw new Error("Slider track not found");
+    // The photos take the tap (the track itself ignores the pointer so swipes scroll the row).
+    const photos = track.parentElement;
+    if (!photos) throw new Error("Photo area not found");
     const box = track.getBoundingClientRect();
     await userEvent.pointer({
       keys: "[MouseLeft]",
-      target: track,
+      target: photos,
       coords: { clientX: box.left + box.width * 0.2, clientY: box.top + box.height / 2 },
     });
     await expect(Number(slider.getAttribute("aria-valuenow"))).toBeLessThan(35);

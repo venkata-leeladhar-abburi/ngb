@@ -130,7 +130,9 @@ export function StickyActionBar({
         <Button as={Link} href={secondary.href} variant="secondary" className="w-full px-12">
           {secondary.label}
         </Button>
-        <Button as={Link} href={primary.href} className="w-full px-12">
+        {/* No caret: two labels share 320 px, and with larger text spacing the caret pushed "Start my
+            plan" past its box (1.4.12). */}
+        <Button as={Link} href={primary.href} arrow={false} className="w-full px-12">
           {primary.label}
         </Button>
       </div>

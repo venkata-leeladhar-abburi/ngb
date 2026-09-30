@@ -45,7 +45,8 @@ export function FaqAccordion({
       className={`flex flex-col gap-8 ${className ?? ""}`}
     >
       {items.map((item, index) => (
-        <Accordion.Item key={item.question} value={String(index)}>
+        // Items are a fixed list in order; questions may repeat while Telugu copy is TODO(te).
+        <Accordion.Item key={index} value={String(index)}>
           <Accordion.Header asChild>
             <Heading>
               <Accordion.Trigger asChild>

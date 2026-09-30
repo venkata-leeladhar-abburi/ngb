@@ -57,7 +57,7 @@ export function VideoCard({
         )}
         <span
           aria-hidden="true"
-          className={`absolute inset-0 flex items-center justify-center ${locked ? "bg-page/70" : ""}`}
+          className={`absolute inset-0 flex items-center justify-center ${locked && image ? "bg-page/70" : ""}`}
         >
           {locked ? (
             <Icon icon={LockIcon} size="xl" />
