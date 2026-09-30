@@ -7,9 +7,9 @@ type Tone = "action" | "bone";
 
 const TONES: Record<Tone, string> = {
   // Studio red with bone: video cards on dark grounds (board 05, "Play button 44 px").
-  action: "bg-action text-primary",
-  // Bone with black: on the red studio, where a red button would disappear (screen A1).
-  bone: "bg-(--text-color-primary) text-on-gold",
+  action: "bg-action text-primary group-active:bg-action-pressed",
+  // The on-red button colours: on the red studio, where a red button would disappear (screen A1).
+  bone: "bg-(--button-on-red-bg) text-(--button-on-red-fg) group-active:bg-(--button-on-red-bg-pressed)",
 };
 
 /** The round play mark alone, for inside a link that is already the control (VideoCard). */
@@ -34,7 +34,7 @@ type PlayButtonProps = {
 
 /**
  * The play button (board 05): 44 px, the only circle in the system. A real button named after its video;
- * it opens the player (a Dialog). Hover grows it slightly; the focus ring follows the circle.
+ * it opens the player (a Dialog). Hover grows it slightly, pressed darkens it; the focus ring follows the circle.
  *
  * **Use for:** playing a video that sits on its own, like the hero journey clip.
  *
@@ -46,12 +46,12 @@ export function PlayButton({ label, tone = "action", className, ...props }: Play
       type="button"
       aria-label={label}
       // On the red studio the signal-red ring would vanish (about 1.7:1), so bone buttons get the bone ring.
-      className={`group cursor-pointer rounded-full ${tone === "bone" ? "focus-visible:outline-(--focus-ring-color-on-red)" : ""} ${className ?? ""}`}
+      className={`group cursor-pointer rounded-full disabled:cursor-not-allowed disabled:opacity-50 ${tone === "bone" ? "focus-visible:outline-(--focus-ring-color-on-red)" : ""} ${className ?? ""}`}
       {...props}
     >
       <PlayMark
         tone={tone}
-        className="transition-transform ease-out group-hover:scale-110 forced-colors:border-2 forced-colors:border-[ButtonText]"
+        className="transition-transform ease-out group-hover:scale-110 group-active:scale-100 group-disabled:scale-100 forced-colors:border-2 forced-colors:border-[ButtonText]"
       />
     </button>
   );

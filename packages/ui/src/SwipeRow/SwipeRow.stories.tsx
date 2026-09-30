@@ -28,12 +28,29 @@ type Story = StoryObj<typeof meta>;
 export const AtStart: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await expect(canvas.getByRole("button", { name: "Previous results" })).toBeDisabled();
-    await expect(canvas.getByRole("button", { name: "Next results" })).toBeEnabled();
+    await expect(canvas.getByRole("button", { name: "Previous results" })).toHaveAttribute(
+      "aria-disabled",
+      "true",
+    );
+    await expect(canvas.getByRole("button", { name: "Next results" })).toHaveAttribute(
+      "aria-disabled",
+      "false",
+    );
   },
 };
 
 /** Fewer items than fit: both buttons disabled. */
 export const AllVisible: Story = {
   args: { items: [1, 2].map(card) },
+};
+
+/** Items with nothing focusable inside: the row itself takes focus so it can be scrolled by keyboard. */
+export const PlainItems: Story = {
+  args: {
+    items: [1, 2, 3, 4, 5, 6].map((n) => (
+      <p key={n} className="border border-subtle bg-card p-24 text-primary">
+        Result {n}
+      </p>
+    )),
+  },
 };

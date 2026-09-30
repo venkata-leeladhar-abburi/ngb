@@ -343,6 +343,8 @@ export function build(tree: TokenTree): BuildOutput {
     "    --font-heading: var(--font-telugu-heading);",
     "    --font-label: var(--font-telugu-heading);",
     "    --font-body: var(--font-telugu-body);",
+    "    /* Anek Telugu has no italic: never fake one (headings lean by skew instead, TELUGU_LEAN in ui). */",
+    "    font-synthesis-style: none;",
     "    /* Letter-spacing turns off the ligatures that join Telugu conjuncts, so tracking is removed. */",
     ...children("type")
       .filter((role) => children(`type.${role}`).includes("letter-spacing"))
@@ -355,6 +357,39 @@ export function build(tree: TokenTree): BuildOutput {
         const desktop = pixels(`type.${role}.telugu.desktop`);
         return `    --text-${role}: ${fluid(mobile, desktop, fluidFrom, fluidTo)};`;
       }),
+    "  }",
+    "",
+    '  /* English inside a Telugu page (brand words marked lang="en"): the Latin faces and sizes come back. */',
+    '  [lang|="en"] {',
+    ...(["display", "heading", "label", "body"] as const).map((role) => {
+      const primitive = referenceOf(getToken(tree, `font.${role}`).$value);
+      const loader =
+        primitive === undefined ? undefined : getToken(tree, primitive).$extensions?.["ngb"];
+      const cssVariable = (loader as { cssVariable?: string } | undefined)?.cssVariable;
+      return `    --font-${role}: ${fontFamily(value(`font.${role}`), cssVariable)};`;
+    }),
+    ...children("type").flatMap((role) => {
+      const keys = children(`type.${role}`);
+      // The same variable the text-<role> class points at by default (e.g. var(--leading-display)).
+      const modifier = (key: "line-height" | "letter-spacing") => {
+        const reference = referenceOf(getToken(tree, `type.${role}.${key}`).$value);
+        const target = reference === undefined ? undefined : cssVars[reference];
+        return target ? `var(${target})` : text(`type.${role}.${key}`);
+      };
+      return [
+        ...(keys.includes("line-height")
+          ? [`    --text-${role}--line-height: ${modifier("line-height")};`]
+          : []),
+        ...(keys.includes("letter-spacing")
+          ? [`    --text-${role}--letter-spacing: ${modifier("letter-spacing")};`]
+          : []),
+        ...(keys.includes("telugu")
+          ? [
+              `    --text-${role}: ${fluid(pixels(`type.${role}.mobile`), pixels(`type.${role}.desktop`), fluidFrom, fluidTo)};`,
+            ]
+          : []),
+      ];
+    }),
     "  }",
     "",
     "  ::selection {",
@@ -385,7 +420,6 @@ export function build(tree: TokenTree): BuildOutput {
     "  /* The hero's giant word slides in behind Nawin on load (handoff §11, motion.duration.hero). */",
     "  @keyframes ngb-poster-in {",
     "    from {",
-    "      opacity: 0;",
     "      transform: translateX(-12%);",
     "    }",
     "  }",

@@ -49,7 +49,8 @@ const gtMono = localFont({
   preload: false,
 });
 
-// Telugu faces are declared everywhere but only download where Telugu text uses them (/te pages).
+// Telugu faces: their variables are set only on /te (see fontVariables), so English pages never
+// download them. The "తె" of the language switch falls back to the phone's own Telugu font there.
 const anekTelugu = localFont({
   src: "../fonts/web/anek-telugu-condensed-extrabold.woff2",
   weight: "800",
@@ -66,15 +67,10 @@ const notoTelugu = localFont({
   preload: false,
 });
 
-/** Class names that define every font variable. Put them on <html>, where the tokens are declared. */
-export const fontVariables = [
-  rushDriver,
-  gtCompressed,
-  gtExtended,
-  gtStandard,
-  gtMono,
-  anekTelugu,
-  notoTelugu,
-]
-  .map((font) => font.variable)
-  .join(" ");
+/** Class names that define the font variables for a page. Put them on <html>, where the tokens are declared. */
+export function fontVariables(lang: "en" | "te") {
+  const latin = [rushDriver, gtCompressed, gtExtended, gtStandard, gtMono];
+  return (lang === "te" ? [...latin, anekTelugu, notoTelugu] : latin)
+    .map((font) => font.variable)
+    .join(" ");
+}

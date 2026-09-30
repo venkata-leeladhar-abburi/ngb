@@ -62,7 +62,7 @@ export function Footer({
   const linkClass = "inline-flex min-h-target items-center text-muted hover:text-primary";
   return (
     <footer className={`relative overflow-hidden bg-page text-primary ${className ?? ""}`}>
-      <PosterWord tone="ghost" className="absolute inset-x-0 top-16 text-center">
+      <PosterWord tone="watermark" className="absolute inset-x-0 top-16 text-center">
         Evolve
       </PosterWord>
       <div className="relative grid gap-32 pt-128 md:grid-cols-2 lg:grid-cols-6">

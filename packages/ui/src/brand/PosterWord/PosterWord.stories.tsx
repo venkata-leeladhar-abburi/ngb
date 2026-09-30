@@ -13,29 +13,30 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-/** Screen A1: bone EVOLVE behind Nawin on the red studio. The section clips it. */
+/** Screen A1: the ghost-gradient EVOLVE behind Nawin on the red studio. The section clips it. */
 export const Hero: Story = {
+  // Decorative and hidden from screen readers (WCAG 1.4.3 exempts incidental text); other rules still run.
+  parameters: { a11y: { config: { rules: [{ id: "color-contrast", enabled: false }] } } },
   decorators: [
     (Story) => (
-      <StudioBackdrop className="relative min-h-screen overflow-hidden">
+      <StudioBackdrop className="relative flex min-h-screen justify-center overflow-hidden pt-24">
         <Story />
       </StudioBackdrop>
     ),
   ],
-  args: { className: "absolute inset-x-0 top-0 text-center" },
 };
 
 /** Screen A7: the footer watermark at 10%. */
-export const Ghost: Story = {
+export const Watermark: Story = {
   decorators: [
     (Story) => (
-      <div className="relative min-h-screen overflow-hidden bg-page">
+      <div className="relative flex min-h-screen justify-center overflow-hidden bg-page pt-24">
         <Story />
       </div>
     ),
   ],
-  args: { tone: "ghost", className: "absolute inset-x-0 top-0 text-center" },
-  // The ghost word is decoration hidden from screen readers: WCAG 1.4.3 exempts incidental text from
+  args: { tone: "watermark" },
+  // The watermark is decoration hidden from screen readers: WCAG 1.4.3 exempts incidental text from
   // contrast. Only the contrast rule is off, only here; every other axe rule still runs.
   parameters: { a11y: { config: { rules: [{ id: "color-contrast", enabled: false }] } } },
 };

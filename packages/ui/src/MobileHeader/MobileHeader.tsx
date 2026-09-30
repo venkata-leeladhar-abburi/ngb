@@ -30,6 +30,7 @@ interface MobileHeaderProps extends SiteNavProps {
 export function MobileHeader({
   homeHref,
   homeLabel = "NGB Evolve, home",
+  navLabel = "Main",
   links,
   lang,
   cta,
@@ -46,11 +47,11 @@ export function MobileHeader({
       <Link
         href={homeHref}
         aria-label={homeLabel}
-        className="flex min-h-target min-w-0 shrink items-center"
+        className="flex min-h-target min-w-0 shrink items-center overflow-hidden"
       >
         <Wordmark size="sm" />
       </Link>
-      <div className="ml-auto flex shrink-0 items-center">
+      <div className="ml-auto flex shrink-0 items-center gap-8">
         <LangSwitch {...langProps} variant="inline" />
         <Dialog.Root>
           <Dialog.Trigger
@@ -72,7 +73,7 @@ export function MobileHeader({
                     <Icon icon={XIcon} size="lg" />
                   </Dialog.Close>
                 </div>
-                <nav aria-label="Main" className="mt-32">
+                <nav aria-label={navLabel} className="mt-32">
                   <ul className="flex flex-col gap-8">
                     {links.map((link) => (
                       <li key={link.href}>

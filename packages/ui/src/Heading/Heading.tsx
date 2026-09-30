@@ -1,22 +1,18 @@
 import type { ComponentPropsWithRef, ReactNode } from "react";
 
+import { TELUGU_LEAN } from "../brand/telugu";
+
 /** The heading roles on board 04. Mega is not one: at that size words are decorative art (aria-hidden). */
 export type HeadingVariant = "hero" | "display" | "h1" | "h2" | "h3";
-
-/**
- * Anek Telugu has no italic, so Telugu headings lean with the 8 degree skew instead of the browser's
- * synthetic oblique (ngb-design-system skill, Typography).
- */
-const TELUGU_LEAN = " [&:lang(te)]:not-italic [&:lang(te)]:skew-x-(--shape-lean)";
 
 // h2, h3: no line-height class. Board 04 defines none, so they follow the text around them (1.65, or
 // 1.75 on Telugu pages); leading-heading is measured for the compressed and display faces only.
 const VARIANTS: Record<HeadingVariant, string> = {
   // Rush Driver Italic: poster words and big numbers, capitals, five words at most.
-  hero: `font-display text-hero uppercase italic${TELUGU_LEAN}`,
-  display: `font-display text-display uppercase italic${TELUGU_LEAN}`,
+  hero: `font-display text-hero uppercase italic ${TELUGU_LEAN}`,
+  display: `font-display text-display uppercase italic ${TELUGU_LEAN}`,
   // GT America Compressed Black Italic.
-  h1: `font-heading text-h1 font-black uppercase italic${TELUGU_LEAN}`,
+  h1: `font-heading text-h1 font-black uppercase italic ${TELUGU_LEAN}`,
   // GT America Extended Bold ("SHRED 12" on board 04).
   h2: "font-label text-h2 font-bold uppercase",
   // GT America Standard Bold ("Calorie calculator").

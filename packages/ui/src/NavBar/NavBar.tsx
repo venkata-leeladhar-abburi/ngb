@@ -17,7 +17,10 @@ export interface SiteNavProps {
   homeLabel?: string;
   /** Programs · Free tools · Workouts · Transformations · About (handoff section 6). */
   links: readonly NavLink[];
-  lang: { current: "en" | "te"; enHref: string; teHref: string };
+  /** The language switch; `label` names its landmark (pass Telugu on /te pages). */
+  lang: { current: "en" | "te"; enHref: string; teHref: string; label?: string };
+  /** Names the main navigation landmark (pass Telugu on /te pages). */
+  navLabel?: string;
   /** The buy action: "Start my plan". */
   cta: { href: string; label: ReactNode };
   /** Link component, e.g. Next.js Link. Defaults to "a". */
@@ -37,6 +40,7 @@ export interface SiteNavProps {
 export function NavBar({
   homeHref,
   homeLabel = "NGB Evolve, home",
+  navLabel = "Main",
   links,
   lang,
   cta,
@@ -53,7 +57,7 @@ export function NavBar({
       >
         <Wordmark />
       </Link>
-      <nav aria-label="Main">
+      <nav aria-label={navLabel}>
         <ul className="flex items-center gap-24">
           {links.map((link) => (
             <li key={link.href}>
@@ -69,7 +73,13 @@ export function NavBar({
         </ul>
       </nav>
       <div className="ml-auto flex items-center gap-24">
-        <LangSwitch {...lang} {...(linkAs ? { linkAs } : {})} variant="inline" />
+        {/* Hairline divider before the language switch (board 07, A1). */}
+        <LangSwitch
+          {...lang}
+          {...(linkAs ? { linkAs } : {})}
+          variant="inline"
+          className="border-l border-subtle pl-24"
+        />
         <Button as={Link} href={cta.href}>
           {cta.label}
         </Button>

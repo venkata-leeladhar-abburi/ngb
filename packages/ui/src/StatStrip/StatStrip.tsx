@@ -1,8 +1,8 @@
 "use client";
 
-import { tokens } from "@ngb/tokens";
 import { Fragment, useEffect, useRef, useState, type ReactNode } from "react";
 
+import { cssDuration } from "../brand/cssVar";
 import { HeartbeatLine } from "../brand/HeartbeatLine";
 
 export type Stat =
@@ -27,8 +27,6 @@ interface StatStripProps {
   /** Layout only. */
   className?: string;
 }
-
-const DURATION = Number.parseFloat(tokens.motion.duration.hero);
 
 function format(value: number, compact: boolean): string {
   if (!compact) return String(Math.round(value));
@@ -69,9 +67,10 @@ function useCountUp(target: number, enabled: boolean) {
       }
       if (!visible) return;
       observer.disconnect();
+      const duration = cssDuration("--motion-hero") || 1;
       const start = performance.now();
       const tick = (now: number) => {
-        const progress = Math.min((now - start) / DURATION, 1);
+        const progress = Math.min((now - start) / duration, 1);
         setCurrent(target * (1 - (1 - progress) ** 4));
         if (progress < 1) frame = requestAnimationFrame(tick);
       };
@@ -87,7 +86,7 @@ function useCountUp(target: number, enabled: boolean) {
   return { ref, current };
 }
 
-function StatItem({ stat }: { stat: Stat }) {
+function StatItem({ stat, className }: { stat: Stat; className?: string }) {
   const isNumber = "value" in stat;
   const { ref, current } = useCountUp(
     isNumber ? stat.value : 0,
@@ -101,20 +100,22 @@ function StatItem({ stat }: { stat: Stat }) {
     : stat.placeholder;
 
   return (
-    <li ref={ref} className="flex min-w-0 flex-col items-center text-center">
+    <li ref={ref} className={`flex min-w-0 flex-col items-center text-center ${className ?? ""}`}>
       {/* The animated number is hidden; screen readers get the final value once. */}
+      {/* Latin digits: lang="en" keeps Rush Driver on Telugu pages (base.css [lang|="en"]). */}
       <span
         aria-hidden="true"
+        lang="en"
         className={
           isNumber
-            ? "font-display text-display leading-display uppercase italic tabular-nums"
+            ? "font-display text-display leading-display uppercase italic tabular-nums lg:text-hero"
             : "font-data text-readout break-words"
         }
       >
         {shown}
       </span>
       <span className="sr-only">{final}</span>
-      <span className="mt-8 font-heading text-h3 font-black uppercase italic lg:text-h2">
+      <span className="mt-8 font-label text-label font-bold break-words uppercase">
         {stat.label}
       </span>
     </li>
@@ -131,8 +132,8 @@ function StatItem({ stat }: { stat: Stat }) {
  */
 export function StatStrip({ stats, className }: StatStripProps) {
   return (
-    <div className={`bg-band py-24 text-primary ${className ?? ""}`}>
-      <ul className="grid grid-cols-2 gap-24 md:flex md:items-center">
+    <div className={`bg-band py-32 text-primary lg:py-48 ${className ?? ""}`}>
+      <ul className="mx-auto grid max-w-(--container-content) grid-cols-2 gap-24 px-page md:flex md:items-center">
         {stats.map((stat, index) => (
           <Fragment key={index}>
             {index > 0 && (
@@ -140,7 +141,13 @@ export function StatStrip({ stats, className }: StatStripProps) {
                 <HeartbeatLine tone="red" />
               </li>
             )}
-            <StatItem stat={stat} />
+            {/* On phones an odd last number takes the full row instead of sitting alone in one column. */}
+            <StatItem
+              stat={stat}
+              {...(index === stats.length - 1 && stats.length % 2 === 1
+                ? { className: "col-span-2" }
+                : {})}
+            />
           </Fragment>
         ))}
       </ul>

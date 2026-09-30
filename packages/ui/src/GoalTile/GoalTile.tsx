@@ -2,6 +2,7 @@ import { ArrowRightIcon } from "@phosphor-icons/react/ssr";
 import type { ElementType, ReactNode } from "react";
 
 import { LeanFrame } from "../brand/LeanFrame";
+import { TELUGU_LEAN } from "../brand/telugu";
 import { PhotoPlaceholder } from "../brand/PhotoPlaceholder";
 import { Icon } from "../Icon";
 
@@ -47,11 +48,19 @@ export function GoalTile({
       href={href}
       className={`group block text-primary transition-transform ease-out hover:-translate-y-(--motion-lift-card) active:-translate-y-(--motion-lift-card) motion-reduce:transform-none ${className ?? ""}`}
     >
-      <LeanFrame className="aspect-4/5 w-full border border-subtle bg-card transition-colors group-hover:border-strong">
-        {image ?? <PhotoPlaceholder decorative label={placeholderLabel} className="size-full" />}
-      </LeanFrame>
+      {/* Inset by the lean's overhang (tan 8° x half the 5:4 height), so the photo and the focus ring
+          stay inside the tile. */}
+      <div style={{ paddingInline: "calc(tan(var(--shape-lean)) * -62.5%)" }}>
+        <LeanFrame className="aspect-4/5 w-full border border-subtle bg-card transition-colors group-hover:border-strong">
+          {image ?? (
+            <PhotoPlaceholder decorative lean label={placeholderLabel} className="size-full" />
+          )}
+        </LeanFrame>
+      </div>
       <div className="flex flex-col gap-4 pt-16">
-        <Title className="font-heading text-h2 leading-heading font-black break-words uppercase italic [&:lang(te)]:leading-telugu">
+        <Title
+          className={`font-heading text-h2 leading-heading font-black break-words uppercase italic [&:lang(te)]:leading-telugu ${TELUGU_LEAN}`}
+        >
           {title}
         </Title>
         <p className="flex items-end justify-between gap-8 text-muted">

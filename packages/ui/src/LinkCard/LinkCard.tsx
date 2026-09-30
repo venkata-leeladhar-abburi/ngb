@@ -3,6 +3,7 @@ import { CaretRightIcon } from "@phosphor-icons/react/ssr";
 import type { ElementType, ReactNode } from "react";
 
 import { ChamferBox } from "../brand/ChamferBox";
+import { TELUGU_LEAN } from "../brand/telugu";
 import { Icon } from "../Icon";
 
 interface LinkCardProps {
@@ -19,8 +20,8 @@ interface LinkCardProps {
 }
 
 /**
- * Cross-sell card (screen A5, under the program cards): an icon, a question and where it leads. Dark on
- * the red studio, so it reads as a quieter next step than the program cards. The whole card is one link.
+ * Cross-sell card (screen A5, under the program cards): an icon, a question and where it leads. Black on
+ * the red studio (3.3:1 edge against red), so it reads as a quieter next step than the program cards. The whole card is one link.
  *
  * **Use for:** "Want a coach…? 1:1 Coaching" and "Want every plan…? Join the Club".
  *
@@ -33,13 +34,15 @@ export function LinkCard({ href, icon, title, label, linkAs, className }: LinkCa
       href={href}
       cut="tool-card"
       focusRing="onRed"
-      fill="bg-band group-hover/chamfer:bg-page"
+      fill="bg-page group-hover/chamfer:bg-alt"
       border="bg-(--border-color-subtle)"
       className={`flex items-center gap-24 p-24 text-primary transition-colors md:p-32 ${className ?? ""}`}
     >
       <Icon icon={icon} size="xl" />
       <div className="flex flex-col gap-8">
-        <div className="font-heading text-h2 leading-heading font-black break-words uppercase italic [&:lang(te)]:leading-telugu">
+        <div
+          className={`font-heading text-h2 leading-heading font-black break-words uppercase italic [&:lang(te)]:leading-telugu ${TELUGU_LEAN}`}
+        >
           {title}
         </div>
         <div className="flex items-center gap-8 font-label text-label font-bold uppercase">

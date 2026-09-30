@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react/ssr";
+import { CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react/ssr";
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 
 import { Icon } from "../Icon";
@@ -20,8 +20,9 @@ interface SwipeRowProps {
 
 /**
  * A row people swipe sideways (screens A2 on phones, A4): native scroll with snap points, so touch,
- * trackpad and the keyboard (tabbing to a card scrolls it into view) all work, with previous and
- * next buttons from md. No scroll-jacking and no auto-advance; the buttons disable at each end.
+ * trackpad and the keyboard (the row is focusable and arrow keys scroll it) all work, with previous and
+ * next carets from md. No scroll-jacking and no auto-advance; at each end a caret is muted and
+ * aria-disabled but keeps focus.
  *
  * **Use for:** a set of equal cards wider than the screen, like member results.
  *
@@ -59,6 +60,8 @@ export function SwipeRow({
   const scroll = (direction: 1 | -1) => {
     const element = list.current;
     if (!element) return;
+    // At an end the button stays focusable (aria-disabled), so a keyboard user never loses their place.
+    if ((direction === 1 && edges.end) || (direction === -1 && edges.start)) return;
     const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     element.scrollBy({
       left: direction * element.clientWidth * 0.8,
@@ -66,42 +69,45 @@ export function SwipeRow({
     });
   };
 
+  // Bare carets with a 44 px target (screen A4), muted at an end.
   const buttonClass =
-    "flex size-target cursor-pointer items-center justify-center border border-strong text-primary transition-colors hover:bg-card disabled:cursor-not-allowed disabled:border-subtle disabled:text-muted";
+    "flex size-target cursor-pointer items-center justify-center text-primary transition-colors hover:text-accent aria-disabled:cursor-not-allowed aria-disabled:text-muted";
 
   return (
     <div role="region" aria-label={label} className={className}>
-      <div className="mb-16 hidden justify-end gap-8 md:flex">
+      <div className="mb-8 hidden justify-end gap-8 md:flex">
         <button
           type="button"
           aria-label={previousLabel}
-          disabled={edges.start}
+          aria-disabled={edges.start}
           onClick={() => {
             scroll(-1);
           }}
           className={buttonClass}
         >
-          <Icon icon={ArrowLeftIcon} size="md" />
+          <Icon icon={CaretLeftIcon} size="lg" />
         </button>
         <button
           type="button"
           aria-label={nextLabel}
-          disabled={edges.end}
+          aria-disabled={edges.end}
           onClick={() => {
             scroll(1);
           }}
           className={buttonClass}
         >
-          <Icon icon={ArrowRightIcon} size="md" />
+          <Icon icon={CaretRightIcon} size="lg" />
         </button>
       </div>
-      {/* Keyboard: the cards' own links and sliders take focus, and focusing one scrolls it into view;
-          Chromium also makes scroll containers themselves focusable. */}
+      {/* The row itself takes focus (arrow keys scroll it), so cards with nothing focusable inside are
+          still reachable by keyboard in every browser (axe: scrollable-region-focusable). Padding leaves
+          room for leaning cards' corners and their hover lift; the region above already names it. */}
       <ul
         ref={list}
-        aria-label={label}
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- a scrollable region must be focusable
+        tabIndex={0}
         onScroll={update}
-        className="flex snap-x snap-mandatory gap-24 overflow-x-auto overscroll-x-contain pb-16 focus-visible:outline-offset-4"
+        className="flex snap-x snap-mandatory scroll-px-32 gap-24 overflow-x-auto overscroll-x-contain px-32 pt-(--motion-lift-card) pb-16 focus-visible:outline-offset-4"
       >
         {items.map((item, index) => (
           // Items are static content in a fixed order, so the index is a stable key.

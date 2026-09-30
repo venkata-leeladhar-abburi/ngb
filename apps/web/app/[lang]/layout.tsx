@@ -37,7 +37,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
   const lang = isLang(value) ? value : "en";
   const t = getContent(lang);
   return (
-    <html lang={lang} className={fontVariables}>
+    <html lang={lang} className={fontVariables(lang)}>
       <body>
         <SkipLink label={t.a11y.skipToContent} />
         {children}

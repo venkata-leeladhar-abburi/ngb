@@ -18,15 +18,27 @@ interface BarShellProps {
  */
 function BarShell({ visible, label, children }: BarShellProps) {
   return (
-    <aside
-      data-sticky-bar=""
-      aria-label={label}
-      inert={!visible}
-      className={`fixed inset-x-0 bottom-0 z-(--layer-sticky) border-t border-subtle bg-card px-page pt-12 shadow-hover transition-transform ease-out lg:hidden ${visible ? "translate-y-0" : "translate-y-full"}`}
-      style={{ paddingBottom: "calc(var(--spacing-12) + env(safe-area-inset-bottom))" }}
-    >
-      {children}
-    </aside>
+    <>
+      {/* Room at the end of the page for the bar (its padding, button and hairline), so the last
+          content can scroll clear of it (2.4.11). Render the bar after the page's last content. */}
+      <div
+        aria-hidden="true"
+        className="lg:hidden"
+        style={{
+          height:
+            "calc(var(--button-height) + var(--spacing-24) + var(--spacing-4) + env(safe-area-inset-bottom))",
+        }}
+      />
+      <aside
+        data-sticky-bar=""
+        aria-label={label}
+        inert={!visible}
+        className={`fixed inset-x-0 bottom-0 z-(--layer-sticky) border-t border-subtle bg-card px-page pt-12 shadow-hover transition-transform ease-out lg:hidden ${visible ? "translate-y-0" : "translate-y-full"}`}
+        style={{ paddingBottom: "calc(var(--spacing-12) + env(safe-area-inset-bottom))" }}
+      >
+        {children}
+      </aside>
+    </>
   );
 }
 

@@ -4,14 +4,19 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { Reveal } from "./Reveal";
 
 let trigger: ((entries: Partial<IntersectionObserverEntry>[]) => void) | undefined;
+let options: IntersectionObserverInit | undefined;
 
 beforeEach(() => {
   trigger = undefined;
   vi.stubGlobal(
     "IntersectionObserver",
     class {
-      constructor(callback: (entries: Partial<IntersectionObserverEntry>[]) => void) {
+      constructor(
+        callback: (entries: Partial<IntersectionObserverEntry>[]) => void,
+        init?: IntersectionObserverInit,
+      ) {
         trigger = callback;
+        options = init;
       }
       observe = vi.fn();
       disconnect = vi.fn();
@@ -65,6 +70,13 @@ describe("Reveal", () => {
       trigger?.([{ isIntersecting: true }]);
     });
     expect(wrapper).toHaveAttribute("data-reveal", "shown");
+  });
+
+  it("reveals on any visible pixel, so content taller than the screen is never stuck hidden", () => {
+    mockMotion(false);
+    renderBelowFold();
+
+    expect(options?.threshold).toBe(0);
   });
 
   it("does nothing with reduced motion", () => {

@@ -15,6 +15,9 @@ type Story = StoryObj<typeof meta>;
 export const Action: Story = {};
 export const Hover: Story = { parameters: { pseudo: { hover: ["button"] } } };
 export const Focus: Story = { parameters: { pseudo: { focusVisible: ["button"] } } };
+export const Pressed: Story = { parameters: { pseudo: { active: ["button"] } } };
+/** The clip is not available yet. */
+export const Disabled: Story = { args: { disabled: true } };
 
 /** Screen A1: bone on the red studio, where a red button would disappear. */
 export const OnRed: Story = {
@@ -30,4 +33,8 @@ export const OnRed: Story = {
 export const OnRedFocus: Story = {
   ...OnRed,
   parameters: { pseudo: { focusVisible: ["button"] } },
+};
+export const OnRedPressed: Story = {
+  ...OnRed,
+  parameters: { pseudo: { active: ["button"] } },
 };

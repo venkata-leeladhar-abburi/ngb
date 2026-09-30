@@ -20,7 +20,7 @@ export const metadata: Metadata = {
  */
 export default function GlobalNotFound() {
   return (
-    <html lang="en" className={fontVariables}>
+    <html lang="en" className={fontVariables("en")}>
       <body>
         <SkipLink label={en.a11y.skipToContent} />
         <Placeholder headline={en.notFound.headline} sub={en.notFound.sub}>

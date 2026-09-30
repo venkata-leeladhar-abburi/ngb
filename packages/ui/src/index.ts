@@ -11,6 +11,7 @@ export {
   shrinkCut,
   type Cut,
 } from "./brand/ChamferBox";
+export { cssDuration, cssVar } from "./brand/cssVar";
 export { EmberSurface } from "./brand/EmberSurface";
 export { HeartbeatLine } from "./brand/HeartbeatLine";
 export { LeanFrame, LEAN_SAFE_INSET } from "./brand/LeanFrame";

@@ -101,6 +101,20 @@ describe("Button", () => {
     expect(onClick).not.toHaveBeenCalled();
   });
 
+  it("uses the bone focus ring on a red ground, for every variant", () => {
+    const { container } = render(
+      <>
+        <Button variant="secondary">Dark</Button>
+        <Button variant="secondary" ground="red">
+          Red
+        </Button>
+      </>,
+    );
+    const rings = container.querySelectorAll('[class*="focus-ring-color-on-red"]');
+    expect(rings).toHaveLength(1);
+    expect(screen.getByRole("button", { name: "Red" }).contains(rings[0] ?? null)).toBe(true);
+  });
+
   it("shows the caret on primary and on red, not on secondary, unless told otherwise", () => {
     render(
       <>
@@ -165,5 +179,20 @@ describe("Button", () => {
 
     const link = screen.getByRole("link", { name: "Instagram" });
     expect(link.querySelector("svg")).toHaveAttribute("aria-hidden", "true");
+  });
+
+  it("blocks a disabled link even without an onClick of its own", async () => {
+    let prevented: boolean | undefined;
+    document.addEventListener("click", (event) => (prevented = event.defaultPrevented), {
+      once: true,
+    });
+    render(
+      <Button as="a" href="/programs" disabled>
+        Start my plan
+      </Button>,
+    );
+
+    await userEvent.click(screen.getByRole("link", { name: "Start my plan" }));
+    expect(prevented).toBe(true);
   });
 });

@@ -25,6 +25,11 @@ type ButtonProps<T extends ElementType> = {
   loading?: boolean;
   /** The trailing caret. Defaults to on for primary and onRed, off for secondary (board 07). */
   arrow?: boolean;
+  /**
+   * The ground under the button. On red (studio-red sections) the focus ring is bone: signal red on
+   * studio red is below 3:1. The onRed variant always uses it; set this for a secondary button on red.
+   */
+  ground?: "dark" | "red";
   /** A leading Phosphor icon, decorative (the label names the button): follow buttons (screen A6). */
   icon?: PhosphorIcon;
   onClick?: MouseEventHandler<HTMLElement>;
@@ -85,6 +90,7 @@ export function Button<T extends ElementType = "button">({
   disabled = false,
   loading = false,
   arrow,
+  ground = "dark",
   icon,
   onClick,
   className,
@@ -122,7 +128,7 @@ export function Button<T extends ElementType = "button">({
       {...(border
         ? { border, hollow: true, borderWidth: "var(--button-secondary-border-width)" }
         : {})}
-      focusRing={style.onRed ? "onRed" : "default"}
+      focusRing={style.onRed || ground === "red" ? "onRed" : "default"}
       className={`inline-flex h-(--button-height) min-w-target items-center justify-center gap-8 px-24 font-label text-label font-bold whitespace-nowrap uppercase transition-transform ease-out select-none ${colours.text} ${interaction} ${className ?? ""}`}
       {...(isNativeButton ? { type: "button", disabled: disabled || undefined } : {})}
       {...(!isNativeButton && disabled ? { "aria-disabled": true } : {})}

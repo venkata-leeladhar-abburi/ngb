@@ -63,8 +63,9 @@ export function ChamferBox<T extends ElementType = "div">({
   return (
     <Component
       // outline-hidden: invisible normally, but a real system-colour outline in forced-colours mode, where
-      // the background layers below are removed; that outline then draws the control's shape.
-      className={`group/chamfer relative isolate outline-hidden [&>:not([data-chamfer])]:relative ${className ?? ""}`}
+      // the background layers below are removed; that outline then draws the control's shape. Focus makes
+      // it thicker and further out, so it is not mistaken for the resting outline.
+      className={`group/chamfer relative isolate outline-hidden forced-colors:focus-visible:outline-4 forced-colors:focus-visible:outline-offset-4 [&>:not([data-chamfer])]:relative ${className ?? ""}`}
       {...props}
     >
       {focusRing !== "none" && (

@@ -56,7 +56,9 @@ export function Reveal({ effect, children, className }: RevealProps) {
         setState("shown");
         observer.disconnect();
       },
-      { threshold: 0.25 },
+      // Any visible pixel, a little above the fold line: a threshold ratio would never be reached by
+      // content taller than the viewport, leaving it hidden.
+      { threshold: 0, rootMargin: "0% 0% -15% 0%" },
     );
     observer.observe(element);
     return () => {

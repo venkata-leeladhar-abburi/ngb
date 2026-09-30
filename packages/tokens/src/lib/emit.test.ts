@@ -117,6 +117,7 @@ describe("generated theme", () => {
     expect(telugu).toContain("--font-display: var(--font-telugu-heading);");
     expect(telugu).toContain("--font-body: var(--font-telugu-body);");
     expect(telugu).toContain("--text-label--letter-spacing: normal;");
+    expect(telugu).toContain("font-synthesis-style: none;");
     // Telugu labels use the body size (16 to 17 px), not 12 to 13 px.
     expect(telugu).toContain("--text-label: clamp(1rem, 0.9792rem + 0.0926vw, 1.0625rem);");
   });
@@ -128,6 +129,15 @@ describe("generated theme", () => {
     expect(files["base.css"]).toMatch(
       /\[lang\|="te"\] \{\s*font-family: var\(--font-telugu-body\);\s*line-height: var\(--leading-telugu\);\s*\}/,
     );
+  });
+
+  it("restores the Latin faces and sizes for English inside a Telugu page", () => {
+    const island = /\[lang\|="en"\] \{([^}]*)\}/.exec(files["base.css"])?.[1] ?? "";
+    expect(island).toContain('--font-display: var(--font-rush-driver, "Rush Driver"), sans-serif;');
+    expect(island).toContain("--font-body: var(--font-gt-standard,");
+    expect(island).toContain("--text-display--line-height: var(--leading-display);");
+    expect(island).toContain("--text-label--letter-spacing: var(--tracking-label);");
+    expect(island).toContain("--text-label: clamp(0.75rem,");
   });
 
   it("emits the poster slide-in and the once-only glow breathe", () => {

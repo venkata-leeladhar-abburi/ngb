@@ -16,9 +16,10 @@ const meta = {
       meta: "3 free",
     })),
   },
+  parameters: { layout: "padded" },
   decorators: [
     (Story) => (
-      <div className="w-(--spacing-144) md:w-(--container-lead) md:max-w-(--spacing-144) lg:max-w-none">
+      <div className="max-w-(--container-lead)">
         <Story />
       </div>
     ),
@@ -29,6 +30,8 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const MuscleGroups: Story = {};
+/** Screen A4: the featured video's group (Chest) is the current row. */
+export const CurrentRow: Story = { args: { current: "#chest" } };
 export const RowHover: Story = { parameters: { pseudo: { hover: ["li:first-child a"] } } };
 export const RowFocus: Story = { parameters: { pseudo: { focusVisible: ["li:first-child a"] } } };
 

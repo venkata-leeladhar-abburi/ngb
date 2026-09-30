@@ -27,6 +27,8 @@ export function Wordmark({ tone = "dark", size = "md", className }: WordmarkProp
   const evolve = size === "sm" && tone === "dark" ? "text-accent" : colours.evolve;
   return (
     <span
+      // The brand name stays in Rush Driver on Telugu pages (base.css [lang|="en"]).
+      lang="en"
       className={`inline-flex gap-8 font-display leading-display whitespace-nowrap uppercase italic ${size === "lg" ? "text-display" : size === "sm" ? "text-h3" : "text-h2"} ${className ?? ""}`}
     >
       <span className={colours.ngb}>NGB</span>

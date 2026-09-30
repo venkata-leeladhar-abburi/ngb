@@ -65,6 +65,13 @@ export const OnRedFocus = state("onRed", { focusVisible: true });
 export const OnRedDisabled = state("onRed", undefined, { disabled: true });
 export const OnRedLoading = state("onRed", undefined, { loading: true });
 
+/** A secondary button on a red section (the hero's "Try free tools"): the focus ring turns bone. */
+export const SecondaryOnRedFocus: Story = {
+  args: { variant: "secondary", ground: "red", children: LABEL.secondary },
+  parameters: { pseudo: { focusVisible: true } },
+  decorators: onRedGround,
+};
+
 export const AsLink: Story = {
   args: { as: "a", href: "#programs" },
 };
