@@ -16,6 +16,8 @@ test-results/
 blob-report/
 .lighthouseci/
 __screenshots__/
+# ...except the approved visual references, which are the baseline itself
+!e2e/visual/__screenshots__/
 
 # Environment (only the example is committed)
 .env
