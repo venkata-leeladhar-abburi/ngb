@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { perDayPrice } from "@ngb/ui";
 
-import { programs, smallTools } from "./catalog";
+import { programs, proofStats, smallTools } from "./catalog";
 import en from "./en.json";
 import { getContent, localePath, TODO_TE } from "./index";
 import te from "./te.json";
@@ -30,7 +30,7 @@ describe("content", () => {
         value !== TODO_TE &&
         value === english.get(path) &&
         // Brand name and numbers are the same in both; Telugu lines already in the English version are fine.
-        !/^(site\.name|home\.proof\.stats\.\d\.value)$/.test(path) &&
+        !/^site\.name$/.test(path) &&
         !/[\u0C00-\u0C7F]/.test(String(value)),
     );
     expect(copied).toEqual([]);
@@ -40,6 +40,10 @@ describe("content", () => {
     for (const [path, value] of [...leaves(en), ...leaves(te)]) {
       expect(`${path}: ${String(value)}`).not.toMatch(/[–—]/);
     }
+  });
+
+  it("has a label for every proof number", () => {
+    expect(getContent("en").home.proof.stats).toHaveLength(proofStats.length);
   });
 
   it("has a line for every program and small tool in the catalog", () => {

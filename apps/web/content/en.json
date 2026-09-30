@@ -11,8 +11,15 @@
       "transformations": "Transformations",
       "about": "About"
     },
+    "navLabel": "Main",
+    "langLabel": "Language",
     "stickyLabel": "Quick actions",
-    "menu": { "open": "Open menu", "close": "Close menu", "label": "Menu" }
+    "menu": {
+      "open": "Open menu",
+      "close": "Close menu",
+      "label": "Menu"
+    },
+    "close": "Close"
   },
   "home": {
     "hero": {
@@ -27,9 +34,9 @@
     "proof": {
       "label": "NGB Evolve in numbers",
       "stats": [
-        { "value": "1M+", "label": "follow the journey on Instagram" },
-        { "value": "2022", "label": "the year day one started" },
-        { "value": "100%", "label": "of plans in Telugu and English" }
+        "follow the journey on Instagram",
+        "the year day one started",
+        "of plans in Telugu and English"
       ]
     },
     "journey": {
@@ -51,11 +58,16 @@
           "title": "Learning food",
           "line": "Rice, pappu, eggs, curd. No fancy diet, just the right amounts."
         },
-        { "title": "Today", "line": "1M+ people watch. Now I coach them." }
+        {
+          "title": "Today",
+          "line": "1M+ people watch. Now I coach them."
+        }
       ],
       "quoteTenglish": "Nenu chesanu ante, nuvvu kuda cheyagalav.",
       "quote": "If I could do it, you can too.",
       "link": "Watch my story (2 min)",
+      "storyTitle": "My story in 2 minutes",
+      "storyPending": "The story video arrives after the shoot.",
       "photo": "Photo: Nawin, archive photo (to collect)",
       "rowLabel": "Nawin's journey, 2022 to today"
     },
@@ -68,10 +80,22 @@
     "goals": {
       "headline": "What's your goal?",
       "tiles": [
-        { "title": "Gain weight", "line": "Skinny? Build real size, even on hostel food." },
-        { "title": "Lose fat", "line": "Lose the belly without giving up rice." },
-        { "title": "Train at home", "line": "No gym nearby? Your body is the gym." },
-        { "title": "Start from zero", "line": "Never trained? Start here, step by step." }
+        {
+          "title": "Gain weight",
+          "line": "Skinny? Build real size, even on hostel food."
+        },
+        {
+          "title": "Lose fat",
+          "line": "Lose the belly without giving up rice."
+        },
+        {
+          "title": "Train at home",
+          "line": "No gym nearby? Your body is the gym."
+        },
+        {
+          "title": "Start from zero",
+          "line": "Never trained? Start here, step by step."
+        }
       ],
       "quiz": "Not sure? Take the 4-question quiz",
       "photo": "Photo: Nawin training for this goal (shoot pending)"
@@ -90,12 +114,30 @@
           "title": "Calorie calculator",
           "line": "Your exact daily calories."
         },
-        "weight-gain": { "title": "Weight-gain calculator", "line": "How much to eat to gain." },
-        "protein": { "title": "Protein target", "line": "Your daily grams." },
-        "bmi": { "title": "BMI", "line": "Check your healthy range." },
-        "one-rep-max": { "title": "One-rep max", "line": "Find your true max." },
-        "body-fat": { "title": "Body fat", "line": "How far to your abs?" },
-        "water": { "title": "Water", "line": "How much today?" }
+        "weight-gain": {
+          "title": "Weight-gain calculator",
+          "line": "How much to eat to gain."
+        },
+        "protein": {
+          "title": "Protein target",
+          "line": "Your daily grams."
+        },
+        "bmi": {
+          "title": "BMI",
+          "line": "Check your healthy range."
+        },
+        "one-rep-max": {
+          "title": "One-rep max",
+          "line": "Find your true max."
+        },
+        "body-fat": {
+          "title": "Body fat",
+          "line": "How far to your abs?"
+        },
+        "water": {
+          "title": "Water",
+          "line": "How much today?"
+        }
       }
     },
     "workouts": {
@@ -104,8 +146,14 @@
       "groups": ["Chest", "Back", "Legs", "Arms", "Shoulders", "Abs", "Home"],
       "groupsLabel": "Muscle groups",
       "freeCount": "3 free",
-      "featured": { "title": "Chest at home", "meta": "12 min, Telugu" },
-      "locked": { "title": "Full chest plan", "label": "Inside Mass Builder" },
+      "featured": {
+        "title": "Chest at home",
+        "meta": "12 min, Telugu"
+      },
+      "locked": {
+        "title": "Full chest plan",
+        "label": "Inside Mass Builder"
+      },
       "lockedPrefix": "Locked:"
     },
     "transformations": {
@@ -154,7 +202,10 @@
         "question": "Want a coach checking on you every week?",
         "label": "1:1 Coaching"
       },
-      "club": { "question": "Want every plan, every month?", "label": "Join the Club" },
+      "club": {
+        "question": "Want every plan, every month?",
+        "label": "Join the Club"
+      },
       "weeks": "weeks",
       "perDay": "a day"
     },
@@ -193,7 +244,11 @@
       "sub": "Daily reels, real talk, zero fake flexing.",
       "marqueeLabel": "Posts from the NGB community",
       "post": "Instagram post (to collect)",
-      "follow": { "instagram": "Instagram", "youtube": "YouTube", "whatsapp": "WhatsApp channel" }
+      "follow": {
+        "instagram": "Instagram",
+        "youtube": "YouTube",
+        "whatsapp": "WhatsApp channel"
+      }
     },
     "finalCall": {
       "headline": "Your day one is today.",

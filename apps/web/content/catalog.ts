@@ -86,3 +86,13 @@ export const social = {
   youtube: "https://www.youtube.com/@nawingoldenboy",
   whatsapp: null,
 } as const satisfies Record<"instagram" | "youtube" | "whatsapp", string | null>;
+
+/**
+ * Proof strip numbers (home.md §2), in order; the labels are copy. 1M+ is [CONFIRM]. "Members coached"
+ * is [REAL DATA]: it joins this list only when a real, provable figure exists.
+ */
+export const proofStats = [
+  { value: 1_000_000, compact: true, suffix: "+" },
+  { value: 2022, countUp: false },
+  { value: 100, suffix: "%" },
+] as const;
