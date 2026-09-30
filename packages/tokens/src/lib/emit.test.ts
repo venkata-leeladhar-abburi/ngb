@@ -130,6 +130,11 @@ describe("generated theme", () => {
     );
   });
 
+  it("emits the poster slide-in and the once-only glow breathe", () => {
+    expect(files["base.css"]).toContain("@keyframes ngb-poster-in");
+    expect(files["base.css"]).toContain("@keyframes ngb-breathe");
+  });
+
   it("points component tokens at semantic variables", () => {
     expect(files["tokens.css"]).toContain("--button-primary-bg: var(--background-color-action);");
     expect(files["tokens.css"]).toContain("--program-card-featured-glow: var(--shadow-sells);");
