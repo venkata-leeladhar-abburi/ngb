@@ -180,6 +180,7 @@
       "quotePlaceholder": "TODO(te)",
       "quoteByPlaceholder": "TODO(te)",
       "finePrint": "TODO(te)",
+      "finePrintMembers": "TODO(te)",
       "rowLabel": "TODO(te)",
       "previous": "TODO(te)",
       "next": "TODO(te)",
@@ -252,7 +253,9 @@
         "instagram": "TODO(te)",
         "youtube": "TODO(te)",
         "whatsapp": "TODO(te)"
-      }
+      },
+      "pause": "TODO(te)",
+      "play": "TODO(te)"
     },
     "finalCall": {
       "headline": "నీ Day One ఈరోజే.",

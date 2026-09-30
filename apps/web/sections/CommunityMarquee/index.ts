@@ -1,0 +1,1 @@
+export { CommunityMarquee } from "./CommunityMarquee";

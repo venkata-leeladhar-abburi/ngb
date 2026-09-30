@@ -1,0 +1,1 @@
+export { PromiseFaq } from "./PromiseFaq";

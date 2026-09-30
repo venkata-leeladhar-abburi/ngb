@@ -51,6 +51,8 @@ export async function TransformationsRow() {
         />
         <div className="flex flex-col gap-24 lg:flex-row lg:items-end lg:justify-between">
           <QuoteCard quote={results.quotePlaceholder} by={results.quoteByPlaceholder} />
+          {/* home.md §8 fine print. Its second sentence ("These are real members...") would be false
+              next to placeholders, so finePrintMembers joins it only once real results exist. */}
           <Text tone="muted" className="max-w-(--container-lead) lg:text-right">
             {results.finePrint}
           </Text>

@@ -1,14 +1,19 @@
 "use client";
 
 import { ChipGroup, SwipeRow, Text, TransformationCard } from "@ngb/ui";
-import { useState, useSyncExternalStore } from "react";
+import { useSyncExternalStore } from "react";
 
 import { isResultFilter, RESULT_FILTERS, resultQuery, type ResultFilter } from "./resultFilter";
 
+/** Fired after this component rewrites the URL (replaceState fires no event of its own). */
+const URL_CHANGE = "ngb:result-filter";
+
 function subscribeToHistory(onChange: () => void) {
   window.addEventListener("popstate", onChange);
+  window.addEventListener(URL_CHANGE, onChange);
   return () => {
     window.removeEventListener("popstate", onChange);
+    window.removeEventListener(URL_CHANGE, onChange);
   };
 }
 
@@ -55,17 +60,15 @@ export function ResultsFilter({
   nextLabel,
   emptyLabel,
 }: ResultsFilterProps) {
-  // The static HTML is rendered for "all"; after hydration the URL decides. A choice made here wins
-  // until the URL changes (back and forward fire popstate).
-  const fromUrl = useSyncExternalStore(subscribeToHistory, filterFromUrl, () => "all" as const);
-  const [chosen, setChosen] = useState<{ filter: ResultFilter; url: ResultFilter } | null>(null);
-  const filter = chosen?.url === fromUrl ? chosen.filter : fromUrl;
+  // The URL is the only state: the static HTML is rendered for "all", then the URL decides, and back
+  // and forward stay in step.
+  const filter = useSyncExternalStore(subscribeToHistory, filterFromUrl, () => "all" as const);
 
   const choose = (value: string) => {
     if (!isResultFilter(value)) return;
-    setChosen({ filter: value, url: fromUrl });
     const { pathname, search, hash } = window.location;
     window.history.replaceState(null, "", `${pathname}${resultQuery(search, value)}${hash}`);
+    window.dispatchEvent(new Event(URL_CHANGE));
   };
 
   const shown = filter === "all" ? cards : [];
@@ -79,32 +82,29 @@ export function ResultsFilter({
         value={filter}
         onValueChange={choose}
       />
-      {/* Announces the empty state when a filter has no results. */}
-      <div aria-live="polite">
-        {shown.length > 0 ? (
-          <SwipeRow
-            label={rowLabel}
-            previousLabel={previousLabel}
-            nextLabel={nextLabel}
-            itemClassName="w-4/5 md:w-2/5 lg:w-1/4"
-            className="-mx-page"
-            items={shown.map((card, index) => (
-              <TransformationCard
-                key={index}
-                name={card.name}
-                town={card.town}
-                weeks={weeks}
-                change={card.change}
-                weeksLabel={weeksLabel}
-                sliderLabel={sliderLabel}
-                permissionLabel={card.permission}
-              />
-            ))}
-          />
-        ) : (
-          <Text tone="muted">{emptyLabel}</Text>
-        )}
-      </div>
+      {shown.length > 0 && (
+        <SwipeRow
+          label={rowLabel}
+          previousLabel={previousLabel}
+          nextLabel={nextLabel}
+          itemClassName="w-4/5 md:w-2/5 lg:w-1/4"
+          className="-mx-page lg:mx-0"
+          items={shown.map((card, index) => (
+            <TransformationCard
+              key={index}
+              name={card.name}
+              town={card.town}
+              weeks={weeks}
+              change={card.change}
+              weeksLabel={weeksLabel}
+              sliderLabel={sliderLabel}
+              permissionLabel={card.permission}
+            />
+          ))}
+        />
+      )}
+      {/* Announces only the empty line, not a whole row of cards. */}
+      <div aria-live="polite">{shown.length === 0 && <Text tone="muted">{emptyLabel}</Text>}</div>
     </div>
   );
 }

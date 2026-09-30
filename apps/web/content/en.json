@@ -175,7 +175,8 @@
       "placeholderChange": "[+/− kg]",
       "quotePlaceholder": "[REAL DATA] A member's own words, at most 3 lines.",
       "quoteByPlaceholder": "[Name], [City]",
-      "finePrint": "Results depend on your effort, food and sleep. These are real members; your results will be your own.",
+      "finePrint": "Results depend on your effort, food and sleep.",
+      "finePrintMembers": "These are real members; your results will be your own.",
       "rowLabel": "Member results",
       "previous": "Previous results",
       "next": "Next results",
@@ -254,7 +255,9 @@
         "instagram": "Instagram",
         "youtube": "YouTube",
         "whatsapp": "WhatsApp channel"
-      }
+      },
+      "pause": "Pause",
+      "play": "Play"
     },
     "finalCall": {
       "headline": "Your day one is today.",
