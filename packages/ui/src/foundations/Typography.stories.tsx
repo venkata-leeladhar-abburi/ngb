@@ -144,6 +144,13 @@ function TypographyPage() {
             </p>
             <p className="font-telugu-body text-lead">నేను జీరో నుంచి చేశాను. ఇప్పుడు నీ వంతు.</p>
           </div>
+          <div>
+            <p className="font-data text-muted" lang="en">
+              Labels (buttons, tags): Anek Telugu at {pxText(tokens.type.label.telugu.mobile)} to{" "}
+              {pxText(tokens.type.label.telugu.desktop)}, no tracking
+            </p>
+            <p className="font-label text-label font-bold uppercase">నీ వంతు</p>
+          </div>
         </div>
       </FoundationSection>
 

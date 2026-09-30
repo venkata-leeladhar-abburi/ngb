@@ -117,6 +117,8 @@ describe("generated theme", () => {
     expect(telugu).toContain("--font-display: var(--font-telugu-heading);");
     expect(telugu).toContain("--font-body: var(--font-telugu-body);");
     expect(telugu).toContain("--text-label--letter-spacing: normal;");
+    // Telugu labels use the body size (16 to 17 px), not 12 to 13 px.
+    expect(telugu).toContain("--text-label: clamp(1rem, 0.9792rem + 0.0926vw, 1.0625rem);");
   });
 
   it("sets the Telugu font only where lang is declared, so children inherit their parent's face", () => {

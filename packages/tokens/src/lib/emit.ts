@@ -347,6 +347,14 @@ export function build(tree: TokenTree): BuildOutput {
     ...children("type")
       .filter((role) => children(`type.${role}`).includes("letter-spacing"))
       .map((role) => `    --text-${role}--letter-spacing: normal;`),
+    "    /* Roles with a Telugu size (labels): small condensed Telugu is hard to read. */",
+    ...children("type")
+      .filter((role) => children(`type.${role}`).includes("telugu"))
+      .map((role) => {
+        const mobile = pixels(`type.${role}.telugu.mobile`);
+        const desktop = pixels(`type.${role}.telugu.desktop`);
+        return `    --text-${role}: ${fluid(mobile, desktop, fluidFrom, fluidTo)};`;
+      }),
     "  }",
     "",
     "  ::selection {",
