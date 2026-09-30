@@ -75,6 +75,7 @@
     },
     "goals": {
       "headline": "నీ goal ఏంటి?",
+      "telugu": "నీ goal ఏంటి?",
       "tiles": [
         {
           "title": "TODO(te)",
@@ -152,11 +153,13 @@
       "freeCount": "TODO(te)",
       "featured": {
         "title": "TODO(te)",
-        "meta": "TODO(te)"
+        "meta": "TODO(te)",
+        "photo": "TODO(te)"
       },
       "locked": {
         "title": "TODO(te)",
-        "label": "TODO(te)"
+        "label": "TODO(te)",
+        "photo": "TODO(te)"
       },
       "lockedPrefix": "TODO(te)"
     },
@@ -180,7 +183,10 @@
       "rowLabel": "TODO(te)",
       "previous": "TODO(te)",
       "next": "TODO(te)",
-      "empty": "TODO(te)"
+      "empty": "TODO(te)",
+      "placeholderPermission": "TODO(te)",
+      "beforeAfter": "TODO(te)",
+      "weeks": "TODO(te)"
     },
     "programs": {
       "headline": "TODO(te)",

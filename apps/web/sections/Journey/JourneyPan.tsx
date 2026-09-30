@@ -35,6 +35,10 @@ export function JourneyPan({ children }: { children: ReactNode }) {
               start: "center center",
               end: "+=60%",
               pin: true,
+              // GSAP turns pin spacing off inside flex parents (the section is flex-col); without it
+              // the quote below would scroll under the pinned row.
+              pinSpacing: true,
+              anticipatePin: 1,
               scrub: true,
             },
           });

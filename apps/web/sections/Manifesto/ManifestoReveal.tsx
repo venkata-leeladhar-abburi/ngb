@@ -1,6 +1,6 @@
 "use client";
 
-import { cssVar } from "@ngb/ui";
+import { cssDuration, cssVar } from "@ngb/ui";
 import { useEffect, useRef, type ReactNode } from "react";
 
 /** Desktop only, and never with reduced motion (screens.md A2). */
@@ -14,8 +14,7 @@ interface ManifestoRevealProps {
 }
 
 /**
- * Reveals each `[data-reveal-line]` child in turn as the manifesto scrolls through the viewport
- * (home.md §4). GSAP loads only when the query matches. Lines are never hidden before the script runs,
+ * Reveals each `[data-reveal-line]` child in turn, once, as the manifesto scrolls into view (home.md §4). GSAP loads only when the query matches. Lines are never hidden before the script runs,
  * so without JavaScript, on phones and with reduced motion, everything is simply visible.
  */
 export function ManifestoReveal({ children, className }: ManifestoRevealProps) {
@@ -33,12 +32,15 @@ export function ManifestoReveal({ children, className }: ManifestoRevealProps) {
         gsap.registerPlugin(ScrollTrigger);
         const media = gsap.matchMedia();
         media.add(query(), () => {
+          // Opacity, not visibility: the lines stay in the accessibility tree while they wait. Plays once
+          // and always finishes (no scrub), so a reader who stops mid-section never sees half a line.
           gsap.from(element.querySelectorAll("[data-reveal-line]"), {
-            autoAlpha: 0,
+            opacity: 0,
             y: "0.5em",
-            stagger: 0.35,
-            ease: "none",
-            scrollTrigger: { trigger: element, start: "top 80%", end: "bottom 55%", scrub: true },
+            duration: cssDuration("--motion-slow") / 1000,
+            stagger: 0.25,
+            ease: "power3.out",
+            scrollTrigger: { trigger: element, start: "top 85%", once: true },
           });
         });
         revert = () => {

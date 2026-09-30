@@ -45,8 +45,9 @@ function JourneyCard({ title, line, photo }: JourneyCardProps) {
 export async function Journey() {
   const { t } = await getPageContent();
   const journey = t.home.journey;
-  const cards = journey.cards.map((card) => (
-    <JourneyCard key={card.title} {...card} photo={journey.photo} />
+  // Five fixed steps in order: the index is a stable key (titles repeat as TODO(te) on /te).
+  const cards = journey.cards.map((card, index) => (
+    <JourneyCard key={index} {...card} photo={journey.photo} />
   ));
 
   return (

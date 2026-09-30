@@ -79,6 +79,7 @@
     },
     "goals": {
       "headline": "What's your goal?",
+      "telugu": "నీ goal ఏంటి?",
       "tiles": [
         {
           "title": "Gain weight",
@@ -148,11 +149,13 @@
       "freeCount": "3 free",
       "featured": {
         "title": "Chest at home",
-        "meta": "12 min, Telugu"
+        "meta": "12 min, Telugu",
+        "photo": "Thumbnail: Nawin, chest at home (video pending)"
       },
       "locked": {
         "title": "Full chest plan",
-        "label": "Inside Mass Builder"
+        "label": "Inside Mass Builder",
+        "photo": "Thumbnail: full chest plan (video pending)"
       },
       "lockedPrefix": "Locked:"
     },
@@ -176,7 +179,10 @@
       "rowLabel": "Member results",
       "previous": "Previous results",
       "next": "Next results",
-      "empty": "No results in this group yet."
+      "empty": "No results in this group yet.",
+      "placeholderPermission": "Placeholder, not a real result",
+      "beforeAfter": "Before and after",
+      "weeks": "weeks"
     },
     "programs": {
       "headline": "Pick your plan.",
