@@ -68,3 +68,26 @@ test("health endpoint is up and never cached", async ({ request }) => {
   expect(response.headers()["cache-control"]).toContain("no-store");
   expect(await response.json()).toMatchObject({ status: "ok" });
 });
+
+test.describe("languages", () => {
+  test("Telugu home is served at /te with lang te", async ({ page }) => {
+    const response = await page.goto("/te");
+
+    expect(response?.status()).toBe(200);
+    await expect(page.locator("html")).toHaveAttribute("lang", "te");
+    await expect(page.locator("h1")).toHaveCount(1);
+  });
+
+  test("/en redirects to the unprefixed English page", async ({ request }) => {
+    const response = await request.get("/en", { maxRedirects: 0 });
+
+    expect(response.status()).toBe(308);
+    expect(response.headers()["location"]).toBe("/");
+  });
+
+  test("unknown Telugu pages also return 404", async ({ page }) => {
+    const response = await page.goto("/te/this-page-does-not-exist");
+
+    expect(response?.status()).toBe(404);
+  });
+});
