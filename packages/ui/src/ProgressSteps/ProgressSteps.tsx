@@ -2,6 +2,7 @@ import { CheckIcon } from "@phosphor-icons/react/ssr";
 import type { ReactNode } from "react";
 
 import { Icon } from "../Icon";
+import { VisuallyHidden } from "../VisuallyHidden";
 
 interface ProgressStepsProps {
   /** Names the list, e.g. "Checkout steps". */
@@ -10,6 +11,8 @@ interface ProgressStepsProps {
   steps: readonly ReactNode[];
   /** Index of the current step (0-based). */
   current: number;
+  /** Localised word read after finished steps (screen readers do not see the check icon). */
+  doneLabel?: string;
   /** Localised "Step {n} of {total}" for the visible counter. */
   counter?: (step: number, total: number) => string;
   /** Layout only. */
@@ -24,6 +27,7 @@ export function ProgressSteps({
   label,
   steps,
   current,
+  doneLabel = "done",
   counter = (step, total) => `Step ${step} of ${total}`,
   className,
 }: ProgressStepsProps) {
@@ -44,10 +48,13 @@ export function ProgressSteps({
                 className={`h-4 ${state === "next" ? "bg-(--border-color-strong)" : "bg-action"}`}
               />
               <span
-                className={`flex items-center gap-4 text-body ${state === "next" ? "text-muted" : "text-primary"} ${state === "current" ? "font-bold" : ""}`}
+                className={`flex items-start gap-4 text-body ${state === "next" ? "text-muted" : "text-primary"} ${state === "current" ? "font-bold" : ""}`}
               >
                 {state === "done" && <Icon icon={CheckIcon} size="sm" />}
-                <span className="min-w-0 truncate">{step}</span>
+                <span className="min-w-0 break-words">
+                  {step}
+                  {state === "done" && <VisuallyHidden>{`, ${doneLabel}`}</VisuallyHidden>}
+                </span>
               </span>
             </li>
           );

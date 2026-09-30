@@ -15,4 +15,15 @@ describe("ProgressSteps", () => {
     expect(first).not.toHaveAttribute("aria-current");
     expect(screen.getByText("Step 2 of 2")).toBeInTheDocument();
   });
+
+  it("tells screen readers which steps are done, not just the icon", () => {
+    render(
+      <ProgressSteps label="Quiz progress" steps={["Goal", "Where", "Experience"]} current={2} />,
+    );
+
+    const [goal, where, experience] = screen.getAllByRole("listitem");
+    expect(goal).toHaveTextContent("Goal, done");
+    expect(where).toHaveTextContent("Where, done");
+    expect(experience).not.toHaveTextContent("done");
+  });
 });

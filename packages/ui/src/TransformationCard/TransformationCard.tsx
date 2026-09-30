@@ -69,14 +69,18 @@ export function TransformationCard({
       <LeanFrame className="aspect-3/4 w-full bg-card">
         <div className="@container relative size-full">
           <div className="absolute inset-0">
-            {before ?? <Placeholder label="Before photo" tone="before" />}
+            {before ?? <Placeholder label="Before" tone="before" />}
           </div>
           <div
             className="absolute inset-y-0 right-0 overflow-hidden"
-            style={{ width: `${100 - value}%` }}
+            // The slider track is inset by the lean-safe margin (so the handle is always visible); the
+            // after photo starts exactly at the handle: inset + value x (width - 2 x inset).
+            style={{
+              width: `calc((100% - 2 * ${LEAN_SAFE_INSET}) * ${(100 - value) / 100} + ${LEAN_SAFE_INSET})`,
+            }}
           >
             <div className="absolute inset-y-0 right-0" style={{ width: "100cqw" }}>
-              {after ?? <Placeholder label="After photo" tone="after" />}
+              {after ?? <Placeholder label="After" tone="after" />}
             </div>
           </div>
           <Slider.Root
@@ -87,7 +91,8 @@ export function TransformationCard({
             min={0}
             max={100}
             step={1}
-            className="absolute inset-0 flex cursor-ew-resize touch-none items-center select-none"
+            className="absolute inset-y-0 flex cursor-ew-resize touch-none items-center select-none"
+            style={{ insetInline: LEAN_SAFE_INSET }}
           >
             <Slider.Track className="relative h-full grow">
               <Slider.Range className="absolute h-full" />
@@ -95,9 +100,9 @@ export function TransformationCard({
             <Slider.Thumb
               aria-label={sliderLabel}
               aria-valuetext={`${value}% before, ${100 - value}% after`}
-              className="relative flex h-full w-4 items-center justify-center bg-(--text-color-primary) focus-visible:outline-(--focus-ring-color)"
+              className="group/thumb relative flex h-full w-4 items-center justify-center bg-(--text-color-primary) outline-hidden"
             >
-              <span className="flex size-target shrink-0 items-center justify-center bg-(--text-color-primary) text-on-gold">
+              <span className="flex size-target shrink-0 items-center justify-center bg-(--text-color-primary) text-on-gold group-focus-visible/thumb:outline-2 group-focus-visible/thumb:outline-offset-2 group-focus-visible/thumb:outline-(--focus-ring-color)">
                 <Icon icon={CaretLeftIcon} size="sm" />
                 <Icon icon={CaretRightIcon} size="sm" />
               </span>
@@ -116,7 +121,7 @@ export function TransformationCard({
             <p className="font-data text-body text-primary uppercase">
               {weeks} {weeksLabel} / {change}
             </p>
-            <p className="mt-8 text-right text-primary">{permissionLabel}</p>
+            <p className="mt-8 text-right font-label text-label text-primary">{permissionLabel}</p>
           </div>
         </div>
       </LeanFrame>

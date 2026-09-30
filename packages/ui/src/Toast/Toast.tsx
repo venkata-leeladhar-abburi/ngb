@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircleIcon, WarningIcon } from "@phosphor-icons/react/ssr";
+import { CheckCircleIcon, WarningIcon, XIcon } from "@phosphor-icons/react/ssr";
 import * as RadixToast from "@radix-ui/react-toast";
 import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from "react";
 
@@ -20,7 +20,8 @@ const ToastContext = createContext<Show | null>(null);
 
 /**
  * Shows a short message: `const toast = useToast(); toast("Link copied.")`. Use the microcopy library
- * (voice.md) for the words. Messages are announced politely, stay 5 s, and can be swiped away.
+ * (voice.md) for the words. Messages are announced politely (they never interrupt the screen reader),
+ * stay 5 s (errors 8 s), and can be closed with their button or swiped away.
  */
 export function useToast(): Show {
   const show = useContext(ToastContext);
@@ -34,9 +35,12 @@ const ICONS = { good: CheckCircleIcon, error: WarningIcon } as const;
 export function ToastProvider({
   children,
   label = "Notifications",
+  closeLabel = "Close",
 }: {
   children: ReactNode;
   label?: string;
+  /** Accessible name of each toast's close button (pass Telugu on /te pages). */
+  closeLabel?: string;
 }) {
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
 
@@ -55,6 +59,8 @@ export function ToastProvider({
         {toasts.map((toast) => (
           <RadixToast.Root
             key={toast.id}
+            type="background"
+            duration={toast.tone === "error" ? 8000 : 5000}
             onOpenChange={(open) => {
               if (!open) setToasts((current) => current.filter((item) => item.id !== toast.id));
             }}
@@ -68,6 +74,12 @@ export function ToastProvider({
               />
             )}
             <RadixToast.Description>{toast.message}</RadixToast.Description>
+            <RadixToast.Close
+              aria-label={closeLabel}
+              className="-my-12 -mr-12 ml-auto flex size-target shrink-0 cursor-pointer items-center justify-center"
+            >
+              <Icon icon={XIcon} size="md" />
+            </RadixToast.Close>
           </RadixToast.Root>
         ))}
         <RadixToast.Viewport className="fixed inset-x-0 bottom-0 z-(--layer-toast) flex flex-col gap-8 px-page pb-96 outline-none lg:right-0 lg:left-auto lg:w-(--container-lead) lg:pb-32" />

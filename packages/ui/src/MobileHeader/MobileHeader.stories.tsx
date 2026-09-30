@@ -8,6 +8,9 @@ const meta = {
   title: "Navigation/MobileHeader",
   component: MobileHeader,
   args: navFixture,
+  // Phone-only component (hidden from lg): story tests and visual snapshots use the 360 px phone viewport.
+  tags: ["mobile"],
+  globals: { viewport: { value: "phone", isRotated: false } },
   parameters: { layout: "fullscreen" },
   decorators: [
     (Story) => (

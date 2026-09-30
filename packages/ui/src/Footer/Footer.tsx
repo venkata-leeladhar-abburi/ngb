@@ -59,13 +59,17 @@ export function Footer({
     <footer className={`relative overflow-hidden bg-page text-primary ${className ?? ""}`}>
       <p
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 text-center font-display text-mega leading-display whitespace-nowrap text-primary uppercase italic opacity-10"
+        className="pointer-events-none absolute inset-x-0 top-16 text-center font-display text-mega leading-display whitespace-nowrap text-primary uppercase italic opacity-10"
       >
         Evolve
       </p>
       <div className="relative grid gap-32 pt-128 md:grid-cols-2 lg:grid-cols-6">
         <div className="md:col-span-2 lg:col-span-2">
-          <Link href={homeHref} aria-label={homeLabel}>
+          <Link
+            href={homeHref}
+            aria-label={homeLabel}
+            className="inline-flex min-h-target items-center"
+          >
             <Wordmark />
           </Link>
           <p className="mt-16 max-w-lead text-muted">{brandLine}</p>

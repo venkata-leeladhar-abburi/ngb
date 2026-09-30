@@ -38,11 +38,15 @@ export function MobileHeader({
   const Link: ElementType = linkAs ?? "a";
   const langProps = { ...lang, ...(linkAs ? { linkAs } : {}) };
   return (
-    <div className={`flex h-nav items-center gap-16 ${className ?? ""}`}>
-      <Link href={homeHref} aria-label={homeLabel} className="shrink-0">
-        <Wordmark />
+    <div className={`flex h-nav items-center gap-8 lg:hidden ${className ?? ""}`}>
+      <Link
+        href={homeHref}
+        aria-label={homeLabel}
+        className="flex min-h-target min-w-0 shrink items-center"
+      >
+        <Wordmark size="sm" />
       </Link>
-      <div className="ml-auto flex items-center gap-8">
+      <div className="ml-auto flex shrink-0 items-center">
         <LangSwitch {...langProps} variant="inline" />
         <Dialog.Root>
           <Dialog.Trigger
@@ -65,14 +69,14 @@ export function MobileHeader({
                   </Dialog.Close>
                 </div>
                 <nav aria-label="Main" className="mt-32">
-                  <ul className="flex flex-col gap-16">
+                  <ul className="flex flex-col gap-8">
                     {links.map((link) => (
                       <li key={link.href}>
                         <Dialog.Close asChild>
                           <Link
                             href={link.href}
                             aria-current={link.current ? "page" : undefined}
-                            className="block font-display text-h2 leading-display text-primary uppercase italic focus-visible:outline-(--focus-ring-color-on-red)"
+                            className="flex min-h-target items-center font-heading text-h1 font-black text-primary uppercase italic focus-visible:outline-(--focus-ring-color-on-red)"
                           >
                             {link.label}
                           </Link>

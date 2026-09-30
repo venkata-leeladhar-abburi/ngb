@@ -29,8 +29,14 @@ export function ShareCard({
   return (
     <EmberSurface className={`relative aspect-9/16 p-24 ${className ?? ""}`}>
       {image && <div className="absolute inset-0">{image}</div>}
-      <div className="relative">
-        <p className="max-w-(--container-lead) font-display text-display leading-display text-primary uppercase italic">
+      {/* Text sits only on a dark zone (ember rule): a scrim under the block, whatever the photo behind. */}
+      <div
+        className="relative -mx-24 -mb-24 px-24 pt-96 pb-24"
+        style={{
+          backgroundImage: "linear-gradient(to top, var(--background-color-page) 60%, transparent)",
+        }}
+      >
+        <p className="font-display text-h1 leading-display text-primary uppercase italic">
           {headline}
         </p>
         <p className="mt-16 font-data text-readout text-primary uppercase">{value}</p>

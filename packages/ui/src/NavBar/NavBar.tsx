@@ -28,7 +28,7 @@ export interface SiteNavProps {
 
 /**
  * Desktop navigation, 72 px (board 07, screen A1): wordmark, five links, language switch and the
- * primary button. Use MobileHeader below the lg breakpoint.
+ * primary button. Shown from the lg breakpoint only; MobileHeader covers smaller screens (render both).
  */
 export function NavBar({
   homeHref,
@@ -41,8 +41,12 @@ export function NavBar({
 }: SiteNavProps) {
   const Link: ElementType = linkAs ?? "a";
   return (
-    <div className={`flex h-nav items-center gap-32 ${className ?? ""}`}>
-      <Link href={homeHref} aria-label={homeLabel} className="shrink-0">
+    <div className={`hidden h-nav items-center gap-32 lg:flex ${className ?? ""}`}>
+      <Link
+        href={homeHref}
+        aria-label={homeLabel}
+        className="flex min-h-target shrink-0 items-center"
+      >
         <Wordmark />
       </Link>
       <nav aria-label="Main">

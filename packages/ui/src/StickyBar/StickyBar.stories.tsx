@@ -5,7 +5,10 @@ import { StickyActionBar, StickyBuyBar } from "./StickyBar";
 const meta = {
   title: "Navigation/StickyBar",
   component: StickyBuyBar,
-  parameters: { layout: "fullscreen", viewport: { defaultViewport: "mobile1" } },
+  // Phone-only component (hidden from lg): story tests and visual snapshots use the 360 px phone viewport.
+  tags: ["mobile"],
+  globals: { viewport: { value: "phone", isRotated: false } },
+  parameters: { layout: "fullscreen" },
   args: {
     visible: true,
     name: "Mass Builder",

@@ -38,7 +38,7 @@ export const Default: Story = { decorators: tileWidth };
 export const Hover: Story = { decorators: tileWidth, parameters: { pseudo: { hover: true } } };
 export const Focus: Story = {
   decorators: tileWidth,
-  parameters: { pseudo: { focusVisible: true } },
+  parameters: { pseudo: { focusVisible: ["a"] } },
 };
 
 /** home.md section 6: the seven small tiles of the tools bento (screen A3). */

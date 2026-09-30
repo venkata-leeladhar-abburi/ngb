@@ -18,7 +18,15 @@ type TextFieldProps = {
  * Text field (board 07). Use `inputMode` for numbers and phones, `autoComplete` where it applies,
  * and put units in the label ("Weight (kg)"). Font size stays 16 px or more so phones do not zoom.
  */
-export function TextField({ label, hint, error, id, className, ...props }: TextFieldProps) {
+export function TextField({
+  label,
+  hint,
+  error,
+  id,
+  className,
+  "aria-describedby": describedBy,
+  ...props
+}: TextFieldProps) {
   const autoId = useId();
   const inputId = id ?? autoId;
   const messageId = `${inputId}-message`;
@@ -32,7 +40,10 @@ export function TextField({ label, hint, error, id, className, ...props }: TextF
       <input
         id={inputId}
         aria-invalid={error ? true : undefined}
-        aria-describedby={message ? messageId : undefined}
+        // Keep any description the caller passes, and add the hint or error.
+        aria-describedby={
+          [describedBy, message ? messageId : undefined].filter(Boolean).join(" ") || undefined
+        }
         className="mt-8 block h-(--button-height) w-full rounded-card border border-strong bg-card px-16 text-body text-primary placeholder:text-muted disabled:cursor-not-allowed disabled:text-muted aria-invalid:border-focus"
         {...props}
       />

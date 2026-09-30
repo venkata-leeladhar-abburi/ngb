@@ -1,9 +1,11 @@
 "use client";
 
+import { CheckIcon } from "@phosphor-icons/react/ssr";
 import * as RadioGroup from "@radix-ui/react-radio-group";
 import { useId, type ReactNode } from "react";
 
 import { ChamferBox } from "../brand/ChamferBox";
+import { Icon } from "../Icon";
 import type { ChoiceOption } from "../SegmentedControl";
 
 interface ChipGroupProps {
@@ -55,8 +57,11 @@ export function ChipGroup({
               as="button"
               fill="bg-card group-hover/chamfer:bg-alt group-data-[state=checked]/chamfer:bg-action"
               border="bg-(--border-color-strong) group-data-[state=checked]/chamfer:bg-action"
-              className="inline-flex h-(--button-height) min-w-target cursor-pointer items-center px-24 text-body text-primary disabled:cursor-not-allowed disabled:text-muted"
+              className="inline-flex h-(--button-height) min-w-target cursor-pointer items-center gap-8 px-24 text-body text-primary group-data-[state=checked]/chamfer:font-bold disabled:cursor-not-allowed disabled:text-muted"
             >
+              <span className="hidden group-data-[state=checked]/chamfer:inline">
+                <Icon icon={CheckIcon} size="sm" />
+              </span>
               <span>{option.label}</span>
             </ChamferBox>
           </RadioGroup.Item>

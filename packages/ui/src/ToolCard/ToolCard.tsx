@@ -29,7 +29,7 @@ export function ToolCard({ href, icon, title, line, linkAs, className }: ToolCar
       border="bg-(--border-color-subtle) group-hover/chamfer:bg-(--border-color-strong)"
       className={`flex flex-col gap-12 p-24 text-primary transition-colors ${className ?? ""}`}
     >
-      <Icon icon={icon} size="lg" />
+      <Icon icon={icon} size="xl" />
       <div className="font-heading text-h3 font-black uppercase italic">{title}</div>
       <div className="text-muted">{line}</div>
       <Icon icon={ArrowRightIcon} size="md" className="mt-auto self-end" />

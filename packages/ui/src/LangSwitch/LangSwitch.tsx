@@ -1,7 +1,6 @@
 import type { ElementType } from "react";
 
 import { ChamferBox, chamferClip } from "../brand/ChamferBox";
-import { VisuallyHidden } from "../VisuallyHidden";
 
 interface LangSwitchProps {
   /** The language of the current page. */
@@ -29,13 +28,13 @@ const LANGUAGES = [
   { code: "te", region: "te-IN", short: "తె", name: "తెలుగు" },
 ] as const;
 
-/** Telugu script at label size looks far smaller than Latin capitals, so తె uses body size (board 07). */
-const SCRIPT_SIZE = { en: "font-label text-label uppercase", te: "text-body" } as const;
+/** Telugu script at label size looks far smaller than Latin capitals, so తె uses the h3 size (board 07). */
+const SCRIPT_SIZE = { en: "font-label text-label uppercase", te: "text-h3 leading-none" } as const;
 
 /**
  * Language switch "EN | తె". Two links, not a toggle: changing language is navigation.
  * The current language is marked with aria-current; each link carries its own lang and hreflang
- * (en-IN / te-IN, handoff section 6).
+ * (en-IN / te-IN, handoff section 6). The current language is also underlined or filled, never colour alone.
  */
 export function LangSwitch({
   current,
@@ -57,7 +56,7 @@ export function LangSwitch({
         ? `px-24 focus-visible:-outline-offset-4 ${isCurrent ? "bg-action focus-visible:outline-(--focus-ring-color-on-red)" : "hover:bg-alt"}`
         : tone === "red"
           ? `px-8 text-primary underline-offset-8 focus-visible:outline-(--focus-ring-color-on-red) ${isCurrent ? "underline" : "hover:underline"}`
-          : `px-8 ${isCurrent ? "text-primary" : "text-muted hover:text-primary"}`;
+          : `px-8 underline-offset-8 ${isCurrent ? "text-primary underline" : "text-muted hover:text-primary"}`;
     return (
       <li
         key={code}
@@ -65,7 +64,7 @@ export function LangSwitch({
           index > 0
             ? variant === "boxed"
               ? "border-l border-strong"
-              : "flex items-center before:h-16 before:border-l before:border-strong"
+              : "flex items-center gap-8 before:h-16 before:border-l before:border-strong"
             : undefined
         }
       >
@@ -74,10 +73,10 @@ export function LangSwitch({
           lang={code}
           hrefLang={region}
           aria-current={isCurrent ? "true" : undefined}
+          aria-label={`${short}, ${name}`}
           className={`flex min-h-target min-w-target items-center justify-center font-bold ${SCRIPT_SIZE[code]} ${look}`}
         >
           {short}
-          <VisuallyHidden>, {name}</VisuallyHidden>
         </Link>
       </li>
     );
@@ -97,7 +96,7 @@ export function LangSwitch({
           </ul>
         </ChamferBox>
       ) : (
-        <ul className="flex items-center">{items}</ul>
+        <ul className="flex items-center gap-8">{items}</ul>
       )}
     </nav>
   );

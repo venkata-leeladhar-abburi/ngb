@@ -39,7 +39,7 @@ export function Tabs({ label, items, defaultValue, className, ...props }: TabsPr
           <RadixTabs.Trigger
             key={item.value}
             value={item.value}
-            className="-mb-px min-h-target shrink-0 cursor-pointer border-b-4 border-transparent px-4 font-label text-label font-bold whitespace-nowrap text-muted uppercase hover:text-primary data-[state=active]:border-(--text-color-brand) data-[state=active]:text-primary"
+            className="-mb-px min-h-target shrink-0 cursor-pointer border-b-4 border-transparent px-4 font-label text-label font-bold whitespace-nowrap text-muted uppercase hover:text-primary focus-visible:-outline-offset-4 data-[state=active]:border-(--text-color-brand) data-[state=active]:text-primary"
           >
             {item.label}
           </RadixTabs.Trigger>

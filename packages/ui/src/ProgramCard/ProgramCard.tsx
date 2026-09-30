@@ -74,15 +74,13 @@ export function ProgramCard({
           <Tag>{tag}</Tag>
         </div>
       )}
-      <Heading className="font-label text-h2 font-bold uppercase">{name}</Heading>
+      <Heading className="font-label text-h3 leading-heading font-bold uppercase">{name}</Heading>
       {line && <p className="mt-8 text-muted">{line}</p>}
       <p className="mt-16 flex items-center gap-8 font-data text-body uppercase">
         <span aria-hidden="true" className="h-16 w-4 bg-action" />
         {weeks} {weeksLabel}
       </p>
-      <p className="mt-8 font-display text-display leading-display italic">
-        {rupees.format(priceInr)}
-      </p>
+      <p className="mt-8 font-display text-h1 leading-display italic">{rupees.format(priceInr)}</p>
       <p className="mt-8 font-data text-body">
         {rupees.format(perDayPrice(priceInr, weeks))} {perDayLabel}
       </p>
@@ -96,14 +94,17 @@ export function ProgramCard({
           ))}
         </ul>
       )}
-      <Button
-        as={linkAs ?? "a"}
-        href={cta.href}
-        variant={featured ? "primary" : "onRed"}
-        className="mt-24 w-full lg:mt-auto"
-      >
-        {cta.label}
-      </Button>
+      {/* mt-auto pushes the button to the bottom of equal-height cards; pt-24 keeps the gap above it. */}
+      <div className="mt-auto pt-24">
+        <Button
+          as={linkAs ?? "a"}
+          href={cta.href}
+          variant={featured ? "primary" : "onRed"}
+          className="w-full"
+        >
+          {cta.label}
+        </Button>
+      </div>
     </article>
   );
 }

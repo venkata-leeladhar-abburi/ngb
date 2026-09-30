@@ -23,8 +23,9 @@ export default defineConfig({
         },
       },
       {
-        // Renders every story in a real browser and runs axe on it (a11y: "error" in preview.ts).
         extends: true,
+        // Every story renders in a real browser with axe (a11y: "error" in preview.ts). The addon sizes the
+        // page from each story's viewport global: 1200 px by default, 360 px for stories tagged "mobile".
         plugins: [storybookTest({ configDir: `${dirname}.storybook` })],
         test: {
           name: "storybook",

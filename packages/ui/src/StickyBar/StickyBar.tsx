@@ -13,12 +13,13 @@ interface BarShellProps {
 
 /**
  * Bottom bar on phones (hidden from lg). Slides out of view when not visible and becomes inert, so
- * hidden buttons cannot be reached by Tab. Pages add `scroll-padding-bottom` so focused elements are never
- * covered (screens.md, B3).
+ * hidden buttons cannot be reached by Tab. While it shows, base.css reserves `scroll-padding-bottom` on the
+ * page (via `data-sticky-bar`), so focused elements are never covered (screens.md B3, WCAG 2.4.11).
  */
 function BarShell({ visible, label, children }: BarShellProps) {
   return (
     <aside
+      data-sticky-bar=""
       aria-label={label}
       inert={!visible}
       className={`fixed inset-x-0 bottom-0 z-(--layer-sticky) border-t border-subtle bg-card px-page pt-12 shadow-hover transition-transform ease-out lg:hidden ${visible ? "translate-y-0" : "translate-y-full"}`}
@@ -62,7 +63,9 @@ export function StickyBuyBar({
     <BarShell visible={visible} label={label}>
       <div className="flex items-center gap-16">
         <div className="min-w-0">
-          <p className="truncate font-bold text-primary">{name}</p>
+          <p className="font-heading text-h3 font-black break-words text-primary uppercase italic">
+            {name}
+          </p>
           <p className="font-data text-body whitespace-nowrap text-primary">
             {rupees.format(priceInr)}
           </p>

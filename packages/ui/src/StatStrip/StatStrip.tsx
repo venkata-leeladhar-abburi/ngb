@@ -101,11 +101,15 @@ function StatItem({ stat }: { stat: Stat }) {
     : stat.placeholder;
 
   return (
-    <li ref={ref} className="flex flex-col items-center text-center">
+    <li ref={ref} className="flex min-w-0 flex-col items-center text-center">
       {/* The animated number is hidden; screen readers get the final value once. */}
       <span
         aria-hidden="true"
-        className="font-display text-display leading-display uppercase italic tabular-nums lg:text-hero"
+        className={
+          isNumber
+            ? "font-display text-display leading-display uppercase italic tabular-nums"
+            : "font-data text-readout break-words"
+        }
       >
         {shown}
       </span>

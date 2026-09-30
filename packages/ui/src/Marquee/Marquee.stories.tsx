@@ -1,14 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { LeanFrame } from "../brand/LeanFrame";
 import { Marquee } from "./Marquee";
 
+/** Screen A6 draws the community row as leaning strips; labelled placeholders until real photos exist. */
 const tiles = Array.from({ length: 8 }, (_, index) => (
-  <div
-    key={index}
-    className="flex aspect-3/4 w-128 items-end border border-subtle bg-alt p-12 font-label text-label text-muted uppercase"
-  >
-    Photo {index + 1}
-  </div>
+  <LeanFrame key={index} className="h-(--spacing-144) w-96 border border-subtle bg-alt">
+    <span className="flex size-full items-end p-12 font-label text-label text-muted uppercase">
+      Photo {index + 1}
+    </span>
+  </LeanFrame>
 ));
 
 const meta = {

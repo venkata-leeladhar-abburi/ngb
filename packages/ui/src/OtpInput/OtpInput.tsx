@@ -64,7 +64,10 @@ export function OtpInput({
       <label htmlFor={inputId} className="block text-body text-primary">
         {label}
       </label>
-      <div className="relative mt-8 inline-flex gap-8">
+      <div
+        className="relative mt-8 grid w-full grid-cols-6 gap-8"
+        style={{ maxWidth: "calc(6 * var(--spacing-48) + 5 * var(--spacing-8))" }}
+      >
         {Array.from({ length: LENGTH }, (_, index) => {
           const active =
             focused && (index === code.length || (index === LENGTH - 1 && code.length === LENGTH));
@@ -76,7 +79,7 @@ export function OtpInput({
               aria-hidden="true"
               data-otp-box={index}
               data-active={active || undefined}
-              className={`flex h-(--button-height) w-48 items-center justify-center rounded-card border bg-card font-data text-readout ${border} ${active ? "outline-2 outline-offset-2 outline-focus" : ""}`}
+              className={`flex h-(--button-height) min-w-0 items-center justify-center rounded-card border bg-card font-data text-readout ${border} ${active ? "outline-2 outline-offset-2 outline-focus" : ""}`}
             >
               {code[index] ?? ""}
             </span>

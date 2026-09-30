@@ -18,3 +18,6 @@ export const programs = [
 ] as const;
 
 export const cta = { href: "#start", label: "Start my plan" };
+
+/** home.md section 9 "Every plan includes" (the three shown on board 08). */
+export const includes = ["Telugu food diet", "Weekly check-in", "Lifetime access"];

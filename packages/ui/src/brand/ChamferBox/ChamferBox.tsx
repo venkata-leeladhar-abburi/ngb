@@ -58,14 +58,16 @@ export function ChamferBox<T extends ElementType = "div">({
 
   return (
     <Component
-      className={`group/chamfer relative isolate outline-none forced-colors:outline forced-colors:focus-visible:outline-2 [&>:not([data-chamfer])]:relative ${className ?? ""}`}
+      // outline-hidden: invisible normally, but a real system-colour outline in forced-colours mode, where
+      // the background layers below are removed; that outline then draws the control's shape.
+      className={`group/chamfer relative isolate outline-hidden [&>:not([data-chamfer])]:relative ${className ?? ""}`}
       {...props}
     >
       {focusRing !== "none" && (
         <span
           aria-hidden="true"
           data-chamfer="ring"
-          className={`pointer-events-none absolute hidden group-focus-visible/chamfer:block ${ringColor}`}
+          className={`pointer-events-none absolute hidden group-focus-visible/chamfer:block ${ringColor} forced-colors:bg-[Highlight] forced-colors:forced-color-adjust-none`}
           style={{
             inset: `calc(${RING_OFFSET} * -1)`,
             clipPath: chamferRing(growCut(size, RING_OFFSET), "var(--focus-ring-width)"),

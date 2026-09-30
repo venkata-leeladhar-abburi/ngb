@@ -1,9 +1,11 @@
 "use client";
 
+import { CheckIcon } from "@phosphor-icons/react/ssr";
 import * as RadioGroup from "@radix-ui/react-radio-group";
 import { useId, type ReactNode } from "react";
 
 import { ChamferBox, chamferClip } from "../brand/ChamferBox";
+import { Icon } from "../Icon";
 
 export interface ChoiceOption {
   value: string;
@@ -56,8 +58,11 @@ export function SegmentedControl({ label, options, className, ...props }: Segmen
               key={option.value}
               value={option.value}
               disabled={option.disabled ?? false}
-              className={`h-(--button-height) min-w-target cursor-pointer px-24 text-body text-primary transition-colors hover:bg-alt focus-visible:-outline-offset-4 disabled:cursor-not-allowed disabled:text-muted data-[state=checked]:bg-action data-[state=checked]:focus-visible:outline-(--focus-ring-color-on-red) ${index > 0 ? "border-l border-strong" : ""}`}
+              className={`inline-flex h-(--button-height) min-w-target cursor-pointer items-center justify-center gap-8 px-16 text-body text-primary transition-colors hover:bg-alt focus-visible:-outline-offset-8 disabled:cursor-not-allowed disabled:text-muted data-[state=checked]:bg-action data-[state=checked]:font-bold data-[state=checked]:focus-visible:outline-(--focus-ring-color-on-red) md:px-24 ${index > 0 ? "border-l border-strong" : ""}`}
             >
+              <RadioGroup.Indicator>
+                <Icon icon={CheckIcon} size="sm" />
+              </RadioGroup.Indicator>
               {option.label}
             </RadioGroup.Item>
           ))}

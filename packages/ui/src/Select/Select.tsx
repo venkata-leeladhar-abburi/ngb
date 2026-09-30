@@ -28,6 +28,7 @@ export function Select({
   error,
   id,
   className,
+  "aria-describedby": describedBy,
   ...props
 }: SelectProps) {
   const autoId = useId();
@@ -44,7 +45,9 @@ export function Select({
         <select
           id={selectId}
           aria-invalid={error ? true : undefined}
-          aria-describedby={message ? messageId : undefined}
+          aria-describedby={
+            [describedBy, message ? messageId : undefined].filter(Boolean).join(" ") || undefined
+          }
           className="block h-(--button-height) w-full cursor-pointer appearance-none rounded-card border border-strong bg-card pr-48 pl-16 text-body text-primary disabled:cursor-not-allowed disabled:text-muted aria-invalid:border-focus"
           {...props}
         >

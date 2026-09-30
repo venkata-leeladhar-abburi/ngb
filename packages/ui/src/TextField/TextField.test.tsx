@@ -40,4 +40,17 @@ describe("TextField", () => {
     expect(input).toHaveValue("Arun");
     expect(input).toHaveAttribute("id", "name");
   });
+
+  it("keeps a description the caller adds alongside its own hint", () => {
+    render(
+      <>
+        <p id="units">Kilograms only.</p>
+        <TextField label="Weight (kg)" hint="Used only for your result." aria-describedby="units" />
+      </>,
+    );
+
+    expect(screen.getByRole("textbox")).toHaveAccessibleDescription(
+      "Kilograms only. Used only for your result.",
+    );
+  });
 });

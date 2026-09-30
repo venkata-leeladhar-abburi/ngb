@@ -21,7 +21,7 @@ type Story = StoryObj<typeof meta>;
 /** home.md section 7: free video. Thumbnails arrive with the real footage. */
 export const Free: Story = {};
 export const Hover: Story = { parameters: { pseudo: { hover: true } } };
-export const Focus: Story = { parameters: { pseudo: { focusVisible: true } } };
+export const Focus: Story = { parameters: { pseudo: { focusVisible: ["a"] } } };
 
 /** home.md section 7: the 4th video per group is locked and links to the program. */
 export const Locked: Story = {

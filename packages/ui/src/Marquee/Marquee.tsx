@@ -37,7 +37,7 @@ export function Marquee({
     <ul
       aria-hidden={hidden || undefined}
       inert={hidden}
-      className={`flex shrink-0 gap-16 pr-16 ${hidden ? "motion-reduce:hidden" : "motion-reduce:flex-wrap motion-reduce:pr-0"}`}
+      className={`flex shrink-0 gap-16 pr-16 ${hidden ? "motion-reduce:hidden" : "motion-reduce:w-full motion-reduce:min-w-0 motion-reduce:shrink motion-reduce:flex-wrap motion-reduce:pr-0"}`}
     >
       {items.map((item, index) => (
         <li key={index} className="shrink-0">
@@ -49,9 +49,9 @@ export function Marquee({
 
   return (
     <div role="region" aria-label={label} className={className}>
-      <div className="group/marquee overflow-hidden">
+      <div className="group/marquee overflow-hidden motion-reduce:overflow-visible">
         <div
-          className="flex w-max [animation:ngb-marquee_var(--marquee-seconds)_linear_infinite] [animation-play-state:var(--marquee-state)] group-focus-within/marquee:[animation-play-state:paused] group-hover/marquee:[animation-play-state:paused] motion-reduce:w-auto motion-reduce:[animation:none]"
+          className="flex w-max [animation:ngb-marquee_var(--marquee-seconds)_linear_infinite] [animation-play-state:var(--marquee-state)] group-focus-within/marquee:[animation-play-state:paused] group-hover/marquee:[animation-play-state:paused] motion-reduce:w-full motion-reduce:[animation:none]"
           style={
             {
               "--marquee-seconds": `${seconds}s`,

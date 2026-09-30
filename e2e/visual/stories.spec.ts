@@ -12,6 +12,7 @@ interface IndexEntry {
   title: string;
   name: string;
   type: string;
+  tags?: string[];
 }
 
 const index = JSON.parse(
@@ -22,6 +23,8 @@ const stories = Object.values(index.entries).filter((entry) => entry.type === "s
 
 for (const story of stories) {
   test(`${story.title} / ${story.name}`, async ({ page }) => {
+    // Stories tagged "mobile" are phone-only components (hidden from the lg breakpoint).
+    if (story.tags?.includes("mobile")) await page.setViewportSize({ width: 360, height: 800 });
     await page.goto(`/iframe.html?viewMode=story&id=${story.id}`, { waitUntil: "networkidle" });
     await page.evaluate(() => document.fonts.ready);
     // Let play functions (open dialogs, toasts) settle.

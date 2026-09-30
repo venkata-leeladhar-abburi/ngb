@@ -2,9 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { StudioBackdrop } from "../brand/StudioBackdrop";
 import { ProgramCard } from "./ProgramCard";
-import { cta, programs } from "./programs-fixture";
-
-const includes = ["Telugu food diet", "Weekly check-in", "Lifetime access"];
+import { cta, includes, programs } from "./programs-fixture";
 
 const meta = {
   title: "Content/ProgramCard",
@@ -48,7 +46,8 @@ export const ProgramsGrid: Story = {
         <ProgramCard
           key={program.name}
           {...program}
-          {...("featured" in program ? { tag: "Most popular", features: includes } : {})}
+          features={includes}
+          {...("featured" in program ? { tag: "Most popular" } : {})}
           cta={cta}
         />
       ))}

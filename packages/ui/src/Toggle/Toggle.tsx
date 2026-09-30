@@ -37,7 +37,7 @@ export function Toggle({ label, className, ...props }: ToggleProps) {
           border="bg-(--border-color-strong) group-data-[state=checked]/chamfer:bg-action"
           className="inline-flex h-32 w-64 shrink-0 cursor-pointer items-center px-4 after:absolute after:inset-x-0 after:-inset-y-8 disabled:cursor-not-allowed"
         >
-          <Switch.Thumb className="block size-24 bg-(--text-color-muted) transition-transform ease-out data-[state=checked]:translate-x-(--spacing-32) data-[state=checked]:bg-(--text-color-primary)" />
+          <Switch.Thumb className="block size-24 bg-(--text-color-muted) transition-transform ease-out data-[state=checked]:translate-x-(--spacing-32) data-[state=checked]:bg-(--text-color-primary) forced-colors:bg-[ButtonText] forced-colors:forced-color-adjust-none" />
         </ChamferBox>
       </Switch.Root>
     </div>

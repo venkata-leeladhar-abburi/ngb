@@ -41,7 +41,7 @@ describe("TransformationCard", () => {
   it("labels its placeholders until real, consented photos exist", () => {
     render(<TransformationCard {...member} />);
 
-    expect(screen.getByText("Before photo")).toBeInTheDocument();
-    expect(screen.getByText("After photo")).toBeInTheDocument();
+    expect(screen.getByText("Before")).toBeInTheDocument();
+    expect(screen.getByText("After")).toBeInTheDocument();
   });
 });
