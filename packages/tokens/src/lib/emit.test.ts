@@ -119,6 +119,15 @@ describe("generated theme", () => {
     expect(telugu).toContain("--text-label--letter-spacing: normal;");
   });
 
+  it("sets the Telugu font only where lang is declared, so children inherit their parent's face", () => {
+    const telugu = /:lang\(te\) \{([^}]*)\}/.exec(files["base.css"])?.[1] ?? "";
+    // :lang(te) matches every descendant: a font-family there would reset a <span> inside a heading.
+    expect(telugu).not.toMatch(/^\s*font-family:/m);
+    expect(files["base.css"]).toMatch(
+      /\[lang\|="te"\] \{\s*font-family: var\(--font-telugu-body\);\s*line-height: var\(--leading-telugu\);\s*\}/,
+    );
+  });
+
   it("points component tokens at semantic variables", () => {
     expect(files["tokens.css"]).toContain("--button-primary-bg: var(--background-color-action);");
     expect(files["tokens.css"]).toContain("--program-card-featured-glow: var(--shadow-sells);");
