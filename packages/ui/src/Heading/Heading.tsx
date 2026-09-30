@@ -56,7 +56,7 @@ export function Heading({
   const colour = tone === "brand" && variant !== "h3" ? "text-brand" : "text-primary";
   return (
     <Tag
-      className={`${VARIANTS[variant]} min-w-0 break-words ${colour} ${className ?? ""}`}
+      className={`${VARIANTS[variant]} min-w-0 wrap-anywhere ${colour} ${className ?? ""}`}
       {...props}
     >
       {children}

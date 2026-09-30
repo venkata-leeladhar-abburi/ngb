@@ -8,7 +8,7 @@ type LinkProps<T extends ElementType> = {
   as?: T;
   /**
    * inline: inside a sentence, underlined (links never rely on colour alone).
-   * standalone: its own line ("Watch my story (2 min)"), bold with a caret and a 44 px target.
+   * standalone: its own line ("Watch my story (2 min)"), bold signal red, underlined, with a caret and a 44 px target.
    */
   variant?: "inline" | "standalone";
   /** Layout only. */
@@ -34,11 +34,12 @@ export function Link<T extends ElementType = "a">({
   const Component: ElementType = as ?? "a";
   const look =
     variant === "standalone"
-      ? "inline-flex min-h-target items-center gap-8 font-body font-bold underline-offset-8 hover:underline"
-      : "underline underline-offset-4 hover:text-accent";
+      ? // Signal red and underlined (screens A2, A3, A6): 5.6:1 on the black ground; bone on hover.
+        "inline-flex min-h-target items-center gap-8 font-body font-bold text-accent underline underline-offset-8 hover:text-primary"
+      : "text-primary underline underline-offset-4 hover:text-accent";
   return (
     <Component
-      className={`cursor-pointer text-primary decoration-(--text-color-accent) decoration-2 transition-colors ${look} ${className ?? ""}`}
+      className={`cursor-pointer decoration-(--text-color-accent) decoration-2 transition-colors ${look} ${className ?? ""}`}
       {...props}
     >
       {children}

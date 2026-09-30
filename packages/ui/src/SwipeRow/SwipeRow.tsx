@@ -100,14 +100,15 @@ export function SwipeRow({
         </button>
       </div>
       {/* The row itself takes focus (arrow keys scroll it), so cards with nothing focusable inside are
-          still reachable by keyboard in every browser (axe: scrollable-region-focusable). Padding leaves
+          still reachable by keyboard in every browser (axe: scrollable-region-focusable). Its ring is
+          drawn inside, as a full-bleed row has no room outside it. Padding leaves
           room for leaning cards' corners and their hover lift; the region above already names it. */}
       <ul
         ref={list}
         // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- a scrollable region must be focusable
         tabIndex={0}
         onScroll={update}
-        className="flex snap-x snap-mandatory scroll-px-32 gap-24 overflow-x-auto overscroll-x-contain px-32 pt-(--motion-lift-card) pb-16 focus-visible:outline-offset-4"
+        className="flex snap-x snap-mandatory scroll-px-32 gap-24 overflow-x-auto overscroll-x-contain px-32 pt-(--motion-lift-card) pb-16 focus-visible:-outline-offset-4"
       >
         {items.map((item, index) => (
           // Items are static content in a fixed order, so the index is a stable key.
