@@ -62,6 +62,34 @@ jobs:
           path: e2e/playwright-report
           retention-days: 7
 
+  visual:
+    name: Visual snapshots (every Storybook story)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+      - name: Install Chromium
+        run: pnpm --filter @ngb/e2e exec playwright install --with-deps chromium
+      # "missing" writes references only where none exist yet (first Linux run); any existing reference
+      # that no longer matches fails the job. A person reviews and commits new references.
+      - run: pnpm turbo run visual --filter=@ngb/e2e -- --update-snapshots=missing
+      - name: Upload Linux references for review
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: visual-references-linux
+          path: e2e/visual/__screenshots__/linux
+          retention-days: 14
+          if-no-files-found: ignore
+      - name: Upload visual diff report
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: visual-report
+          path: e2e/visual-report
+          retention-days: 7
+
   lighthouse:
     name: Lighthouse (mobile budgets)
     runs-on: ubuntu-latest

@@ -38,3 +38,6 @@ tmp/
 .DS_Store
 .idea/
 __pycache__/
+
+# Visual regression report
+visual-report/

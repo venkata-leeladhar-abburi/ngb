@@ -31,6 +31,7 @@ If a doc and the code disagree, stop and ask. Never invent copy, prices, numbers
 - `pnpm test:stories` - every Storybook story in a real browser with axe; any violation fails
 - `pnpm e2e` - Playwright journeys (builds first); `pnpm --filter @ngb/e2e e2e --project=android` for 360 px only
 - `pnpm lhci` - Lighthouse CI against the local production build
+- `pnpm visual` - screenshot every Storybook story against its approved reference; `pnpm --filter @ngb/e2e visual:update` only after a person approves the change
 - `pnpm format` - Prettier; `pnpm build` - production build of everything
 - `pnpm tokens:build` - regenerate CSS and `tokens.ts` after editing `packages/tokens/src/tokens.json` (turbo also runs it before dev, build and tests)
 - Not yet: `pnpm db:generate` / `pnpm db:migrate` (Phase 7). Do not call them before they exist.

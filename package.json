@@ -18,7 +18,8 @@
     "lhci": "turbo run lhci --filter=@ngb/web",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "tokens:build": "turbo run build --filter=@ngb/tokens"
+    "tokens:build": "turbo run build --filter=@ngb/tokens",
+    "visual": "turbo run visual --filter=@ngb/e2e"
   },
   "devDependencies": {
     "@ngb/config": "workspace:*",

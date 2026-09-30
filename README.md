@@ -17,7 +17,7 @@ pnpm dev            # http://localhost:3000
 pnpm storybook      # http://localhost:6006
 ```
 
-## Checks (the same ones CI runs on every pull request)
+## Checks (the same ones CI runs on every push to main)
 
 | Command             | What it checks                                                                  |
 | ------------------- | ------------------------------------------------------------------------------- |
@@ -29,8 +29,20 @@ pnpm storybook      # http://localhost:6006
 | `pnpm build`        | Production build                                                                |
 | `pnpm e2e`          | Playwright on a 360 px Android phone and 1440 px desktop, with axe              |
 | `pnpm lhci`         | Lighthouse mobile budgets (performance 90+, accessibility 100, LCP, CLS, JS)    |
+| `pnpm visual`       | Screenshot of every Storybook story compared with its approved reference        |
 
 First run of `test:stories` or `e2e`: `pnpm --filter @ngb/e2e exec playwright install chromium`.
+
+### Visual snapshots
+
+References live in `e2e/visual/__screenshots__/<platform>/` (fonts render differently on macOS and Linux, so each has its own).
+When a component's look changes on purpose, review the diff, then approve it:
+
+```bash
+pnpm --filter @ngb/ui build-storybook && pnpm --filter @ngb/e2e visual:update
+```
+
+CI compares against the `linux` references. On its first run it creates them and uploads them as the `visual-references-linux` artifact: download it, check the images, and commit them to `e2e/visual/__screenshots__/linux/`. Never update references just to make CI pass.
 
 ## Layout
 

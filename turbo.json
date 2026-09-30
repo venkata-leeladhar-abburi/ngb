@@ -46,6 +46,10 @@
     "lhci": {
       "dependsOn": ["build"],
       "cache": false
+    },
+    "visual": {
+      "dependsOn": ["@ngb/ui#build-storybook"],
+      "outputs": ["visual-report/**"]
     }
   }
 }
