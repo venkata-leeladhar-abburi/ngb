@@ -25,6 +25,10 @@ interface ChipGroupProps {
  * Chips (board 07 "Training focus"; screens A4 and B8 filters): one choice from a set of separate
  * chamfered chips that can wrap. A radio group: arrow keys move and select. Filters should also
  * write the choice to the URL (pages rule).
+ *
+ * **Use for:** filters and short choices that may wrap: programs filter, transformations filter, training focus.
+ *
+ * **Not for:** form answers with long text (RadioGroup); 2 to 4 options in one bar (SegmentedControl); several choices at once (Checkbox).
  */
 export function ChipGroup({
   label,
@@ -57,7 +61,7 @@ export function ChipGroup({
               as="button"
               fill="bg-card group-hover/chamfer:bg-alt group-data-[state=checked]/chamfer:bg-action"
               border="bg-(--border-color-strong) group-data-[state=checked]/chamfer:bg-action"
-              className="inline-flex h-(--button-height) min-w-target cursor-pointer items-center gap-8 px-24 text-body text-primary group-data-[state=checked]/chamfer:font-bold disabled:cursor-not-allowed disabled:text-muted"
+              className="inline-flex h-(--button-height) min-w-target cursor-pointer items-center gap-8 px-24 text-body text-primary disabled:cursor-not-allowed data-[state=checked]:font-bold disabled:data-[state=unchecked]:text-muted"
             >
               <span className="hidden group-data-[state=checked]/chamfer:inline">
                 <Icon icon={CheckIcon} size="sm" />

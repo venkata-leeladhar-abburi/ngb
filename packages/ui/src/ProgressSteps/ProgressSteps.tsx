@@ -22,6 +22,10 @@ interface ProgressStepsProps {
 /**
  * Progress through a short flow (checkout, the 4-question quiz). An ordered list: done steps show a
  * check, the current step is studio red and marked aria-current="step", later steps are muted.
+ *
+ * **Use for:** short step-by-step flows: checkout and the 4-question quiz.
+ *
+ * **Not for:** long page progress or reading progress; flows of one step.
  */
 export function ProgressSteps({
   label,

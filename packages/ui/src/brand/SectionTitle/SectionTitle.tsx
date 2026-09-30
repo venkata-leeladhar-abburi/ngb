@@ -30,6 +30,10 @@ function SpeedLines() {
 /**
  * Section title (board 08): optional speed lines, the red slash, then the title in
  * GT America Compressed Black Italic, uppercase. The heading's accessible name is the title only.
+ *
+ * **Use for:** the title of each page section, with the red slash.
+ *
+ * **Not for:** headings inside cards or forms (Heading).
  */
 export function SectionTitle({
   as = "h2",
@@ -41,7 +45,7 @@ export function SectionTitle({
   const Heading = as;
   return (
     <Heading
-      className={`flex items-center gap-16 font-heading text-h1 font-black text-primary uppercase italic ${className ?? ""}`}
+      className={`flex items-center gap-16 font-heading text-h1 font-black text-primary uppercase italic [&:lang(te)]:skew-x-(--shape-lean) [&:lang(te)]:not-italic ${className ?? ""}`}
       {...props}
     >
       {speedLines && <SpeedLines />}
@@ -56,7 +60,8 @@ export function SectionTitle({
           transform: "skewX(var(--shape-lean))",
         }}
       />
-      <span>{children}</span>
+      {/* Anek Telugu has no italic: Telugu titles lean by skew (the text only, so the slash keeps its angle). */}
+      <span className="[&:lang(te)]:skew-x-(--shape-lean) [&:lang(te)]:not-italic">{children}</span>
     </Heading>
   );
 }

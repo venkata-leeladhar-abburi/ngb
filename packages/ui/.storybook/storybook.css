@@ -7,3 +7,8 @@
 @import "@ngb/tokens/base.css";
 
 @source "../src";
+
+/* Story previews on Docs pages sit on the site's page colour, like the stories themselves. */
+.docs-story {
+  background-color: var(--background-color-page);
+}

@@ -7,6 +7,10 @@ interface SkeletonProps {
  * Loading placeholder: a plain carbon block. Static on purpose (no shimmer), so it is calm on slow phones
  * and needs no reduced-motion version. Hidden from screen readers; mark the loading region with
  * aria-busy and say what is loading in words ("Calculating your number…").
+ *
+ * **Use for:** the shape of content while it loads.
+ *
+ * **Not for:** empty states or errors (say what happened in words).
  */
 export function Skeleton({ className }: SkeletonProps) {
   return <span aria-hidden="true" className={`block rounded-card bg-alt ${className ?? ""}`} />;

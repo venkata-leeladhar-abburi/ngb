@@ -27,6 +27,10 @@ interface VideoCardProps {
 /**
  * Video card (board 08): free cards show the red 44 px play button (the only circle in the system);
  * locked cards dim the image and show a lock. The whole card is one link.
+ *
+ * **Use for:** free and locked workout videos.
+ *
+ * **Not for:** the hero journey clip (its own play button in the hero section).
  */
 export function VideoCard({
   href,

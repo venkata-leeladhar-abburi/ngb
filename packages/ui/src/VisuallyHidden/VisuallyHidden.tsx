@@ -10,6 +10,10 @@ type VisuallyHiddenProps<T extends ElementType> = {
 /**
  * Hides content visually but keeps it for screen readers.
  * Use for icon-only button labels and skip links. Never use it to hide text a sighted user needs.
+ *
+ * **Use for:** labels for icon-only controls, skip links, extra context for screen readers.
+ *
+ * **Not for:** hiding text a sighted person needs, or keyword stuffing.
  */
 export function VisuallyHidden<T extends ElementType = "span">({
   as,

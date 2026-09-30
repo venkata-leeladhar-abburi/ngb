@@ -11,7 +11,13 @@ interface QuoteCardProps {
   className?: string;
 }
 
-/** Pull quote with the studio-red bar (screens A2 and A4). */
+/**
+ * Pull quote with the studio-red bar (screens A2 and A4).
+ *
+ * **Use for:** a real quote from Nawin or a member, with who said it.
+ *
+ * **Not for:** invented testimonials or placeholder quotes presented as real.
+ */
 export function QuoteCard({ quote, by, lang, className }: QuoteCardProps) {
   return (
     <figure className={`border-l-4 border-(--text-color-brand) pl-24 ${className ?? ""}`}>

@@ -18,6 +18,10 @@ interface ShareCardProps {
 /**
  * Story share card preview (board 08, handoff section 5): 9:16 on the ember gradient, text on the dark
  * zone. The downloadable 1080 x 1920 image is rendered on the server from the same content (Phase 6).
+ *
+ * **Use for:** the preview of a tool result someone can share as an Instagram story.
+ *
+ * **Not for:** normal result display on the page (ResultCard).
  */
 export function ShareCard({
   headline,

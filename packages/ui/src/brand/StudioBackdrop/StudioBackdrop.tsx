@@ -15,6 +15,10 @@ type StudioBackdropProps<T extends ElementType> = {
  * darkens towards the edges; bone text on it is at least 4.7:1. The night variant's fine grain is a
  * photo texture that arrives with the imagery (Phase 5). It sets no position, so it can be used as a
  * fixed overlay (mobile menu); add `relative` yourself when children are absolutely positioned.
+ *
+ * **Use for:** full-bleed section backgrounds: red studio and night.
+ *
+ * **Not for:** cards or small areas (bg tokens); behind the ember surfaces.
  */
 export function StudioBackdrop<T extends ElementType = "div">({
   as,

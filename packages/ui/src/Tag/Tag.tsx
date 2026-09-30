@@ -12,6 +12,10 @@ type TagProps = {
 /**
  * The ember-gold tag with an 8 px cut (boards 07 and 08). Gold is reserved for the one
  * "Most popular" tag on a screen (ngb-design-system skill), so there is a single variant.
+ *
+ * **Use for:** the one "Most popular" tag on a screen.
+ *
+ * **Not for:** status, categories or counts; more than one gold tag per screen.
  */
 export function Tag({ className, children, ...props }: TagProps) {
   return (

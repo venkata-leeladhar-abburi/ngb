@@ -29,6 +29,10 @@ export interface SiteNavProps {
 /**
  * Desktop navigation, 72 px (board 07, screen A1): wordmark, five links, language switch and the
  * primary button. Shown from the lg breakpoint only; MobileHeader covers smaller screens (render both).
+ *
+ * **Use for:** the desktop header, rendered next to MobileHeader on every page.
+ *
+ * **Not for:** section navigation or tabs inside a page (Tabs).
  */
 export function NavBar({
   homeHref,

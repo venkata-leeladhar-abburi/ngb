@@ -21,6 +21,10 @@ interface ToggleProps {
  * On/off switch (board 07, "I eat in a hostel or mess"). Space toggles it; the label toggles it on click.
  * Board 07 draws a round pill and knob, but circles are reserved for the play button
  * (ngb-design-system skill), so the track has the 8 px tag cut and the knob is square.
+ *
+ * **Use for:** an on/off setting that changes the result straight away: "I eat in a hostel or mess".
+ *
+ * **Not for:** consent or terms (Checkbox); choosing between two named options (SegmentedControl).
  */
 export function Toggle({ label, className, ...props }: ToggleProps) {
   const id = useId();

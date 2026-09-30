@@ -23,6 +23,10 @@ interface TabsProps {
 /**
  * Tabs (screen B3 food plan: veg / egg / non-veg, hostel / home). Radix provides the tab roles, arrow
  * keys between tabs and Tab into the open panel. The open tab is bone with a studio-red underline.
+ *
+ * **Use for:** viewing versions of the same content, such as the program diet plan in veg, egg and non-veg versions (pages.md).
+ *
+ * **Not for:** answering questions or form choices (RadioGroup, SegmentedControl, Toggle); navigation between pages (Link, NavBar).
  */
 export function Tabs({ label, items, defaultValue, className, ...props }: TabsProps) {
   return (

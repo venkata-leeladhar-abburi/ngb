@@ -11,6 +11,10 @@ type LeanFrameProps<T extends ElementType> = {
 /**
  * Photo frame leaning 8 degrees (board 05). The frame leans; its content is counter-skewed so photos
  * and text stay upright, and widened by tan(8°) × height so no corner is left empty.
+ *
+ * **Use for:** photos of Nawin and members, at 8 degrees.
+ *
+ * **Not for:** text-only cards, UI controls, or more than a few leaning frames in one view.
  */
 export function LeanFrame<T extends ElementType = "div">({
   as,

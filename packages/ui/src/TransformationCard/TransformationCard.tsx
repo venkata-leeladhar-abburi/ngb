@@ -50,6 +50,10 @@ function Placeholder({ label, tone }: { label: string; tone: "before" | "after" 
  * Transformation card (board 08, screen A4): an 8 degree lean, before on the left, after on the right,
  * with a divider the member can move. The divider is a slider: arrow keys move it, and a tap anywhere on
  * the photo jumps there (no dragging needed, WCAG 2.5.7). The handle is square: circles are only for play.
+ *
+ * **Use for:** a real member's before and after, shared with permission.
+ *
+ * **Not for:** stock or placeholder photos presented as real; any other photo (LeanFrame).
  */
 export function TransformationCard({
   name,

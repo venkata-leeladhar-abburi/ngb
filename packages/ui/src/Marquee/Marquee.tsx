@@ -23,6 +23,10 @@ interface MarqueeProps {
  * The page's one marquee (screen A6 community row). It pauses on hover, on keyboard focus and with its
  * own Pause button (WCAG 2.2.2), and becomes a static wrapped row with reduced motion. The second copy
  * that makes the loop seamless is hidden from screen readers and cannot be focused.
+ *
+ * **Use for:** the one moving row per page (community Instagram posts).
+ *
+ * **Not for:** important content people must read or reach; a second marquee on the same page.
  */
 export function Marquee({
   label,

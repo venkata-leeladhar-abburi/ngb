@@ -48,7 +48,13 @@ interface StickyBuyBarProps {
   linkAs?: ElementType;
 }
 
-/** Program page bar (board 07, pages.md): program and price on the left, Start my plan on the right. */
+/**
+ * Program page bar (board 07, pages.md): program and price on the left, Start my plan on the right.
+ *
+ * **Use for:** the program page on phones, after the hero scrolls away.
+ *
+ * **Not for:** desktop; pages without a price (StickyActionBar); more than one sticky bar per page.
+ */
 export function StickyBuyBar({
   visible,
   name,
@@ -91,7 +97,13 @@ interface StickyActionBarProps {
   linkAs?: ElementType;
 }
 
-/** Homepage bar after the hero (handoff section 6): the buy action and the free action. */
+/**
+ * Homepage bar after the hero (handoff section 6): the buy action and the free action.
+ *
+ * **Use for:** the homepage on phones, after the hero scrolls away.
+ *
+ * **Not for:** desktop; program pages (StickyBuyBar); more than one sticky bar per page.
+ */
 export function StickyActionBar({
   visible,
   primary,

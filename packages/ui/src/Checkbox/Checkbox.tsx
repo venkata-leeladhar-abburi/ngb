@@ -27,6 +27,10 @@ interface CheckboxProps {
 /**
  * Checkbox (board 07 style): a 24 px chamfered box, studio red when ticked, with a 44 px touch area
  * that includes the label. Radix provides the role, Space to toggle and a hidden input for forms.
+ *
+ * **Use for:** a single yes/no the person ticks: WhatsApp consent and photo consent (DPDP).
+ *
+ * **Not for:** settings that act at once (Toggle); one choice from several (RadioGroup, SegmentedControl, ChipGroup).
  */
 export function Checkbox({ label, error, className, ...props }: CheckboxProps) {
   const id = useId();

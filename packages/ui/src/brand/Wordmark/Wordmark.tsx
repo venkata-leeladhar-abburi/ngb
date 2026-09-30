@@ -16,6 +16,10 @@ const TONES = {
 /**
  * The NGB EVOLVE wordmark in Rush Driver (board 01). Minimum width 96 px; keep clear space equal to
  * the height of the N. It is text, so wrap it in a link with a name ("NGB Evolve, home") where needed.
+ *
+ * **Use for:** the logo in the headers, the mobile menu and the footer.
+ *
+ * **Not for:** headings or poster words (Heading); anything that restyles or recolours it outside its tones.
  */
 export function Wordmark({ tone = "dark", size = "md", className }: WordmarkProps) {
   const colours = TONES[tone];

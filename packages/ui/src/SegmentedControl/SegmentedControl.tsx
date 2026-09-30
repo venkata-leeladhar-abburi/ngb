@@ -31,6 +31,10 @@ interface SegmentedControlProps {
 /**
  * Segmented control (board 07, "Your goal"): 2 to 4 mutually exclusive choices in one chamfered bar.
  * A radio group: Tab reaches the chosen segment, arrow keys move and select.
+ *
+ * **Use for:** 2 to 4 short, equal choices inside a tool form (board 07 "Your goal").
+ *
+ * **Not for:** quiz steps (RadioGroup, which fits long and Telugu answers); switching views (Tabs); language (LangSwitch).
  */
 export function SegmentedControl({ label, options, className, ...props }: SegmentedControlProps) {
   const labelId = useId();
@@ -58,7 +62,7 @@ export function SegmentedControl({ label, options, className, ...props }: Segmen
               key={option.value}
               value={option.value}
               disabled={option.disabled ?? false}
-              className={`inline-flex h-(--button-height) min-w-target cursor-pointer items-center justify-center gap-8 px-16 text-body text-primary transition-colors hover:bg-alt focus-visible:-outline-offset-8 disabled:cursor-not-allowed disabled:text-muted data-[state=checked]:bg-action data-[state=checked]:font-bold data-[state=checked]:focus-visible:outline-(--focus-ring-color-on-red) md:px-24 ${index > 0 ? "border-l border-strong" : ""}`}
+              className={`inline-flex h-(--button-height) min-w-target cursor-pointer items-center justify-center gap-8 px-16 text-body text-primary transition-colors hover:bg-alt focus-visible:-outline-offset-8 disabled:cursor-not-allowed data-[state=checked]:bg-action data-[state=checked]:font-bold data-[state=checked]:focus-visible:outline-(--focus-ring-color-on-red) disabled:data-[state=unchecked]:text-muted md:px-24 ${index > 0 ? "border-l border-strong" : ""}`}
             >
               <RadioGroup.Indicator>
                 <Icon icon={CheckIcon} size="sm" />

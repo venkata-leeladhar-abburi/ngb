@@ -44,6 +44,10 @@ export const perDayPrice = (priceInr: number, weeks: number): number =>
  * Program card (board 08, screen A5). Standard cards are oxblood; the featured card is black with a red
  * edge, the one `shadow-sells` glow and the gold tag. Price in Rush Driver, per-day price in mono under it.
  * Program names use GT America Extended (CLAUDE.md), not the display face drawn on board 08.
+ *
+ * **Use for:** programs for sale: homepage and programs grid; `featured` for the one recommended program.
+ *
+ * **Not for:** free tools (ToolCard) or videos (VideoCard); more than one featured card in view.
  */
 export function ProgramCard({
   name,

@@ -39,6 +39,10 @@ const SOCIAL_ICONS = {
 /**
  * Site footer (screen A7, home.md section 13): wordmark and brand line, link columns, follow links,
  * the legal and health lines, and the language switch. The giant EVOLVE watermark is decorative.
+ *
+ * **Use for:** the site footer, once per page.
+ *
+ * **Not for:** section-level link lists (compose Link and Heading in a section).
  */
 export function Footer({
   brandLine,

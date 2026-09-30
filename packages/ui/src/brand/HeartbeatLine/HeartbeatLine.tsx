@@ -21,6 +21,10 @@ function Flat() {
 /**
  * Heart-rate line (boards 06 and 08). Decoration only: hidden from screen readers, never a button.
  * Bone at 30% on dark grounds; signal red on the stat strip. The spike keeps its shape at any width.
+ *
+ * **Use for:** decoration in the proof strip and hero art.
+ *
+ * **Not for:** dividers between content, charts, or anything that carries meaning.
  */
 export function HeartbeatLine({
   tone = "bone",

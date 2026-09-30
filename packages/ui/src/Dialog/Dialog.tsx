@@ -23,6 +23,10 @@ interface DialogProps {
  * Modal dialog (share sheet, video player, confirmations). Radix traps focus, closes on Escape and on
  * the backdrop, returns focus to the trigger and hides the page behind it from screen readers.
  * Never use it for marketing pop-ups: the Instagram in-app browser audience leaves (CLAUDE.md gotchas).
+ *
+ * **Use for:** a task the person opened themselves: share sheet, video player, a confirmation.
+ *
+ * **Not for:** marketing pop-ups, newsletter prompts or anything that opens on its own; the mobile menu (MobileHeader has its own).
  */
 export function Dialog({
   trigger,

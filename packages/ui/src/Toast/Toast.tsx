@@ -22,6 +22,10 @@ const ToastContext = createContext<Show | null>(null);
  * Shows a short message: `const toast = useToast(); toast("Link copied.")`. Use the microcopy library
  * (voice.md) for the words. Messages are announced politely (they never interrupt the screen reader),
  * stay 5 s (errors 8 s), and can be closed with their button or swiped away.
+ *
+ * **Use for:** short confirmations after an action: "Link copied."
+ *
+ * **Not for:** errors the person must fix (show them next to the field); anything they must read to continue.
  */
 export function useToast(): Show {
   const show = useContext(ToastContext);

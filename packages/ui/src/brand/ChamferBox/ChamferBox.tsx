@@ -38,6 +38,10 @@ const RING_OFFSET = "(var(--focus-ring-gap) + var(--focus-ring-width))";
  * The fill and border layers stay hit-testable (no pointer-events: none) and never use negative z-index:
  * accessibility checkers work out a text's background from these layers. Clicks on them still reach the
  * element. Only the ring, which sits outside the box, ignores the pointer.
+ *
+ * **Use for:** building new components with the cut-corner shape.
+ *
+ * **Not for:** use in sections or pages (use the component built on it); cards (4 px radius).
  */
 export function ChamferBox<T extends ElementType = "div">({
   as,

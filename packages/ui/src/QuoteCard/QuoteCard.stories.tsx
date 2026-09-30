@@ -6,9 +6,11 @@ const meta = {
   title: "Content/QuoteCard",
   component: QuoteCard,
   args: { quote: "If I could do it, you can too.", by: "Nawin" },
+  // Padded with a max width, so the story also fits a narrow Docs page (100vw would not).
+  parameters: { layout: "padded" },
   decorators: [
     (Story) => (
-      <div style={{ width: "min(36rem, calc(100vw - 4rem))" }}>
+      <div style={{ maxWidth: "36rem" }}>
         <Story />
       </div>
     ),

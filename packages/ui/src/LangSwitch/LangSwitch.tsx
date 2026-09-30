@@ -35,6 +35,10 @@ const SCRIPT_SIZE = { en: "font-label text-label uppercase", te: "text-h3 leadin
  * Language switch "EN | తె". Two links, not a toggle: changing language is navigation.
  * The current language is marked with aria-current; each link carries its own lang and hreflang
  * (en-IN / te-IN, handoff section 6). The current language is also underlined or filled, never colour alone.
+ *
+ * **Use for:** switching between the English and Telugu version of the same page.
+ *
+ * **Not for:** any other two-way choice (SegmentedControl).
  */
 export function LangSwitch({
   current,

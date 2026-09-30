@@ -28,6 +28,10 @@ interface ResultCardProps {
 /**
  * Tool result (board 08 "Tool card", screen B4). The result area is a polite live region, so the new
  * number is read out when it appears; the value sits in the mono readout box.
+ *
+ * **Use for:** the result of a free tool, with its next step.
+ *
+ * **Not for:** static numbers or stats (StatStrip).
  */
 export function ResultCard({
   icon,

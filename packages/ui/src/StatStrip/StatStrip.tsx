@@ -124,6 +124,10 @@ function StatItem({ stat }: { stat: Stat }) {
 /**
  * Proof strip (board 08, home.md section 2): an oxblood band of big numbers in Rush Driver with a
  * signal-red heart-rate line running between them. Numbers count up once when scrolled into view.
+ *
+ * **Use for:** the proof strip of real, confirmed numbers.
+ *
+ * **Not for:** invented or unconfirmed numbers; tool results (ResultCard).
  */
 export function StatStrip({ stats, className }: StatStripProps) {
   return (

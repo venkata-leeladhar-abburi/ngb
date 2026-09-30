@@ -19,6 +19,10 @@ type SelectProps = {
  * Select (board 07 field style). A native <select>, on purpose: the phone's own picker works best in the
  * Instagram in-app browser and with screen readers. Styled like TextField, with a caret instead of the
  * browser arrow.
+ *
+ * **Use for:** choosing one of many options (more than 5).
+ *
+ * **Not for:** 5 options or fewer (RadioGroup, SegmentedControl, ChipGroup).
  */
 export function Select({
   label,

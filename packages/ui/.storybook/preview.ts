@@ -1,12 +1,17 @@
 import { tokens } from "@ngb/tokens";
 import type { Preview } from "@storybook/react-vite";
+import { themes } from "storybook/theming";
 
 import "./storybook.css";
 
 const preview: Preview = {
+  // Every component gets a Docs page: its description (with "Use for" and "Not for"), props and stories.
+  tags: ["autodocs"],
   parameters: {
     layout: "centered",
     controls: { expanded: true },
+    // Components are drawn for the black site: docs pages use the dark theme (story blocks: storybook.css).
+    docs: { theme: themes.dark },
     // "phone" is the 360 px Android target (breakpoint sm). Stories tagged "mobile" select it with
     // `globals: { viewport: { value: "phone" } }`; the Vitest addon then runs them at that size.
     viewport: {

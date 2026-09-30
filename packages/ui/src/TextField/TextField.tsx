@@ -17,6 +17,10 @@ type TextFieldProps = {
 /**
  * Text field (board 07). Use `inputMode` for numbers and phones, `autoComplete` where it applies,
  * and put units in the label ("Weight (kg)"). Font size stays 16 px or more so phones do not zoom.
+ *
+ * **Use for:** typed answers: name, phone, weight, height, age.
+ *
+ * **Not for:** one-time codes (OtpInput); choosing from a list (Select, RadioGroup).
  */
 export function TextField({
   label,

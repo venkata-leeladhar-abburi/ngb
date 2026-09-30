@@ -22,6 +22,10 @@ interface MobileHeaderProps extends SiteNavProps {
  * Mobile header, 56 px (board 07, handoff section 6): wordmark, language switch and a menu button.
  * The menu opens full screen on the red studio with the links in Rush Driver. It is a modal dialog:
  * focus stays inside, Escape closes it, and following a link closes it.
+ *
+ * **Use for:** the phone header, rendered next to NavBar on every page.
+ *
+ * **Not for:** desktop widths (NavBar); in-page menus.
  */
 export function MobileHeader({
   homeHref,

@@ -71,6 +71,10 @@ function LoadingBars() {
  * The NGB button (board 07): chamfered, 52 px tall, GT America Extended label.
  * Buy actions say "Start my plan"; free actions say "Try free tools" (CLAUDE.md).
  * Hover lifts 2 px; the board's brighter hover red fails contrast with bone text, so it is not used.
+ *
+ * **Use for:** actions: "Start my plan", "Try free tools", form submits; `onRed` on studio-red sections.
+ *
+ * **Not for:** going to a page from inside text (Link); more than one primary button in view; icon-only actions without a label.
  */
 export function Button<T extends ElementType = "button">({
   as,

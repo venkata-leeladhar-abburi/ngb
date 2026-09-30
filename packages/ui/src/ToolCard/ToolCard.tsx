@@ -18,7 +18,13 @@ interface ToolCardProps {
   className?: string;
 }
 
-/** Free-tool tile (screen A3 bento): the whole chamfered tile is one link to the tool. */
+/**
+ * Free-tool tile (screen A3 bento): the whole chamfered tile is one link to the tool.
+ *
+ * **Use for:** a free tool in the tools bento and tool lists.
+ *
+ * **Not for:** programs (ProgramCard) or videos (VideoCard).
+ */
 export function ToolCard({ href, icon, title, line, linkAs, className }: ToolCardProps) {
   return (
     <ChamferBox

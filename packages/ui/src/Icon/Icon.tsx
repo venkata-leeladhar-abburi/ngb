@@ -21,6 +21,10 @@ const SIZES = {
 /**
  * Phosphor icon, regular weight (1.5 px stroke at 24 px), never inside a circle (board 06).
  * Decorative by default; give a label when the icon is the only thing that carries the meaning.
+ *
+ * **Use for:** Phosphor icons beside words, and in icon-only buttons with a label.
+ *
+ * **Not for:** icons in circles; icons as the only sign of status (add words).
  */
 export function Icon({ icon: Glyph, size = "md", label, className }: IconProps) {
   return (

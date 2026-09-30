@@ -25,6 +25,10 @@ interface FaqAccordionProps {
 /**
  * FAQ accordion (board 08, home.md section 10): one answer open at a time; the open question turns
  * studio red. Radix handles the keyboard (Enter/Space toggle, arrows move between questions).
+ *
+ * **Use for:** question and answer lists: the homepage FAQ and the FAQ page.
+ *
+ * **Not for:** hiding content people need to compare, like program details (show it, or use Tabs).
  */
 export function FaqAccordion({
   items,

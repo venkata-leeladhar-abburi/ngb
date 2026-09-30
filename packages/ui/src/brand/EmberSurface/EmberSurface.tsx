@@ -13,7 +13,13 @@ type EmberSurfaceProps<T extends ElementType> = {
   children?: ReactNode;
 } & Omit<ComponentPropsWithRef<T>, "as" | "children" | "className">;
 
-/** Ember surfaces from board 03. Only for the uses listed in the ngb-design-system skill. */
+/**
+ * Ember surfaces from board 03. Only for the uses listed in the ngb-design-system skill.
+ *
+ * **Use for:** transformation cards, the featured program, share cards and the final-call glow.
+ *
+ * **Not for:** any other surface; text outside the dark lower zone.
+ */
 export function EmberSurface<T extends ElementType = "div">({
   as,
   variant = "card",

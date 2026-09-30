@@ -30,6 +30,10 @@ const LENGTH = tokens.component["otp-input"].length;
  * One-time code input (board 07): six boxes drawn over a single real input, so SMS autofill
  * (`autocomplete="one-time-code"`), paste and screen readers all work as with a normal field.
  * No maxLength: the browser would cut "123 456" before the space is removed. Digits are capped in code.
+ *
+ * **Use for:** the six-digit code sent by SMS at login and checkout.
+ *
+ * **Not for:** other numbers such as phone or weight (TextField with `inputMode`).
  */
 export function OtpInput({
   label,
