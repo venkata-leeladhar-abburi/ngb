@@ -1,7 +1,226 @@
 {
+  "site": {
+    "name": "NGB Evolve",
+    "homeLabel": "NGB Evolve, home",
+    "buy": "Start my plan",
+    "free": "Try free tools",
+    "nav": {
+      "programs": "Programs",
+      "tools": "Free tools",
+      "workouts": "Workouts",
+      "transformations": "Transformations",
+      "about": "About"
+    },
+    "stickyLabel": "Quick actions",
+    "menu": { "open": "Open menu", "close": "Close menu", "label": "Menu" }
+  },
   "home": {
-    "headline": "I did it from zero. Now it's your turn.",
-    "sub": "12-week plans built on Telugu food, for hostel, home or gym. Coached by Nawin, in your language."
+    "hero": {
+      "eyebrow": "// Nawin Golden Boy · 1M+ on Instagram",
+      "headline": "I did it from zero. Now it's your turn.",
+      "sub": "12-week plans built on Telugu food, for hostel, home or gym. Coached by Nawin, in your language.",
+      "play": "Play the 30-second journey clip",
+      "clipTitle": "My journey in 30 seconds",
+      "clipPending": "The journey clip arrives after the shoot.",
+      "photo": "Photo: Nawin on the red studio, hero pose (shoot pending)"
+    },
+    "proof": {
+      "label": "NGB Evolve in numbers",
+      "stats": [
+        { "value": "1M+", "label": "follow the journey on Instagram" },
+        { "value": "2022", "label": "the year day one started" },
+        { "value": "100%", "label": "of plans in Telugu and English" }
+      ]
+    },
+    "journey": {
+      "headline": "Same guy. Different discipline.",
+      "cards": [
+        {
+          "title": "2022, Day one",
+          "line": "Skinny, no coach, no money for supplements. Just a phone and a promise to myself."
+        },
+        {
+          "title": "The grind",
+          "line": "Home workouts first, then a small local gym. Most days nobody was watching."
+        },
+        {
+          "title": "First change",
+          "line": "The first time people noticed. The first time I believed it."
+        },
+        {
+          "title": "Learning food",
+          "line": "Rice, pappu, eggs, curd. No fancy diet, just the right amounts."
+        },
+        { "title": "Today", "line": "1M+ people watch. Now I coach them." }
+      ],
+      "quoteTenglish": "Nenu chesanu ante, nuvvu kuda cheyagalav.",
+      "quote": "If I could do it, you can too.",
+      "link": "Watch my story (2 min)",
+      "photo": "Photo: Nawin, archive photo (to collect)",
+      "rowLabel": "Nawin's journey, 2022 to today"
+    },
+    "manifesto": {
+      "line1": "No fake flexing.",
+      "line2": "No 30-day miracles. No filters. No shortcuts.",
+      "line3": "Just a real plan, real food, and you showing up every day.",
+      "tenglish": "Shortcuts levu. Discipline undi."
+    },
+    "goals": {
+      "headline": "What's your goal?",
+      "tiles": [
+        { "title": "Gain weight", "line": "Skinny? Build real size, even on hostel food." },
+        { "title": "Lose fat", "line": "Lose the belly without giving up rice." },
+        { "title": "Train at home", "line": "No gym nearby? Your body is the gym." },
+        { "title": "Start from zero", "line": "Never trained? Start here, step by step." }
+      ],
+      "quiz": "Not sure? Take the 4-question quiz",
+      "photo": "Photo: Nawin training for this goal (shoot pending)"
+    },
+    "tools": {
+      "headline": "Free tools. Real numbers.",
+      "sub": "Know exactly what to eat and how hard to train. Free, no sign-up.",
+      "large": {
+        "title": "Telugu Plate protein counter.",
+        "line": "Tap your meal: rice, pappu, perugu, egg curry. See your protein in seconds.",
+        "button": "Count my plate",
+        "photo": "Photo: a Telugu thali from above (shoot pending)"
+      },
+      "small": {
+        "calorie-calculator": {
+          "title": "Calorie calculator",
+          "line": "Your exact daily calories."
+        },
+        "weight-gain": { "title": "Weight-gain calculator", "line": "How much to eat to gain." },
+        "protein": { "title": "Protein target", "line": "Your daily grams." },
+        "bmi": { "title": "BMI", "line": "Check your healthy range." },
+        "one-rep-max": { "title": "One-rep max", "line": "Find your true max." },
+        "body-fat": { "title": "Body fat", "line": "How far to your abs?" },
+        "water": { "title": "Water", "line": "How much today?" }
+      }
+    },
+    "workouts": {
+      "headline": "Train with Nawin. Free.",
+      "sub": "3 free videos for every muscle group. Full plans are inside the programs.",
+      "groups": ["Chest", "Back", "Legs", "Arms", "Shoulders", "Abs", "Home"],
+      "groupsLabel": "Muscle groups",
+      "freeCount": "3 free",
+      "featured": { "title": "Chest at home", "meta": "12 min, Telugu" },
+      "locked": { "title": "Full chest plan", "label": "Inside Mass Builder" },
+      "lockedPrefix": "Locked:"
+    },
+    "transformations": {
+      "headline": "Real people. Real results.",
+      "sub": "Every result shared with permission.",
+      "filtersLabel": "Show results",
+      "filters": {
+        "all": "All",
+        "gained": "Gained weight",
+        "lost": "Lost fat",
+        "women": "Women",
+        "home": "Home only"
+      },
+      "placeholderName": "[Name]",
+      "placeholderTown": "[City]",
+      "placeholderChange": "[+/− kg]",
+      "quotePlaceholder": "[REAL DATA] A member's own words, at most 3 lines.",
+      "quoteByPlaceholder": "[Name], [City]",
+      "finePrint": "Results depend on your effort, food and sleep. These are real members; your results will be your own.",
+      "rowLabel": "Member results",
+      "previous": "Previous results",
+      "next": "Next results",
+      "empty": "No results in this group yet."
+    },
+    "programs": {
+      "headline": "Pick your plan.",
+      "sub": "One clear plan. Pay once, keep it forever.",
+      "popular": "Most popular",
+      "lines": {
+        "foundation-plan": "Never trained? Start here.",
+        "shred-12": "Lose fat, keep your food.",
+        "mass-builder": "Skinny to strong. Hostel version included.",
+        "master-the-bodyweight": "No gym. No excuses."
+      },
+      "includesLabel": "Every plan includes",
+      "includes": [
+        "Videos in Telugu and English",
+        "Diet plan on Telugu food",
+        "Weekly check-in",
+        "WhatsApp batch group",
+        "Lifetime access"
+      ],
+      "anchor": "A personal trainer costs ₹8,000+ a month. Your plan costs about one chai and samosa a day.",
+      "trust": ["7-day refund", "GST invoice", "Secure UPI payment"],
+      "coaching": {
+        "question": "Want a coach checking on you every week?",
+        "label": "1:1 Coaching"
+      },
+      "club": { "question": "Want every plan, every month?", "label": "Join the Club" },
+      "weeks": "weeks",
+      "perDay": "a day"
+    },
+    "promise": {
+      "headline": "My promise",
+      "body": "I won't sell you a shortcut. I'll give you the plan that changed my life, in the language we both speak. If it's not for you, tell us within 7 days and get your money back.",
+      "signature": "Signature: Nawin (to collect)",
+      "photo": "Photo: Nawin, portrait (shoot pending)",
+      "faqLabel": "Quick answers",
+      "faq": [
+        {
+          "question": "I'm in a hostel. Will this work?",
+          "answer": "Yes. Every plan has a hostel version built on mess food plus eggs, curd, peanuts and soya."
+        },
+        {
+          "question": "Do I need supplements?",
+          "answer": "No. Food first. If you want whey later, we'll tell you how much."
+        },
+        {
+          "question": "No gym near me?",
+          "answer": "Pick Master the Bodyweight, or the home version of any plan."
+        },
+        {
+          "question": "Is it for women?",
+          "answer": "Yes. Same science, with progressions made for women."
+        },
+        {
+          "question": "How do I pay?",
+          "answer": "UPI, card or netbanking through Razorpay. You get a GST invoice."
+        }
+      ],
+      "allQuestions": "All questions"
+    },
+    "community": {
+      "headline": "1M+ strong. Join us.",
+      "sub": "Daily reels, real talk, zero fake flexing.",
+      "marqueeLabel": "Posts from the NGB community",
+      "post": "Instagram post (to collect)",
+      "follow": { "instagram": "Instagram", "youtube": "YouTube", "whatsapp": "WhatsApp channel" }
+    },
+    "finalCall": {
+      "headline": "Your day one is today.",
+      "telugu": "నీ Day One ఈరోజే.",
+      "notReady": "Not ready?",
+      "photo": "Photo: Nawin, cropped at the right edge (shoot pending)"
+    },
+    "footer": {
+      "brandLine": "NGB Evolve. Real growth. Real hustle. No fake flexing.",
+      "columns": {
+        "programs": "Programs",
+        "tools": "Free tools",
+        "help": "Help",
+        "follow": "Follow"
+      },
+      "links": {
+        "faq": "FAQ",
+        "contact": "Contact",
+        "refund": "Refund policy",
+        "privacy": "Privacy",
+        "terms": "Terms",
+        "club": "NGB Evolve Club",
+        "coaching": "1:1 Coaching"
+      },
+      "legal": "© 2026 [Registered business name], GSTIN [number], [City, State]",
+      "health": "Consult a doctor before starting any new exercise or diet plan."
+    }
   },
   "notFound": {
     "headline": "This page skipped leg day.",

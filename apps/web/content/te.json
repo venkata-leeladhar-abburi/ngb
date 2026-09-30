@@ -1,5 +1,294 @@
 {
+  "site": {
+    "name": "NGB Evolve",
+    "homeLabel": "TODO(te)",
+    "buy": "TODO(te)",
+    "free": "TODO(te)",
+    "nav": {
+      "programs": "TODO(te)",
+      "tools": "TODO(te)",
+      "workouts": "TODO(te)",
+      "transformations": "TODO(te)",
+      "about": "TODO(te)"
+    },
+    "stickyLabel": "TODO(te)",
+    "menu": {
+      "open": "TODO(te)",
+      "close": "TODO(te)",
+      "label": "TODO(te)"
+    }
+  },
   "home": {
-    "headline": "నేను జీరో నుంచి చేశాను. ఇప్పుడు నీ వంతు."
+    "hero": {
+      "eyebrow": "TODO(te)",
+      "headline": "నేను జీరో నుంచి చేశాను. ఇప్పుడు నీ వంతు.",
+      "sub": "TODO(te)",
+      "play": "TODO(te)",
+      "clipTitle": "TODO(te)",
+      "clipPending": "TODO(te)",
+      "photo": "TODO(te)"
+    },
+    "proof": {
+      "label": "TODO(te)",
+      "stats": [
+        {
+          "value": "1M+",
+          "label": "TODO(te)"
+        },
+        {
+          "value": "2022",
+          "label": "TODO(te)"
+        },
+        {
+          "value": "100%",
+          "label": "TODO(te)"
+        }
+      ]
+    },
+    "journey": {
+      "headline": "TODO(te)",
+      "cards": [
+        {
+          "title": "TODO(te)",
+          "line": "TODO(te)"
+        },
+        {
+          "title": "TODO(te)",
+          "line": "TODO(te)"
+        },
+        {
+          "title": "TODO(te)",
+          "line": "TODO(te)"
+        },
+        {
+          "title": "TODO(te)",
+          "line": "TODO(te)"
+        },
+        {
+          "title": "TODO(te)",
+          "line": "TODO(te)"
+        }
+      ],
+      "quoteTenglish": "TODO(te)",
+      "quote": "TODO(te)",
+      "link": "TODO(te)",
+      "photo": "TODO(te)",
+      "rowLabel": "TODO(te)"
+    },
+    "manifesto": {
+      "line1": "TODO(te)",
+      "line2": "TODO(te)",
+      "line3": "TODO(te)",
+      "tenglish": "TODO(te)"
+    },
+    "goals": {
+      "headline": "నీ goal ఏంటి?",
+      "tiles": [
+        {
+          "title": "TODO(te)",
+          "line": "TODO(te)"
+        },
+        {
+          "title": "TODO(te)",
+          "line": "TODO(te)"
+        },
+        {
+          "title": "TODO(te)",
+          "line": "TODO(te)"
+        },
+        {
+          "title": "TODO(te)",
+          "line": "TODO(te)"
+        }
+      ],
+      "quiz": "TODO(te)",
+      "photo": "TODO(te)"
+    },
+    "tools": {
+      "headline": "TODO(te)",
+      "sub": "TODO(te)",
+      "large": {
+        "title": "TODO(te)",
+        "line": "TODO(te)",
+        "button": "TODO(te)",
+        "photo": "TODO(te)"
+      },
+      "small": {
+        "calorie-calculator": {
+          "title": "TODO(te)",
+          "line": "TODO(te)"
+        },
+        "weight-gain": {
+          "title": "TODO(te)",
+          "line": "TODO(te)"
+        },
+        "protein": {
+          "title": "TODO(te)",
+          "line": "TODO(te)"
+        },
+        "bmi": {
+          "title": "TODO(te)",
+          "line": "TODO(te)"
+        },
+        "one-rep-max": {
+          "title": "TODO(te)",
+          "line": "TODO(te)"
+        },
+        "body-fat": {
+          "title": "TODO(te)",
+          "line": "TODO(te)"
+        },
+        "water": {
+          "title": "TODO(te)",
+          "line": "TODO(te)"
+        }
+      }
+    },
+    "workouts": {
+      "headline": "TODO(te)",
+      "sub": "TODO(te)",
+      "groups": [
+        "TODO(te)",
+        "TODO(te)",
+        "TODO(te)",
+        "TODO(te)",
+        "TODO(te)",
+        "TODO(te)",
+        "TODO(te)"
+      ],
+      "groupsLabel": "TODO(te)",
+      "freeCount": "TODO(te)",
+      "featured": {
+        "title": "TODO(te)",
+        "meta": "TODO(te)"
+      },
+      "locked": {
+        "title": "TODO(te)",
+        "label": "TODO(te)"
+      },
+      "lockedPrefix": "TODO(te)"
+    },
+    "transformations": {
+      "headline": "TODO(te)",
+      "sub": "TODO(te)",
+      "filtersLabel": "TODO(te)",
+      "filters": {
+        "all": "TODO(te)",
+        "gained": "TODO(te)",
+        "lost": "TODO(te)",
+        "women": "TODO(te)",
+        "home": "TODO(te)"
+      },
+      "placeholderName": "TODO(te)",
+      "placeholderTown": "TODO(te)",
+      "placeholderChange": "TODO(te)",
+      "quotePlaceholder": "TODO(te)",
+      "quoteByPlaceholder": "TODO(te)",
+      "finePrint": "TODO(te)",
+      "rowLabel": "TODO(te)",
+      "previous": "TODO(te)",
+      "next": "TODO(te)",
+      "empty": "TODO(te)"
+    },
+    "programs": {
+      "headline": "TODO(te)",
+      "sub": "TODO(te)",
+      "popular": "TODO(te)",
+      "lines": {
+        "foundation-plan": "TODO(te)",
+        "shred-12": "TODO(te)",
+        "mass-builder": "TODO(te)",
+        "master-the-bodyweight": "TODO(te)"
+      },
+      "includesLabel": "TODO(te)",
+      "includes": ["TODO(te)", "TODO(te)", "TODO(te)", "TODO(te)", "TODO(te)"],
+      "anchor": "TODO(te)",
+      "trust": ["TODO(te)", "TODO(te)", "TODO(te)"],
+      "coaching": {
+        "question": "TODO(te)",
+        "label": "TODO(te)"
+      },
+      "club": {
+        "question": "TODO(te)",
+        "label": "TODO(te)"
+      },
+      "weeks": "TODO(te)",
+      "perDay": "TODO(te)"
+    },
+    "promise": {
+      "headline": "TODO(te)",
+      "body": "TODO(te)",
+      "signature": "TODO(te)",
+      "photo": "TODO(te)",
+      "faqLabel": "TODO(te)",
+      "faq": [
+        {
+          "question": "TODO(te)",
+          "answer": "TODO(te)"
+        },
+        {
+          "question": "TODO(te)",
+          "answer": "TODO(te)"
+        },
+        {
+          "question": "TODO(te)",
+          "answer": "TODO(te)"
+        },
+        {
+          "question": "TODO(te)",
+          "answer": "TODO(te)"
+        },
+        {
+          "question": "TODO(te)",
+          "answer": "TODO(te)"
+        }
+      ],
+      "allQuestions": "TODO(te)"
+    },
+    "community": {
+      "headline": "TODO(te)",
+      "sub": "TODO(te)",
+      "marqueeLabel": "TODO(te)",
+      "post": "TODO(te)",
+      "follow": {
+        "instagram": "TODO(te)",
+        "youtube": "TODO(te)",
+        "whatsapp": "TODO(te)"
+      }
+    },
+    "finalCall": {
+      "headline": "నీ Day One ఈరోజే.",
+      "telugu": "నీ Day One ఈరోజే.",
+      "notReady": "TODO(te)",
+      "photo": "TODO(te)"
+    },
+    "footer": {
+      "brandLine": "TODO(te)",
+      "columns": {
+        "programs": "TODO(te)",
+        "tools": "TODO(te)",
+        "help": "TODO(te)",
+        "follow": "TODO(te)"
+      },
+      "links": {
+        "faq": "TODO(te)",
+        "contact": "TODO(te)",
+        "refund": "TODO(te)",
+        "privacy": "TODO(te)",
+        "terms": "TODO(te)",
+        "club": "TODO(te)",
+        "coaching": "TODO(te)"
+      },
+      "legal": "TODO(te)",
+      "health": "TODO(te)"
+    }
+  },
+  "notFound": {
+    "headline": "TODO(te)",
+    "sub": "TODO(te)",
+    "home": "TODO(te)"
+  },
+  "a11y": {
+    "skipToContent": "TODO(te)"
   }
 }

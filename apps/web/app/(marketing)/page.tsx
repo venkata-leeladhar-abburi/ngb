@@ -5,5 +5,5 @@ import { Placeholder } from "@/sections/Placeholder";
 export const dynamic = "error";
 
 export default function HomePage() {
-  return <Placeholder headline={en.home.headline} sub={en.home.sub} />;
+  return <Placeholder headline={en.home.hero.headline} sub={en.home.hero.sub} />;
 }

@@ -16,6 +16,7 @@
   "dependencies": {
     "@ngb/tokens": "workspace:*",
     "@ngb/ui": "workspace:*",
+    "@phosphor-icons/react": "2.1.10",
     "@t3-oss/env-nextjs": "0.13.11",
     "next": "16.3.7",
     "react": "19.3.0",
