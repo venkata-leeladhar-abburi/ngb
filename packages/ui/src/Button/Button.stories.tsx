@@ -1,3 +1,4 @@
+import { InstagramLogoIcon, YoutubeLogoIcon } from "@phosphor-icons/react/ssr";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Button, type ButtonVariant } from "./Button";
@@ -133,6 +134,20 @@ export const AllStates: Story = {
           ))}
         </tbody>
       </table>
+    </div>
+  ),
+};
+
+/** Screen A6: follow buttons with a leading brand icon (the label names the button). */
+export const WithIcon: Story = {
+  render: () => (
+    <div className="flex flex-wrap gap-8">
+      <Button as="a" href="#instagram" variant="secondary" icon={InstagramLogoIcon}>
+        Instagram
+      </Button>
+      <Button as="a" href="#youtube" variant="secondary" icon={YoutubeLogoIcon}>
+        YouTube
+      </Button>
     </div>
   ),
 };

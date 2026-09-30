@@ -1,3 +1,4 @@
+import type { Icon as PhosphorIcon } from "@phosphor-icons/react";
 import type {
   ComponentPropsWithRef,
   ElementType,
@@ -24,6 +25,8 @@ type ButtonProps<T extends ElementType> = {
   loading?: boolean;
   /** The trailing caret. Defaults to on for primary and onRed, off for secondary (board 07). */
   arrow?: boolean;
+  /** A leading Phosphor icon, decorative (the label names the button): follow buttons (screen A6). */
+  icon?: PhosphorIcon;
   onClick?: MouseEventHandler<HTMLElement>;
   /** Layout only (margin, grid placement). Never colour or type. */
   className?: string;
@@ -82,6 +85,7 @@ export function Button<T extends ElementType = "button">({
   disabled = false,
   loading = false,
   arrow,
+  icon,
   onClick,
   className,
   children,
@@ -123,9 +127,12 @@ export function Button<T extends ElementType = "button">({
       {...(isNativeButton ? { type: "button", disabled: disabled || undefined } : {})}
       {...(!isNativeButton && disabled ? { "aria-disabled": true } : {})}
       {...(loading ? { "aria-busy": true, "aria-disabled": true } : {})}
-      onClick={handleClick}
+      // Only when needed: a function prop cannot be rendered from a Server Component, and most buttons in
+      // sections are plain links rendered on the server.
+      {...(onClick || blocked ? { onClick: handleClick } : {})}
       {...props}
     >
+      {icon && !loading && <Icon icon={icon} size="md" />}
       {/* The label stays (invisible) while loading, so the width and the accessible name do not change. */}
       <span>
         <span className={loading ? "opacity-0" : undefined}>{children}</span>

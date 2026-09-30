@@ -4,7 +4,7 @@ import { CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react/ssr";
 import * as Slider from "@radix-ui/react-slider";
 import { useState, type ReactNode } from "react";
 
-import { LeanFrame } from "../brand/LeanFrame";
+import { LEAN_SAFE_INSET, LeanFrame } from "../brand/LeanFrame";
 import { Icon } from "../Icon";
 
 interface TransformationCardProps {
@@ -24,12 +24,6 @@ interface TransformationCardProps {
   /** Layout only; the card is 3:4. */
   className?: string;
 }
-
-/**
- * Horizontal inset that keeps text inside the leaning frame: the lean shifts the edges by
- * tan(8 deg) x height between top and bottom (cqh resolves against the LeanFrame size container).
- */
-const LEAN_SAFE_INSET = "calc(tan(var(--shape-lean)) * -100cqh + var(--spacing-16))";
 
 function Placeholder({ label, tone }: { label: string; tone: "before" | "after" }) {
   return (

@@ -23,4 +23,21 @@ describe("ToolCard", () => {
       expect(svg).toHaveAttribute("aria-hidden", "true");
     }
   });
+
+  it("large: one link, with the call to action inside it and no nested control", () => {
+    render(
+      <ToolCard
+        size="large"
+        href="/tools/telugu-plate"
+        icon={CalculatorIcon}
+        title="Telugu Plate protein counter."
+        line="Tap your meal."
+        action="Count my plate"
+      />,
+    );
+
+    expect(screen.getAllByRole("link")).toHaveLength(1);
+    expect(screen.queryByRole("button")).not.toBeInTheDocument();
+    expect(screen.getByRole("link")).toHaveAccessibleName(/Count my plate/);
+  });
 });

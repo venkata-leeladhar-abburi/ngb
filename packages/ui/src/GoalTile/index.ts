@@ -1,0 +1,1 @@
+export { GoalTile } from "./GoalTile";

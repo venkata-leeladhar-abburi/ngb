@@ -1,3 +1,4 @@
+import { InstagramLogoIcon } from "@phosphor-icons/react/ssr";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
@@ -153,5 +154,16 @@ describe("Button", () => {
 
     rerender(<Button disabled>Start my plan</Button>);
     expect(screen.getByRole("button").className).not.toContain("hover:-translate-y");
+  });
+
+  it("keeps a leading icon decorative, so the label alone names the button", () => {
+    render(
+      <Button as="a" href="#instagram" variant="secondary" icon={InstagramLogoIcon}>
+        Instagram
+      </Button>,
+    );
+
+    const link = screen.getByRole("link", { name: "Instagram" });
+    expect(link.querySelector("svg")).toHaveAttribute("aria-hidden", "true");
   });
 });

@@ -1,5 +1,11 @@
 import type { ComponentPropsWithRef, ElementType, ReactNode } from "react";
 
+/**
+ * Horizontal padding that keeps text inside a LeanFrame: the lean shifts the edges by tan(8 deg) x height
+ * between top and bottom (cqh resolves against the frame, which is a size container).
+ */
+export const LEAN_SAFE_INSET = "calc(tan(var(--shape-lean)) * -100cqh + var(--spacing-16))";
+
 type LeanFrameProps<T extends ElementType> = {
   as?: T;
   /** Size the frame (aspect-* or h-*): it is a size container, so it does not grow with its content. */

@@ -2,6 +2,7 @@ import {
   BarbellIcon,
   CalculatorIcon,
   DropIcon,
+  ForkKnifeIcon,
   HeartbeatIcon,
   PersonIcon,
   TargetIcon,
@@ -72,3 +73,24 @@ export const SmallTiles: Story = {
     </div>
   ),
 };
+
+/** Screen A3: the bento's large tile, one link with a button-look call to action. */
+export const Large: Story = {
+  args: {
+    size: "large",
+    href: "#telugu-plate",
+    icon: ForkKnifeIcon,
+    title: "Telugu Plate protein counter.",
+    line: "Tap your meal: rice, pappu, perugu, egg curry. See your protein in seconds.",
+    action: "Count my plate",
+    placeholderLabel: "Photo: a Telugu thali from above (shoot pending)",
+  },
+  decorators: [
+    (Story) => (
+      <div className="flex h-(--container-lead) max-h-screen w-(--container-lead) max-w-full">
+        <Story />
+      </div>
+    ),
+  ],
+};
+export const LargeHover: Story = { ...Large, parameters: { pseudo: { hover: ["a"] } } };

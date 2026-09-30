@@ -1,0 +1,1 @@
+export { PosterWord } from "./PosterWord";

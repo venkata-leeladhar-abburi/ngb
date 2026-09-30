@@ -1,6 +1,7 @@
 import { InstagramLogoIcon, WhatsappLogoIcon, YoutubeLogoIcon } from "@phosphor-icons/react/ssr";
 import type { ElementType, ReactNode } from "react";
 
+import { PosterWord } from "../brand/PosterWord";
 import { Wordmark } from "../brand/Wordmark";
 import { Icon } from "../Icon";
 import { LangSwitch } from "../LangSwitch";
@@ -61,12 +62,9 @@ export function Footer({
   const linkClass = "inline-flex min-h-target items-center text-muted hover:text-primary";
   return (
     <footer className={`relative overflow-hidden bg-page text-primary ${className ?? ""}`}>
-      <p
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-16 text-center font-display text-mega leading-display whitespace-nowrap text-primary uppercase italic opacity-10"
-      >
+      <PosterWord tone="ghost" className="absolute inset-x-0 top-16 text-center">
         Evolve
-      </p>
+      </PosterWord>
       <div className="relative grid gap-32 pt-128 md:grid-cols-2 lg:grid-cols-6">
         <div className="md:col-span-2 lg:col-span-2">
           <Link

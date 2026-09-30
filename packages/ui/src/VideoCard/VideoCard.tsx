@@ -1,8 +1,10 @@
-import { LockIcon, PlayIcon } from "@phosphor-icons/react/ssr";
+import { LockIcon } from "@phosphor-icons/react/ssr";
 import type { ElementType, ReactNode } from "react";
 
 import { chamferClip } from "../brand/ChamferBox";
+import { PhotoPlaceholder } from "../brand/PhotoPlaceholder";
 import { Icon } from "../Icon";
+import { PlayMark } from "../PlayButton";
 import { VisuallyHidden } from "../VisuallyHidden";
 
 interface VideoCardProps {
@@ -13,6 +15,8 @@ interface VideoCardProps {
   meta?: ReactNode;
   /** A next/image with fill, or any cover image. A labelled placeholder is shown without one. */
   image?: ReactNode;
+  /** Shown on the placeholder until the real thumbnail exists. */
+  placeholderLabel?: string;
   /** Locked (paid) video: lock instead of play; links to the program. */
   locked?: boolean;
   /** Where the locked video lives: "Inside Mass Builder". */
@@ -37,6 +41,7 @@ export function VideoCard({
   title,
   meta,
   image,
+  placeholderLabel = "Thumbnail (video pending)",
   locked = false,
   lockedLabel,
   lockedPrefix = "Locked:",
@@ -48,12 +53,7 @@ export function VideoCard({
     <Link href={href} className={`group block text-primary ${className ?? ""}`}>
       <div className="relative aspect-4/3 overflow-hidden bg-alt" style={chamferClip("tool-card")}>
         {image ?? (
-          <span
-            aria-hidden="true"
-            className="absolute top-12 left-12 font-label text-label text-muted uppercase"
-          >
-            Thumbnail placeholder
-          </span>
+          <PhotoPlaceholder decorative label={placeholderLabel} className="absolute inset-0" />
         )}
         <span
           aria-hidden="true"
@@ -62,9 +62,7 @@ export function VideoCard({
           {locked ? (
             <Icon icon={LockIcon} size="xl" />
           ) : (
-            <span className="flex size-(--play-button-size) items-center justify-center rounded-full bg-action transition-transform group-hover:scale-110">
-              <Icon icon={PlayIcon} size="md" />
-            </span>
+            <PlayMark className="transition-transform ease-out group-hover:scale-110" />
           )}
         </span>
       </div>

@@ -29,8 +29,12 @@ describe("VideoCard", () => {
   });
 
   it("shows a labelled placeholder until a real thumbnail exists", () => {
-    render(<VideoCard href="#" title="Chest at home" />);
+    render(
+      <VideoCard href="#" title="Chest at home" placeholderLabel="Thumbnail (video pending)" />,
+    );
 
-    expect(screen.getByText("Thumbnail placeholder")).toBeInTheDocument();
+    expect(screen.getByText("Thumbnail (video pending)")).toBeInTheDocument();
+    // Decorative inside the link: the card is named by its title, not the placeholder.
+    expect(screen.getByRole("link")).toHaveAccessibleName("Chest at home");
   });
 });
