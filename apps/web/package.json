@@ -38,7 +38,7 @@
     "stylelint": "17.15.0",
     "subset-font": "2.9.0",
     "tailwindcss": "4.3.3",
-    "typescript": "6.0.3",
+    "typescript": "7.0.2",
     "vitest": "4.1.11"
   }
 }
