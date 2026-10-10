@@ -12,6 +12,8 @@ const ROUTES = [
   "/tools/calorie-calculator",
   "/tools/bmi",
   "/tools/telugu-plate",
+  "/start",
+  "/quiz",
 ] as const;
 
 for (const route of ROUTES) {
@@ -234,5 +236,67 @@ test.describe("free tools", () => {
       const response = await page.request.get(href ?? "/missing");
       expect(response.status(), href ?? "").toBe(200);
     }
+  });
+});
+
+test.describe("find my plan", () => {
+  test("the start page offers the three choices", async ({ page }) => {
+    await page.goto("/start");
+
+    const main = page.getByRole("main");
+    await expect(main.getByRole("link", { name: "Find my plan (1 minute)" })).toHaveAttribute(
+      "href",
+      "/quiz",
+    );
+    await expect(main.getByRole("link", { name: "Try free tools" })).toHaveAttribute(
+      "href",
+      "/tools",
+    );
+    await expect(main.getByRole("link", { name: "See all programs" })).toHaveAttribute(
+      "href",
+      "/programs",
+    );
+  });
+
+  test("four answers by keyboard end on one program", async ({ page }) => {
+    await page.goto("/quiz");
+    const next = page.getByRole("button", { name: "Next" });
+    await expect(next).toBeEnabled();
+
+    // Next with no answer names the problem instead of moving on.
+    await next.click();
+    await expect(page.getByText("Please pick one answer.")).toBeVisible();
+
+    for (const answer of ["Gain weight", "Gym", "6 months or more"]) {
+      await page.getByRole("radio", { name: answer }).focus();
+      await page.keyboard.press("Space");
+      await next.focus();
+      await page.keyboard.press("Enter");
+    }
+    await expect(page.getByText("Question 4 of 4")).toBeVisible();
+    await page.getByRole("radio", { name: "Non-veg" }).check();
+    await page.getByRole("switch", { name: "I eat in a hostel or mess" }).click();
+    await page.getByRole("button", { name: "See my plan" }).click();
+
+    await expect(
+      page.getByRole("heading", { name: "Your plan: Mass Builder (hostel version)" }),
+    ).toBeVisible();
+    await expect(page.getByText("This plan is built for exactly that.")).toBeVisible();
+    await expect(
+      page.getByRole("main").getByRole("link", { name: "Start my plan" }),
+    ).toHaveAttribute("href", "/programs/mass-builder");
+    await expect(page).toHaveURL(/goal=gain&place=gym&level=over6&food=nonveg&hostel=1/);
+
+    // The result survives a reload, and Start again clears it.
+    await page.reload();
+    await expect(page.getByRole("heading", { name: /^Your plan: Mass Builder/ })).toBeVisible();
+    await page.getByRole("button", { name: "Start again" }).click();
+    await expect(page.getByText("Question 1 of 4")).toBeVisible();
+  });
+
+  test("someone who has never trained gets Foundation Plan", async ({ page }) => {
+    await page.goto("/quiz?goal=lose&place=home&level=never&food=veg");
+
+    await expect(page.getByRole("heading", { name: "Your plan: Foundation Plan" })).toBeVisible();
   });
 });

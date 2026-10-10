@@ -579,6 +579,71 @@
       }
     }
   },
+  "start": {
+    "headline": "Hey, I'm Nawin. Where do we start?",
+    "find": "Find my plan",
+    "findNote": "1 minute",
+    "programs": "See all programs",
+    "telugu": "Telugu lo chudandi",
+    "photo": "Photo: Nawin (shoot pending)"
+  },
+  "quiz": {
+    "title": "Find my plan",
+    "progressLabel": "Quiz progress",
+    "counter": "Question {step} of {total}",
+    "done": "done",
+    "steps": {
+      "goal": "Goal",
+      "place": "Place",
+      "level": "Level",
+      "food": "Food"
+    },
+    "next": "Next",
+    "back": "Back",
+    "see": "See my plan",
+    "error": "Please pick one answer.",
+    "questions": {
+      "goal": {
+        "question": "What's your goal?",
+        "answers": {
+          "gain": "Gain weight",
+          "lose": "Lose fat",
+          "stronger": "Get stronger",
+          "lean": "Look lean and fit"
+        }
+      },
+      "place": {
+        "question": "Where will you train?",
+        "answers": {
+          "gym": "Gym",
+          "home": "Home",
+          "both": "Both"
+        }
+      },
+      "level": {
+        "question": "How long have you trained?",
+        "answers": {
+          "never": "Never",
+          "under6": "Under 6 months",
+          "over6": "6 months or more"
+        }
+      },
+      "food": {
+        "question": "What do you eat mostly?",
+        "answers": {
+          "veg": "Veg",
+          "egg": "Veg + eggs",
+          "nonveg": "Non-veg"
+        }
+      }
+    },
+    "hostel": "I eat in a hostel or mess",
+    "result": "Your plan: {program}",
+    "hostelVersion": "{program} (hostel version)",
+    "whyGainGymHostel": "You want size, you train at a gym, and you eat mess food. This plan is built for exactly that.",
+    "whyMissing": "TODO(copy)",
+    "again": "Start again"
+  },
   "faq": {
     "navLabel": "Question groups",
     "groups": {

@@ -570,6 +570,71 @@
       }
     }
   },
+  "start": {
+    "headline": "TODO(te)",
+    "find": "TODO(te)",
+    "findNote": "TODO(te)",
+    "programs": "TODO(te)",
+    "telugu": "TODO(te)",
+    "photo": "TODO(te)"
+  },
+  "quiz": {
+    "title": "TODO(te)",
+    "progressLabel": "TODO(te)",
+    "counter": "TODO(te)",
+    "done": "TODO(te)",
+    "steps": {
+      "goal": "TODO(te)",
+      "place": "TODO(te)",
+      "level": "TODO(te)",
+      "food": "TODO(te)"
+    },
+    "next": "TODO(te)",
+    "back": "TODO(te)",
+    "see": "TODO(te)",
+    "error": "TODO(te)",
+    "questions": {
+      "goal": {
+        "question": "TODO(te)",
+        "answers": {
+          "gain": "TODO(te)",
+          "lose": "TODO(te)",
+          "stronger": "TODO(te)",
+          "lean": "TODO(te)"
+        }
+      },
+      "place": {
+        "question": "TODO(te)",
+        "answers": {
+          "gym": "TODO(te)",
+          "home": "TODO(te)",
+          "both": "TODO(te)"
+        }
+      },
+      "level": {
+        "question": "TODO(te)",
+        "answers": {
+          "never": "TODO(te)",
+          "under6": "TODO(te)",
+          "over6": "TODO(te)"
+        }
+      },
+      "food": {
+        "question": "TODO(te)",
+        "answers": {
+          "veg": "TODO(te)",
+          "egg": "TODO(te)",
+          "nonveg": "TODO(te)"
+        }
+      }
+    },
+    "hostel": "TODO(te)",
+    "result": "TODO(te)",
+    "hostelVersion": "TODO(te)",
+    "whyGainGymHostel": "TODO(te)",
+    "whyMissing": "TODO(te)",
+    "again": "TODO(te)"
+  },
   "faq": {
     "navLabel": "TODO(te)",
     "groups": {
