@@ -41,6 +41,7 @@ export { MobileHeader } from "./MobileHeader";
 export { NavBar, type NavLink, type SiteNavProps } from "./NavBar";
 export { OtpInput } from "./OtpInput";
 export { PlayButton, PlayMark } from "./PlayButton";
+export { PriceOption } from "./PriceOption";
 export { ProgramCard, perDayPrice } from "./ProgramCard";
 export { ProgressSteps } from "./ProgressSteps";
 export { QuoteCard } from "./QuoteCard";
