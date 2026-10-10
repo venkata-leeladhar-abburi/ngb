@@ -53,6 +53,7 @@ export { Select } from "./Select";
 export { ShareCard } from "./ShareCard";
 export { Skeleton } from "./Skeleton";
 export { StatStrip, type Stat } from "./StatStrip";
+export { Stepper } from "./Stepper";
 export { StickyActionBar, StickyBuyBar } from "./StickyBar";
 export { SwipeRow } from "./SwipeRow";
 export { Tabs, type TabItem } from "./Tabs";

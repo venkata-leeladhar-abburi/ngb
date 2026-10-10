@@ -33,3 +33,8 @@ export const Locked: Story = {
     lockedLabel: "Inside Mass Builder",
   },
 };
+
+/** A video that is not shot yet: no link and no play button, so nothing claims to play. */
+export const Pending: Story = {
+  render: () => <VideoCard title="[Video title]" meta="[Minutes], [Language]" />,
+};

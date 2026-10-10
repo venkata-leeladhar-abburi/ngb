@@ -8,7 +8,8 @@ import { PlayMark } from "../PlayButton";
 import { VisuallyHidden } from "../VisuallyHidden";
 
 interface VideoCardProps {
-  href: string;
+  /** Where the video plays. Leave out for a video that does not exist yet. */
+  href?: string;
   /** "Chest at home". For a locked card: "Full chest plan". */
   title: ReactNode;
   /** "12 min, Telugu". */
@@ -30,7 +31,8 @@ interface VideoCardProps {
 
 /**
  * Video card (board 08): free cards show the red 44 px play button (the only circle in the system);
- * locked cards dim the image and show a lock. The whole card is one link.
+ * locked cards dim the image and show a lock. The whole card is one link; without an `href` (a video
+ * that is not shot yet) it is a plain block with no play button.
  *
  * **Use for:** free and locked workout videos.
  *
@@ -48,9 +50,13 @@ export function VideoCard({
   linkAs,
   className,
 }: VideoCardProps) {
-  const Link: ElementType = linkAs ?? "a";
+  // No href: a video that does not exist yet. A plain block, so nothing claims to play.
+  const Link: ElementType = href === undefined ? "div" : (linkAs ?? "a");
   return (
-    <Link href={href} className={`group block text-primary ${className ?? ""}`}>
+    <Link
+      {...(href === undefined ? {} : { href })}
+      className={`group block text-primary ${className ?? ""}`}
+    >
       <div className="relative aspect-4/3 overflow-hidden bg-alt" style={chamferClip("tool-card")}>
         {image ?? (
           <PhotoPlaceholder decorative label={placeholderLabel} className="absolute inset-0" />
@@ -62,7 +68,9 @@ export function VideoCard({
           {locked ? (
             <Icon icon={LockIcon} size="xl" />
           ) : (
-            <PlayMark className="transition-transform ease-out group-hover:scale-110" />
+            href !== undefined && (
+              <PlayMark className="transition-transform ease-out group-hover:scale-110" />
+            )
           )}
         </span>
       </div>

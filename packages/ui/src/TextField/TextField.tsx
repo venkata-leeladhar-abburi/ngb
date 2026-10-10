@@ -52,7 +52,7 @@ export function TextField({
         {...props}
       />
       {error ? (
-        <p id={messageId} className="mt-8 flex items-start gap-8 text-accent">
+        <p id={messageId} role="alert" className="mt-8 flex items-start gap-8 text-accent">
           <Icon icon={WarningIcon} size="md" />
           <span>{error}</span>
         </p>

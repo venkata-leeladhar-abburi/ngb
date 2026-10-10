@@ -37,4 +37,12 @@ describe("VideoCard", () => {
     // Decorative inside the link: the card is named by its title, not the placeholder.
     expect(screen.getByRole("link")).toHaveAccessibleName("Chest at home");
   });
+
+  it("is not a link and shows no play button while the video does not exist", () => {
+    const { container } = render(<VideoCard title="[Video title]" meta="[Minutes]" />);
+
+    expect(screen.queryByRole("link")).toBeNull();
+    expect(container.querySelector(".rounded-full")).toBeNull();
+    expect(screen.getByText("[Video title]", { exact: false })).toBeInTheDocument();
+  });
 });

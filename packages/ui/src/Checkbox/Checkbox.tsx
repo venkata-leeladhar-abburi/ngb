@@ -62,7 +62,7 @@ export function Checkbox({ label, error, className, ...props }: CheckboxProps) {
         </label>
       </div>
       {error && (
-        <p id={errorId} className="mt-8 flex items-start gap-8 text-accent">
+        <p id={errorId} role="alert" className="mt-8 flex items-start gap-8 text-accent">
           <Icon icon={WarningIcon} size="md" />
           <span>{error}</span>
         </p>
