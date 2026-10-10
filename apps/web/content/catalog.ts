@@ -96,6 +96,13 @@ export const programs: readonly Program[] = [
   },
 ];
 
+/**
+ * NGB Evolve Club and 1:1 Coaching prices (pages.md), in rupees. All [CONFIRM]: the pricing decision
+ * is still open, and checkout (Phase 7) reads its own prices from the server.
+ */
+export const club = { monthlyInr: 499, yearlyInr: 3999 } as const;
+export const coaching = { priceInr: 9999, weeks: 12 } as const;
+
 export type ToolSlug =
   | "telugu-plate"
   | "calorie-calculator"

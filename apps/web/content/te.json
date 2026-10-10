@@ -635,6 +635,38 @@
     "whyMissing": "TODO(te)",
     "again": "TODO(te)"
   },
+  "workoutsPage": {
+    "videoTitle": "TODO(te)",
+    "videoMeta": "TODO(te)",
+    "photo": "TODO(te)"
+  },
+  "club": {
+    "headline": "TODO(te)",
+    "sub": "TODO(te)",
+    "month": "TODO(te)",
+    "year": "TODO(te)",
+    "save": "TODO(te)",
+    "cancel": "TODO(te)",
+    "pricesLabel": "TODO(te)"
+  },
+  "coaching": {
+    "headline": "TODO(te)",
+    "sub": "TODO(te)",
+    "period": "TODO(te)",
+    "apply": "TODO(te)",
+    "formLabel": "TODO(te)",
+    "notOpen": "TODO(te)",
+    "fields": {
+      "name": "TODO(te)",
+      "phone": "TODO(te)",
+      "city": "TODO(te)",
+      "goal": "TODO(te)",
+      "weight": "TODO(te)",
+      "experience": "TODO(te)",
+      "why": "TODO(te)",
+      "choose": "TODO(te)"
+    }
+  },
   "faq": {
     "navLabel": "TODO(te)",
     "groups": {

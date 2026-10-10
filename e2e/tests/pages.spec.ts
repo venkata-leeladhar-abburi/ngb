@@ -14,6 +14,9 @@ const ROUTES = [
   "/tools/telugu-plate",
   "/start",
   "/quiz",
+  "/workouts",
+  "/club",
+  "/coaching",
 ] as const;
 
 for (const route of ROUTES) {
@@ -299,4 +302,43 @@ test.describe("find my plan", () => {
 
     await expect(page.getByRole("heading", { name: "Your plan: Foundation Plan" })).toBeVisible();
   });
+});
+
+test("Workouts filters by muscle group and keeps the choice in the URL", async ({ page }) => {
+  await page.goto("/workouts");
+  const groups = page.getByRole("main").getByRole("heading", { level: 2 });
+  await expect(groups.filter({ visible: true })).toHaveCount(7);
+
+  await page.getByRole("radio", { name: "Legs" }).click();
+  await expect(page).toHaveURL(/\/workouts\?group=legs$/);
+  await expect(groups.filter({ visible: true })).toHaveText(["Legs"]);
+
+  // The one locked card the docs define leads to its program.
+  await page.getByRole("radio", { name: "Chest" }).click();
+  await expect(page.getByRole("link", { name: /Full chest plan/ })).toHaveAttribute(
+    "href",
+    "/programs/mass-builder",
+  );
+});
+
+test("Club shows both prices and its own button", async ({ page }) => {
+  await page.goto("/club");
+
+  const prices = page.getByRole("list", { name: "Club prices" });
+  await expect(prices).toContainText("₹499");
+  await expect(prices).toContainText("₹3,999");
+  await expect(page.getByRole("main").getByRole("link", { name: "Join the Club" })).toHaveAttribute(
+    "href",
+    "/checkout/club",
+  );
+});
+
+test("the coaching form is switched off until it has somewhere to post", async ({ page }) => {
+  await page.goto("/coaching");
+
+  const form = page.getByRole("form", { name: "Apply for 1:1 Coaching" });
+  await expect(form.getByText("Applications are not open yet.")).toBeVisible();
+  await expect(form.getByRole("button", { name: "Apply for 1:1" })).toBeDisabled();
+  await expect(form.getByLabel("WhatsApp number")).toBeDisabled();
+  expect(await form.getAttribute("action")).toBeNull();
 });

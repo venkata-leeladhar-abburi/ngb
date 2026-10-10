@@ -644,6 +644,38 @@
     "whyMissing": "TODO(copy)",
     "again": "Start again"
   },
+  "workoutsPage": {
+    "videoTitle": "[Video title]",
+    "videoMeta": "[Minutes], [Language]",
+    "photo": "Thumbnail (video pending)"
+  },
+  "club": {
+    "headline": "Every plan. Every month.",
+    "sub": "The full video library, a new plan each month, and a live Q&A with Nawin.",
+    "month": "a month",
+    "year": "a year",
+    "save": "save 33%",
+    "cancel": "Cancel anytime in two taps.",
+    "pricesLabel": "Club prices"
+  },
+  "coaching": {
+    "headline": "A coach in your corner, every week.",
+    "sub": "Team NGB builds your plan, checks in weekly and changes it as you progress.",
+    "period": "for 12 weeks",
+    "apply": "Apply for 1:1",
+    "formLabel": "Apply for 1:1 Coaching",
+    "notOpen": "Applications are not open yet.",
+    "fields": {
+      "name": "Name",
+      "phone": "WhatsApp number",
+      "city": "City",
+      "goal": "Goal",
+      "weight": "Current weight (kg)",
+      "experience": "Training experience",
+      "why": "Why now?",
+      "choose": "Choose one"
+    }
+  },
   "faq": {
     "navLabel": "Question groups",
     "groups": {
