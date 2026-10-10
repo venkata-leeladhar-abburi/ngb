@@ -21,7 +21,8 @@ interface StickyActionsProps {
  * button is always there).
  */
 export function StickyActions({ hideOver, label, buy, free }: StickyActionsProps) {
-  const [visible, setVisible] = useState(false);
+  // With nothing to hide over (inner pages), the bar is simply there.
+  const [visible, setVisible] = useState(hideOver.length === 0);
 
   useEffect(() => {
     const targets = hideOver
