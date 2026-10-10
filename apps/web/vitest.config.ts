@@ -12,6 +12,10 @@ export default defineConfig({
   },
   test: {
     environment: "node",
+    // Server tests start a throwaway in-process Postgres each; the first one in a file is slow on a
+    // busy machine (CI runs every package at once).
+    testTimeout: 20_000,
+    hookTimeout: 30_000,
     include: ["**/*.test.ts"],
     exclude: ["node_modules", ".next"],
   },

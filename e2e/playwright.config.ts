@@ -38,6 +38,9 @@ export default defineConfig({
     : {
         webServer: {
           command: `pnpm --filter @ngb/web exec next start -p ${port}`,
+          // Local stand-ins for Postgres, Redis and SMS (apps/web/server/services.ts): the login
+          // journey reads its code from the SMS outbox file. Ignored on any Vercel deployment.
+          env: { NGB_LOCAL_SERVICES: "1" },
           url: baseURL,
           reuseExistingServer: !isCI,
           timeout: 120_000,

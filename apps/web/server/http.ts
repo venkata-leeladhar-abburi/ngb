@@ -9,8 +9,8 @@ import { env } from "@/env";
 import type { ApiRequest, ApiResponse } from "./auth/api";
 import { DEVICE_COOKIE, SESSION } from "./auth/limits";
 import { ServiceUnavailableError } from "./errors";
-import { log } from "./log";
-import { getServices, type Services } from "./services";
+import { describeError, log } from "./log";
+import { getServices, localServicesAllowed, type Services } from "./services";
 
 const json = (status: number, body: unknown) =>
   Response.json(body, { status, headers: { "Cache-Control": "no-store" } });
@@ -21,7 +21,8 @@ const error = (status: number, code: string, message: string) =>
 /** The caller's address as the platform reports it (Vercel sets x-forwarded-for; first entry is the client). */
 function clientIp(request: Request): string {
   const first = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
-  return first ? first : "unknown";
+  if (first === undefined || first === "") return "unknown";
+  return first;
 }
 
 /**
@@ -86,7 +87,7 @@ export async function runJsonPost(
     }
     log("error", "request.failed", {
       requestId,
-      name: caught instanceof Error ? caught.name : "unknown",
+      ...describeError(caught, localServicesAllowed()),
     });
     return error(500, "server_error", "Something went wrong.");
   }

@@ -677,6 +677,40 @@
       "choose": "Choose one"
     }
   },
+  "checkout": {
+    "title": "Checkout",
+    "stepsLabel": "Checkout steps",
+    "counter": "Step {step} of {total}",
+    "done": "done",
+    "steps": {
+      "phone": "Phone",
+      "code": "Code",
+      "pay": "Pay"
+    },
+    "summary": "Paying for: {program}, {weeks} weeks, {price}",
+    "phoneLabel": "Your phone number",
+    "phoneHint": "We'll send a 6-digit code. No spam.",
+    "send": "Send code",
+    "codeLabel": "6-digit code",
+    "codeSent": "We sent a code to {phone}.",
+    "verify": "Verify code",
+    "resend": "Send a new code",
+    "change": "Change number",
+    "signedIn": "Signed in as {phone}.",
+    "pay": "Pay {price}",
+    "payNote": "Payment is not open yet.",
+    "unavailable": "Checkout is not available right now. Try again in a few minutes.",
+    "errors": {
+      "invalid_phone": "Enter a 10-digit mobile number.",
+      "wrong_code": "That code didn't match. Check the SMS and try again.",
+      "code_expired": "That code has expired. Send a new code.",
+      "too_many_attempts": "Too many wrong tries. Send a new code.",
+      "rate_limited": "Too many tries. Wait a few minutes and try again.",
+      "challenge_required": "Too many codes sent to this number. Wait 15 minutes and try again.",
+      "unavailable": "This is not available right now. Try again in a few minutes.",
+      "network": "You're offline or the connection dropped. Try again."
+    }
+  },
   "faq": {
     "navLabel": "Question groups",
     "groups": {

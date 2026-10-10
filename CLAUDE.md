@@ -34,7 +34,7 @@ If a doc and the code disagree, stop and ask. Never invent copy, prices, numbers
 - `pnpm visual` - screenshot every Storybook story against its approved reference; `pnpm --filter @ngb/e2e visual:update` only after a person approves the change
 - `pnpm format` - Prettier; `pnpm build` - production build of everything
 - `pnpm tokens:build` - regenerate CSS and `tokens.ts` after editing `packages/tokens/src/tokens.json` (turbo also runs it before dev, build and tests)
-- Not yet: `pnpm db:generate` / `pnpm db:migrate` (Phase 7). Do not call them before they exist.
+- `pnpm --filter @ngb/web db:generate` - write a new SQL migration after editing `apps/web/db/schema.ts`; `db:migrate` applies migrations to `DATABASE_URL`. `pnpm dev` needs no database: it runs local stand-ins (`apps/web/server/services.ts`).
 
 ## Repo map
 - `packages/tokens` - tokens.json -> CSS variables + Tailwind theme

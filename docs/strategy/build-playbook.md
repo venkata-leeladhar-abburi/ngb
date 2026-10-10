@@ -418,9 +418,9 @@ Days are calendar days. Photos, program details and prices from Team NGB must ar
 ### Open decisions
 
 - [ ] Hosting plan: Vercel Pro or Enterprise (Enterprise adds automatic function failover), or AWS if load tests show high cost. Decide by Nov 10, 2026.
-- [ ] CMS: Payload inside the repo (recommended) or hosted Sanity. Decide by Oct 2, 2026.
-- [ ] Member area: build it in phase 7, or start on a creator course platform for v1. Decide by Oct 2, 2026.
-- [ ] Pricing: one-time programs or monthly (still open in the handoff doc). Decide by Oct 13, 2026.
+- [x] CMS: Payload inside the repo (decided 10 Oct 2026). Was: Payload (recommended) or hosted Sanity. Decide by Oct 2, 2026.
+- [x] Member area: build it in phase 7 (decided 10 Oct 2026). Was: build it, or start on a creator course platform for v1. Decide by Oct 2, 2026.
+- [x] Pricing: one-time programs (decided 10 Oct 2026). Was: one-time or monthly. Decide by Oct 13, 2026.
 - [ ] Font licences: GT America web licence tier and Rush Driver commercial licence bought. Decide by Oct 2, 2026.
 - [ ] Named reviewer for payment and security code. Decide by Oct 2, 2026.
 

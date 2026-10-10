@@ -42,6 +42,8 @@ const nextConfig: NextConfig = {
   // next dev would write AGENTS.md and CLAUDE.md into apps/web; the repo CLAUDE.md already covers it.
   agentRules: false,
   transpilePackages: ["@ngb/ui", "@ngb/tokens"],
+  // Local mode only (server/services.ts): PGlite ships WASM that must load from node_modules as is.
+  serverExternalPackages: ["@electric-sql/pglite"],
   experimental: {
     // The root layout sits under app/[lang], so unmatched URLs need a 404 page of their own (Next docs:
     // not-found.md, "global-not-found.js").

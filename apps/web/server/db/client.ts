@@ -33,6 +33,11 @@ export async function connectLocal(dataDir?: string): Promise<Db> {
     import("drizzle-orm/pglite"),
     import("drizzle-orm/pglite/migrator"),
   ]);
+  // PGlite does not create missing parent folders; a first run has no .data/ yet.
+  if (dataDir) {
+    const { mkdir } = await import("node:fs/promises");
+    await mkdir(dataDir, { recursive: true });
+  }
   const db = drizzle(new PGlite(dataDir), DB_CONFIG);
   await migrate(db, { migrationsFolder: MIGRATIONS_FOLDER });
   return db;

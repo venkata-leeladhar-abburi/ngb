@@ -668,6 +668,40 @@
       "choose": "TODO(te)"
     }
   },
+  "checkout": {
+    "title": "TODO(te)",
+    "stepsLabel": "TODO(te)",
+    "counter": "TODO(te)",
+    "done": "TODO(te)",
+    "steps": {
+      "phone": "TODO(te)",
+      "code": "TODO(te)",
+      "pay": "TODO(te)"
+    },
+    "summary": "TODO(te)",
+    "phoneLabel": "TODO(te)",
+    "phoneHint": "TODO(te)",
+    "send": "TODO(te)",
+    "codeLabel": "TODO(te)",
+    "codeSent": "TODO(te)",
+    "verify": "TODO(te)",
+    "resend": "TODO(te)",
+    "change": "TODO(te)",
+    "signedIn": "TODO(te)",
+    "pay": "TODO(te)",
+    "payNote": "TODO(te)",
+    "unavailable": "TODO(te)",
+    "errors": {
+      "invalid_phone": "TODO(te)",
+      "wrong_code": "TODO(te)",
+      "code_expired": "TODO(te)",
+      "too_many_attempts": "TODO(te)",
+      "rate_limited": "TODO(te)",
+      "challenge_required": "TODO(te)",
+      "unavailable": "TODO(te)",
+      "network": "TODO(te)"
+    }
+  },
   "faq": {
     "navLabel": "TODO(te)",
     "groups": {
