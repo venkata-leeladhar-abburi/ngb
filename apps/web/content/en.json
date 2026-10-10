@@ -315,6 +315,120 @@
       "no": "No"
     }
   },
+  "faq": {
+    "navLabel": "Question groups",
+    "groups": {
+      "programs": {
+        "title": "Programs",
+        "items": [
+          {
+            "question": "Which plan should I pick?",
+            "answer": "Take the quiz."
+          },
+          {
+            "question": "Can I switch plans?",
+            "answer": "Yes, within 7 days."
+          },
+          {
+            "question": "How long do I have access?",
+            "answer": "For life."
+          },
+          {
+            "question": "When does my batch start?",
+            "answer": "The next 1st of the month; you can start the plan the same day."
+          }
+        ]
+      },
+      "food": {
+        "title": "Food",
+        "items": [
+          {
+            "question": "Do you have vegetarian plans?",
+            "answer": "Yes, every program."
+          },
+          {
+            "question": "Do I need supplements?",
+            "answer": "No."
+          },
+          {
+            "question": "Can I eat rice?",
+            "answer": "Yes, in the right amount."
+          }
+        ]
+      },
+      "training": {
+        "title": "Training",
+        "items": [
+          {
+            "question": "What if I miss a day?",
+            "answer": "Continue from where you stopped."
+          },
+          {
+            "question": "Do I need a gym?",
+            "answer": "No, every plan has a home version."
+          },
+          {
+            "question": "Is it safe for beginners?",
+            "answer": "Yes, start with Foundation Plan."
+          }
+        ]
+      },
+      "payments": {
+        "title": "Payments",
+        "items": [
+          {
+            "question": "How do I pay?",
+            "answer": "UPI, card, netbanking."
+          },
+          {
+            "question": "Can I pay from outside India?",
+            "answer": "Yes, in USD by card."
+          },
+          {
+            "question": "Will I get a GST invoice?",
+            "answer": "Yes, by email and WhatsApp."
+          },
+          {
+            "question": "What's the refund policy?",
+            "answer": "7 days, full refund, no questions."
+          }
+        ]
+      },
+      "account": {
+        "title": "Account",
+        "items": [
+          {
+            "question": "How do I log in?",
+            "answer": "Phone number + OTP."
+          },
+          {
+            "question": "Is there an app?",
+            "answer": "The site works like an app; add it to your home screen."
+          }
+        ]
+      }
+    }
+  },
+  "about": {
+    "title": "About",
+    "headline": "Hi, I'm Naveen. You know me as Nawin Golden Boy.",
+    "photo": "Photo: Nawin, portrait (shoot pending)",
+    "storyLabel": "My story in five parts",
+    "story": [
+      "Where I grew up.",
+      "Why I started in 2022.",
+      "The months nobody watched.",
+      "What I learned about food.",
+      "Why I coach now."
+    ],
+    "storyBody": "TODO(copy)",
+    "valuesLabel": "What I stand for",
+    "values": ["No fake flexing.", "Food you already eat.", "Your language.", "Show up daily."]
+  },
+  "transformationsPage": {
+    "sub": "Every result shared with permission. Name, city, weeks, kilos.",
+    "finePrint": "Results depend on effort, food, sleep and consistency. Individual results vary."
+  },
   "notFound": {
     "headline": "This page skipped leg day.",
     "sub": "We couldn't find it. Let's get you back to training.",

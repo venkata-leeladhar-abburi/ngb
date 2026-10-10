@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import en from "@/content/en.json";
-import { Placeholder } from "@/sections/Placeholder";
+import { NotFound, notFoundCopy } from "@/sections/NotFound";
 import { SkipLink } from "@/sections/SkipLink";
 
 import { fontVariables } from "./fonts";
@@ -15,17 +14,17 @@ export const metadata: Metadata = {
 };
 
 /**
- * Any URL no page matches. It renders without the [lang] layout, so it is in English; the Telugu 404
- * comes with the NotFound section (screen C3, Phase 6).
+ * Last-resort 404, rendered without the [lang] layout, so it is in English with no header or footer.
+ * Unknown URLs normally reach `[lang]/not-found.tsx` through the `[lang]/[...rest]` catch-all.
  */
 export default function GlobalNotFound() {
   return (
     <html lang="en" className={fontVariables("en")}>
       <body>
         <SkipLink label={en.a11y.skipToContent} />
-        <Placeholder headline={en.notFound.headline} sub={en.notFound.sub}>
-          <Link href="/">{en.notFound.home}</Link>
-        </Placeholder>
+        <main id="main">
+          <NotFound {...notFoundCopy("en", en)} />
+        </main>
       </body>
     </html>
   );

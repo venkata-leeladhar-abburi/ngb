@@ -24,8 +24,9 @@ export const viewport: Viewport = {
   colorScheme: "dark",
 };
 
-// Only /en (served as "/") and /te exist; any other first segment is a 404.
-export const dynamicParams = false;
+// Only /en (served as "/") and /te exist: the rewrites in next.config.ts send every other first
+// segment to /en/..., and getLang() raises a 404 for anything else. Params stay dynamic so the
+// [...rest] catch-all can render the 404 page in the reader's language.
 
 export function generateStaticParams() {
   return langs.map((lang) => ({ lang }));
