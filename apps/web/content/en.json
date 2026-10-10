@@ -286,6 +286,35 @@
       "health": "Consult a doctor before starting any new exercise or diet plan."
     }
   },
+  "programs": {
+    "filtersLabel": "Filter plans",
+    "filters": {
+      "all": "All",
+      "gym": "Gym",
+      "home": "Home",
+      "beginner": "Beginner",
+      "hostel": "Hostel-friendly"
+    },
+    "shown": "Plans shown: {count}",
+    "compare": {
+      "title": "Compare the plans",
+      "rows": {
+        "weeks": "Weeks",
+        "days": "Days per week",
+        "minutes": "Minutes per session",
+        "place": "Home or gym",
+        "hostel": "Hostel version",
+        "price": "Price"
+      },
+      "places": {
+        "both": "Home or gym",
+        "gym": "Gym",
+        "home": "Home"
+      },
+      "yes": "Yes",
+      "no": "No"
+    }
+  },
   "notFound": {
     "headline": "This page skipped leg day.",
     "sub": "We couldn't find it. Let's get you back to training.",

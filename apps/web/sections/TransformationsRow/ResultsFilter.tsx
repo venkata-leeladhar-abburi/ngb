@@ -1,26 +1,10 @@
 "use client";
 
 import { ChipGroup, SwipeRow, Text, TransformationCard } from "@ngb/ui";
-import { useSyncExternalStore } from "react";
 
-import { isResultFilter, RESULT_FILTERS, resultQuery, type ResultFilter } from "./resultFilter";
+import { useUrlChoice } from "../shared/useUrlChoice";
 
-/** Fired after this component rewrites the URL (replaceState fires no event of its own). */
-const URL_CHANGE = "ngb:result-filter";
-
-function subscribeToHistory(onChange: () => void) {
-  window.addEventListener("popstate", onChange);
-  window.addEventListener(URL_CHANGE, onChange);
-  return () => {
-    window.removeEventListener("popstate", onChange);
-    window.removeEventListener(URL_CHANGE, onChange);
-  };
-}
-
-function filterFromUrl(): ResultFilter {
-  const value = new URLSearchParams(window.location.search).get("result");
-  return isResultFilter(value) ? value : "all";
-}
+import { isResultFilter, RESULT_FILTERS, type ResultFilter } from "./resultFilter";
 
 interface ResultCardCopy {
   name: string;
@@ -45,8 +29,7 @@ interface ResultsFilterProps {
 
 /**
  * Filter chips and the swipe row of member results (home.md §8). The choice lives in the URL
- * (`?result=lost`) so refresh and back work in the Instagram browser; the page stays static, so the
- * query is read after hydration and written with history.replaceState (no navigation, no server).
+ * (`?result=lost`, see useUrlChoice), so refresh and back work in the Instagram browser.
  */
 export function ResultsFilter({
   filtersLabel,
@@ -62,14 +45,7 @@ export function ResultsFilter({
 }: ResultsFilterProps) {
   // The URL is the only state: the static HTML is rendered for "all", then the URL decides, and back
   // and forward stay in step.
-  const filter = useSyncExternalStore(subscribeToHistory, filterFromUrl, () => "all" as const);
-
-  const choose = (value: string) => {
-    if (!isResultFilter(value)) return;
-    const { pathname, search, hash } = window.location;
-    window.history.replaceState(null, "", `${pathname}${resultQuery(search, value)}${hash}`);
-    window.dispatchEvent(new Event(URL_CHANGE));
-  };
+  const [filter, choose] = useUrlChoice("result", isResultFilter, "all");
 
   const shown = filter === "all" ? cards : [];
 

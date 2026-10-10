@@ -18,6 +18,8 @@ import {
 
 export type ProgramSlug = "foundation-plan" | "shred-12" | "mass-builder" | "master-the-bodyweight";
 
+export type ProgramPlace = "gym" | "home" | "both";
+
 export interface Program {
   slug: ProgramSlug;
   /** Brand name, the same in English and Telugu. */
@@ -27,19 +29,70 @@ export interface Program {
   priceInr: number;
   /** The one "Most popular" card ("if the poll agrees", home.md §9). */
   featured: boolean;
+  /** Training days a week (pages.md, program variants). A range for Shred 12, so text. */
+  daysPerWeek: string;
+  /** Minutes a session (pages.md, program variants). */
+  minutes: number;
+  /**
+   * Where the main plan is trained. pages.md states it for Foundation Plan and Master the Bodyweight
+   * only; "gym" for the other two is read from screen B1. [CONFIRM]
+   */
+  place: ProgramPlace;
+  /** Made for a first plan (pages.md: "Never trained? Start here."). */
+  beginner: boolean;
+  /** home.md §10: every plan has a hostel version. */
+  hostel: boolean;
 }
 
 /** In the order home.md §9 lists them. */
 export const programs: readonly Program[] = [
-  { slug: "foundation-plan", name: "Foundation Plan", weeks: 8, priceInr: 1499, featured: false },
-  { slug: "shred-12", name: "Shred 12", weeks: 12, priceInr: 1999, featured: true },
-  { slug: "mass-builder", name: "Mass Builder", weeks: 12, priceInr: 1999, featured: false },
+  {
+    slug: "foundation-plan",
+    name: "Foundation Plan",
+    weeks: 8,
+    priceInr: 1499,
+    featured: false,
+    daysPerWeek: "3",
+    minutes: 40,
+    place: "both",
+    beginner: true,
+    hostel: true,
+  },
+  {
+    slug: "shred-12",
+    name: "Shred 12",
+    weeks: 12,
+    priceInr: 1999,
+    featured: true,
+    daysPerWeek: "4-5",
+    minutes: 45,
+    place: "gym",
+    beginner: false,
+    hostel: true,
+  },
+  {
+    slug: "mass-builder",
+    name: "Mass Builder",
+    weeks: 12,
+    priceInr: 1999,
+    featured: false,
+    daysPerWeek: "4",
+    minutes: 60,
+    place: "gym",
+    beginner: false,
+    hostel: true,
+  },
   {
     slug: "master-the-bodyweight",
     name: "Master the Bodyweight",
     weeks: 12,
     priceInr: 1499,
     featured: false,
+    daysPerWeek: "4",
+    minutes: 45,
+    place: "home",
+    beginner: false,
+    hostel: true,
   },
 ];
 

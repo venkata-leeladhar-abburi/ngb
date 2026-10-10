@@ -284,6 +284,35 @@
       "health": "TODO(te)"
     }
   },
+  "programs": {
+    "filtersLabel": "TODO(te)",
+    "filters": {
+      "all": "TODO(te)",
+      "gym": "TODO(te)",
+      "home": "TODO(te)",
+      "beginner": "TODO(te)",
+      "hostel": "TODO(te)"
+    },
+    "shown": "TODO(te)",
+    "compare": {
+      "title": "TODO(te)",
+      "rows": {
+        "weeks": "TODO(te)",
+        "days": "TODO(te)",
+        "minutes": "TODO(te)",
+        "place": "TODO(te)",
+        "hostel": "TODO(te)",
+        "price": "TODO(te)"
+      },
+      "places": {
+        "both": "TODO(te)",
+        "gym": "TODO(te)",
+        "home": "TODO(te)"
+      },
+      "yes": "TODO(te)",
+      "no": "TODO(te)"
+    }
+  },
   "notFound": {
     "headline": "TODO(te)",
     "sub": "TODO(te)",

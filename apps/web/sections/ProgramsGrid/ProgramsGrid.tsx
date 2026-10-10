@@ -1,21 +1,21 @@
 import {
   CalendarCheckIcon,
   CreditCardIcon,
-  CrownIcon,
   ForkKnifeIcon,
   InfinityIcon,
   ReceiptIcon,
   ShieldCheckIcon,
-  UserIcon,
   VideoIcon,
   WhatsappLogoIcon,
 } from "@phosphor-icons/react/ssr";
-import { Icon, LinkCard, ProgramCard, Reveal, SectionTitle, StudioBackdrop, Text } from "@ngb/ui";
-import NextLink from "next/link";
+import { Icon, SectionTitle, StudioBackdrop, Text } from "@ngb/ui";
 
 import { programs } from "@/content/catalog";
-import { localePath } from "@/content";
 import { getPageContent } from "@/content/lang";
+
+import { ClubCoachingCards } from "../ClubCoachingCards";
+
+import { PlanCard } from "./PlanCard";
 
 /** Anchor for "Start my plan" in the header, the hero and the phone sticky bar. */
 export const PROGRAMS_ID = "programs";
@@ -50,34 +50,11 @@ export async function ProgramsGrid() {
           <Text variant="lead">{copy.sub}</Text>
         </div>
         <ul className="grid gap-24 md:grid-cols-2 lg:grid-cols-4 lg:items-stretch">
-          {programs.map((program) => {
-            const card = (
-              <ProgramCard
-                name={program.name}
-                line={copy.lines[program.slug]}
-                weeks={program.weeks}
-                priceInr={program.priceInr}
-                featured={program.featured}
-                {...(program.featured ? { tag: copy.popular } : {})}
-                cta={{ href: localePath(lang, `/programs/${program.slug}`), label: t.site.buy }}
-                weeksLabel={copy.weeks}
-                perDayLabel={copy.perDay}
-                linkAs={NextLink}
-                className="h-full"
-              />
-            );
-            return (
-              <li key={program.slug} className="flex flex-col">
-                {program.featured ? (
-                  <Reveal effect="rise" className="h-full">
-                    {card}
-                  </Reveal>
-                ) : (
-                  card
-                )}
-              </li>
-            );
-          })}
+          {programs.map((program) => (
+            <li key={program.slug} className="flex flex-col">
+              <PlanCard program={program} lang={lang} t={t} />
+            </li>
+          ))}
         </ul>
         <div className="flex flex-col gap-32">
           <ul
@@ -103,22 +80,7 @@ export async function ProgramsGrid() {
             ))}
           </ul>
         </div>
-        <div className="grid gap-24 md:grid-cols-2">
-          <LinkCard
-            href={localePath(lang, "/coaching")}
-            icon={UserIcon}
-            title={copy.coaching.question}
-            label={copy.coaching.label}
-            linkAs={NextLink}
-          />
-          <LinkCard
-            href={localePath(lang, "/club")}
-            icon={CrownIcon}
-            title={copy.club.question}
-            label={copy.club.label}
-            linkAs={NextLink}
-          />
-        </div>
+        <ClubCoachingCards />
       </div>
     </StudioBackdrop>
   );
