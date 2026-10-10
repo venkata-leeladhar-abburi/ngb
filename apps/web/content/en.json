@@ -315,6 +315,122 @@
       "no": "No"
     }
   },
+  "programDetail": {
+    "once": "once",
+    "priceNote": "about {perDay} a day, lifetime access",
+    "trust": "7-day refund · GST invoice, UPI",
+    "forYouTitle": "Who it's for",
+    "notForYouTitle": "Not for you if",
+    "scheduleLabel": "Schedule",
+    "foodLabel": "Food",
+    "phasesTitle": "The plan, phase by phase",
+    "hostelTitle": "Hostel day",
+    "insideTitle": "What's inside",
+    "noteBy": "Nawin",
+    "photo": "Photo: Nawin training this program (shoot pending)",
+    "breadcrumbLabel": "Breadcrumb",
+    "missing": "TODO(copy)",
+    "programs": {
+      "foundation-plan": {
+        "sub": "Never trained? Start here.",
+        "forYou": "You've never followed a plan, or you've quit before",
+        "notForYou": "",
+        "schedule": "8 weeks, 3 days, 40 min, home or gym",
+        "food": "Fix portions, add protein, no strict diet",
+        "phases": [],
+        "hostelDay": [],
+        "inside": [],
+        "note": "",
+        "faq": []
+      },
+      "shred-12": {
+        "sub": "Lose fat, keep your food.",
+        "forYou": "You want to lose the belly and look lean",
+        "notForYou": "",
+        "schedule": "12 weeks, 4 to 5 days, 45 min",
+        "food": "Rice stays; portions and protein change",
+        "phases": [],
+        "hostelDay": [],
+        "inside": [],
+        "note": "",
+        "faq": []
+      },
+      "mass-builder": {
+        "sub": "Skinny to strong in 12 weeks. Hostel version included.",
+        "forYou": "You're under-weight or can't gain. You eat in a hostel, mess or at home. You can train 4 days a week, about an hour.",
+        "notForYou": "You want to lose fat first. Try Shred 12.",
+        "schedule": "12 weeks, 4 days, 60 min",
+        "food": "More food, cheap protein, hostel version",
+        "phases": [
+          {
+            "title": "Weeks 1 to 4: Build the base",
+            "line": "Learn the lifts, fix your food."
+          },
+          {
+            "title": "Weeks 5 to 8: Add size",
+            "line": "More volume, more food."
+          },
+          {
+            "title": "Weeks 9 to 12: Push it",
+            "line": "Heavier, test your new strength."
+          }
+        ],
+        "hostelDay": [
+          {
+            "meal": "Breakfast",
+            "food": "4 idli, 2 boiled eggs, a glass of milk"
+          },
+          {
+            "meal": "Lunch",
+            "food": "Rice, pappu, curd, egg curry"
+          },
+          {
+            "meal": "Evening",
+            "food": "A handful of peanuts and a banana"
+          },
+          {
+            "meal": "Dinner",
+            "food": "Rice or chapati with chicken or soya curry"
+          }
+        ],
+        "inside": [
+          "48 workouts with Telugu + English video",
+          "Diet plan for veg, egg and non-veg",
+          "Hostel and home versions",
+          "Weekly check-in",
+          "WhatsApp batch group",
+          "Lifetime access"
+        ],
+        "note": "I was skinny too. This is the plan I wish I had in 2022.",
+        "faq": [
+          {
+            "question": "Can I do it without whey?",
+            "answer": "Yes."
+          },
+          {
+            "question": "What if I'm vegetarian?",
+            "answer": "The veg plan uses paneer, curd, soya, dal and milk."
+          },
+          {
+            "question": "What if I miss a week?",
+            "answer": "Pause and continue; access never expires."
+          }
+        ]
+      },
+      "master-the-bodyweight": {
+        "sub": "No gym. No excuses.",
+        "forYou": "You train at home or in a park",
+        "notForYou": "",
+        "schedule": "12 weeks, 4 days, 45 min, only a pull-up bar",
+        "food": "Simple home meals, protein first",
+        "phases": [],
+        "hostelDay": [],
+        "inside": [],
+        "note": "",
+        "faq": []
+      }
+    }
+  },
   "faq": {
     "navLabel": "Question groups",
     "groups": {

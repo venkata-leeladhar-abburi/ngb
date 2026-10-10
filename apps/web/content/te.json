@@ -313,6 +313,115 @@
       "no": "TODO(te)"
     }
   },
+  "programDetail": {
+    "once": "TODO(te)",
+    "priceNote": "TODO(te)",
+    "trust": "TODO(te)",
+    "forYouTitle": "TODO(te)",
+    "notForYouTitle": "TODO(te)",
+    "scheduleLabel": "TODO(te)",
+    "foodLabel": "TODO(te)",
+    "phasesTitle": "TODO(te)",
+    "hostelTitle": "TODO(te)",
+    "insideTitle": "TODO(te)",
+    "noteBy": "TODO(te)",
+    "photo": "TODO(te)",
+    "breadcrumbLabel": "TODO(te)",
+    "missing": "TODO(te)",
+    "programs": {
+      "foundation-plan": {
+        "sub": "TODO(te)",
+        "forYou": "TODO(te)",
+        "notForYou": "",
+        "schedule": "TODO(te)",
+        "food": "TODO(te)",
+        "phases": [],
+        "hostelDay": [],
+        "inside": [],
+        "note": "",
+        "faq": []
+      },
+      "shred-12": {
+        "sub": "TODO(te)",
+        "forYou": "TODO(te)",
+        "notForYou": "",
+        "schedule": "TODO(te)",
+        "food": "TODO(te)",
+        "phases": [],
+        "hostelDay": [],
+        "inside": [],
+        "note": "",
+        "faq": []
+      },
+      "mass-builder": {
+        "sub": "TODO(te)",
+        "forYou": "TODO(te)",
+        "notForYou": "TODO(te)",
+        "schedule": "TODO(te)",
+        "food": "TODO(te)",
+        "phases": [
+          {
+            "title": "TODO(te)",
+            "line": "TODO(te)"
+          },
+          {
+            "title": "TODO(te)",
+            "line": "TODO(te)"
+          },
+          {
+            "title": "TODO(te)",
+            "line": "TODO(te)"
+          }
+        ],
+        "hostelDay": [
+          {
+            "meal": "TODO(te)",
+            "food": "TODO(te)"
+          },
+          {
+            "meal": "TODO(te)",
+            "food": "TODO(te)"
+          },
+          {
+            "meal": "TODO(te)",
+            "food": "TODO(te)"
+          },
+          {
+            "meal": "TODO(te)",
+            "food": "TODO(te)"
+          }
+        ],
+        "inside": ["TODO(te)", "TODO(te)", "TODO(te)", "TODO(te)", "TODO(te)", "TODO(te)"],
+        "note": "TODO(te)",
+        "faq": [
+          {
+            "question": "TODO(te)",
+            "answer": "TODO(te)"
+          },
+          {
+            "question": "TODO(te)",
+            "answer": "TODO(te)"
+          },
+          {
+            "question": "TODO(te)",
+            "answer": "TODO(te)"
+          }
+        ]
+      },
+      "master-the-bodyweight": {
+        "sub": "TODO(te)",
+        "forYou": "TODO(te)",
+        "notForYou": "",
+        "schedule": "TODO(te)",
+        "food": "TODO(te)",
+        "phases": [],
+        "hostelDay": [],
+        "inside": [],
+        "note": "",
+        "faq": []
+      }
+    }
+  },
   "faq": {
     "navLabel": "TODO(te)",
     "groups": {

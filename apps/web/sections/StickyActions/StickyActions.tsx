@@ -2,7 +2,8 @@
 
 import { StickyActionBar } from "@ngb/ui";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+
+import { useHiddenOver } from "../shared/useHiddenOver";
 
 interface StickyActionsProps {
   /**
@@ -21,27 +22,7 @@ interface StickyActionsProps {
  * button is always there).
  */
 export function StickyActions({ hideOver, label, buy, free }: StickyActionsProps) {
-  // With nothing to hide over (inner pages), the bar is simply there.
-  const [visible, setVisible] = useState(hideOver.length === 0);
-
-  useEffect(() => {
-    const targets = hideOver
-      .map((id) => document.getElementById(id))
-      .filter((element) => element !== null);
-    if (targets.length === 0) return;
-    const onScreen = new Set<Element>();
-    const observer = new IntersectionObserver((entries) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) onScreen.add(entry.target);
-        else onScreen.delete(entry.target);
-      }
-      setVisible(onScreen.size === 0);
-    });
-    for (const target of targets) observer.observe(target);
-    return () => {
-      observer.disconnect();
-    };
-  }, [hideOver]);
+  const visible = useHiddenOver(hideOver);
 
   return (
     <StickyActionBar visible={visible} label={label} primary={buy} secondary={free} linkAs={Link} />

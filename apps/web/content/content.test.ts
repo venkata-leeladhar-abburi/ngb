@@ -28,6 +28,8 @@ describe("content", () => {
     const copied = leaves(te).filter(
       ([path, value]) =>
         value !== TODO_TE &&
+        // An empty string is copy not written in either language yet; the page shows TODO(copy) for it.
+        value !== "" &&
         value === english.get(path) &&
         // Brand name and numbers are the same in both; Telugu lines already in the English version are fine.
         !/^site\.name$/.test(path) &&

@@ -1,8 +1,14 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 
-/** Inner pages built from pages.md (Phase 6): FAQ, About and Transformations, in both languages. */
-const ROUTES = ["/faq", "/about", "/transformations"] as const;
+/** Inner pages built from pages.md (Phase 6), in both languages. */
+const ROUTES = [
+  "/faq",
+  "/about",
+  "/transformations",
+  "/programs/mass-builder",
+  "/programs/shred-12",
+] as const;
 
 for (const route of ROUTES) {
   for (const path of [route, `/te${route}`]) {
@@ -118,4 +124,36 @@ test.describe("404", () => {
       await expect(links.last()).toHaveAttribute("href", `${home}#tools`);
     });
   }
+});
+
+test.describe("program detail", () => {
+  test("sells one program with its price, per-day price and one way to buy", async ({ page }) => {
+    await page.goto("/programs/mass-builder");
+
+    const hero = page.locator("#program");
+    await expect(hero.getByRole("heading", { level: 1 })).toHaveText("Mass Builder");
+    await expect(hero).toContainText("₹1,999");
+    await expect(hero).toContainText("about ₹24 a day, lifetime access");
+    await expect(hero.getByRole("link", { name: "Start my plan" })).toHaveAttribute(
+      "href",
+      "/checkout/mass-builder",
+    );
+    await expect(
+      page.getByRole("navigation", { name: "Breadcrumb" }).getByRole("link", { name: "Programs" }),
+    ).toHaveAttribute("href", "/programs");
+  });
+
+  test("describes the program to search engines", async ({ page }) => {
+    await page.goto("/programs/shred-12");
+
+    const [data] = (await jsonLd(page)) as [{ "@type": string; offers: { price: number } }];
+    expect(data["@type"]).toBe("Product");
+    expect(data.offers.price).toBe(1999);
+  });
+
+  test("an unknown program is a 404", async ({ page }) => {
+    const response = await page.goto("/programs/not-a-program");
+
+    expect(response?.status()).toBe(404);
+  });
 });
