@@ -25,6 +25,7 @@ export { Wordmark } from "./brand/Wordmark";
 export { Button, type ButtonVariant } from "./Button";
 export { Checkbox } from "./Checkbox";
 export { ChipGroup } from "./ChipGroup";
+export { CompareTable, type CompareColumn, type CompareRow } from "./CompareTable";
 export { Dialog } from "./Dialog";
 export { FaqAccordion, type FaqItem } from "./FaqAccordion";
 export { Footer, type FooterColumn } from "./Footer";
