@@ -50,7 +50,7 @@ export async function ToolPage({ tool }: { tool: BuiltTool }) {
                   program={program}
                   lang={lang}
                   t={t}
-                  headingLevel="h2"
+                  headingLevel="h3"
                 />,
               ]),
             )}

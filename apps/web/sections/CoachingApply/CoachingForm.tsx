@@ -1,6 +1,7 @@
 "use client";
 
-import { Button, Select, Text, TextField } from "@ngb/ui";
+import { InfoIcon } from "@phosphor-icons/react/ssr";
+import { Button, Icon, Select, Text, TextField } from "@ngb/ui";
 
 import type { Content } from "@/content";
 
@@ -20,8 +21,12 @@ export function CoachingForm({ copy, goals, levels }: CoachingFormProps) {
   const fields = copy.fields;
   return (
     <form aria-label={copy.formLabel} className="lg:col-span-6 lg:col-start-7">
-      <fieldset disabled className="grid gap-24 md:grid-cols-2">
-        <Text className="md:col-span-2">{copy.notOpen}</Text>
+      {/* Outside the disabled fieldset, and tied to it, so it is read and not skipped with the fields. */}
+      <Text id="coaching-note" className="mb-24 flex items-center gap-8">
+        <Icon icon={InfoIcon} size="md" />
+        {copy.notOpen}
+      </Text>
+      <fieldset disabled aria-describedby="coaching-note" className="grid gap-24 md:grid-cols-2">
         <TextField name="name" label={fields.name} autoComplete="name" />
         <TextField
           name="phone"

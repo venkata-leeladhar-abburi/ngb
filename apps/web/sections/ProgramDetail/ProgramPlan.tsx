@@ -20,7 +20,7 @@ export async function ProgramPlan({ program }: { program: Program }) {
 
   return (
     <StudioBackdrop variant="night" className="px-page pt-section-top pb-section-bottom">
-      <div className="mx-auto flex max-w-(--container-content) flex-col gap-64">
+      <div className="mx-auto flex max-w-(--container-content) flex-col gap-64 lg:gap-128">
         <section aria-labelledby="for-you-title" className="grid gap-48 lg:grid-cols-12 lg:gap-24">
           <div className="flex flex-col gap-16 lg:col-span-6">
             <SectionTitle id="for-you-title">{detail.forYouTitle}</SectionTitle>

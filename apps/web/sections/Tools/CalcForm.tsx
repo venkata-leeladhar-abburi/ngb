@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, Heading, ResultCard, Select, Text, TextField, VisuallyHidden } from "@ngb/ui";
-import { useState, type ReactNode, type SyntheticEvent } from "react";
+import { useEffect, useRef, useState, type ReactNode, type SyntheticEvent } from "react";
 
 import { smallTools, type ProgramSlug } from "@/content/catalog";
 import type { Content } from "@/content";
@@ -18,7 +18,6 @@ import {
 import { proteinTarget } from "@/lib/tools/protein";
 import { readNumber, type NumberField } from "@/lib/tools/validate";
 
-import { useHydrated } from "../shared/useHydrated";
 import { useUrlQuery } from "../shared/useUrlChoice";
 
 import {
@@ -142,8 +141,23 @@ interface CalcFormProps {
 export function CalcForm({ tool, title, copy, plans }: CalcFormProps) {
   const [search, replaceQuery] = useUrlQuery();
   const [errors, setErrors] = useState<Errors>({});
-  // The URL is unknown on the server; once hydrated, the form remounts with its values filled in.
-  const hydrated = useHydrated();
+  // The URL is unknown on the server, so the inputs render empty. Once in the browser, fill the ones
+  // still empty from the URL; anything already typed on a slow phone is left alone.
+  const form = useRef<HTMLFormElement>(null);
+  useEffect(() => {
+    const query = new URLSearchParams(window.location.search);
+    for (const field of TOOL_FIELDS[tool]) {
+      const control = form.current?.elements.namedItem(field);
+      const value = query.get(PARAM[field]);
+      if (
+        value &&
+        (control instanceof HTMLInputElement || control instanceof HTMLSelectElement) &&
+        control.value === ""
+      ) {
+        control.value = value;
+      }
+    }
+  }, [tool]);
   const params = new URLSearchParams(search);
   const fields: readonly ToolField[] = TOOL_FIELDS[tool];
   const result = resultFor(tool, params, copy);
@@ -152,8 +166,8 @@ export function CalcForm({ tool, title, copy, plans }: CalcFormProps) {
 
   const submit = (event: SyntheticEvent<HTMLFormElement, SubmitEvent>) => {
     event.preventDefault();
-    const form = event.currentTarget;
-    const data = new FormData(form);
+    const target = event.currentTarget;
+    const data = new FormData(target);
     const next = new URLSearchParams(search);
     const found: Errors = {};
     for (const field of fields) {
@@ -170,7 +184,7 @@ export function CalcForm({ tool, title, copy, plans }: CalcFormProps) {
     setErrors(found);
     const firstInvalid = fields.find((field) => found[field]);
     if (firstInvalid) {
-      const control = form.elements.namedItem(firstInvalid);
+      const control = target.elements.namedItem(firstInvalid);
       if (control instanceof HTMLElement) control.focus();
       return;
     }
@@ -180,7 +194,7 @@ export function CalcForm({ tool, title, copy, plans }: CalcFormProps) {
   return (
     <div className="grid gap-48 lg:grid-cols-12 lg:items-start lg:gap-24">
       <form
-        key={hydrated ? "client" : "server"}
+        ref={form}
         noValidate
         onSubmit={submit}
         className="grid gap-24 md:grid-cols-2 lg:col-span-7"
@@ -193,7 +207,6 @@ export function CalcForm({ tool, title, copy, plans }: CalcFormProps) {
               label={copy.fields[field]}
               inputMode="decimal"
               autoComplete="off"
-              defaultValue={params.get(PARAM[field]) ?? ""}
               error={errors[field]}
             />
           ) : (
@@ -206,7 +219,6 @@ export function CalcForm({ tool, title, copy, plans }: CalcFormProps) {
                 value,
                 label: choiceLabel(copy, field, value),
               }))}
-              defaultValue={params.get(PARAM[field]) ?? ""}
               error={errors[field]}
             />
           ),
@@ -236,7 +248,10 @@ export function CalcForm({ tool, title, copy, plans }: CalcFormProps) {
         )}
       </div>
       {plan && plans[plan] && (
-        <section aria-labelledby="plan-title" className="flex flex-col gap-16 lg:col-span-5">
+        <section
+          aria-labelledby="plan-title"
+          className="flex flex-col gap-16 lg:col-span-5 lg:col-start-8"
+        >
           <Heading as="h2" variant="h2" id="plan-title">
             {copy.recommendTitle}
           </Heading>

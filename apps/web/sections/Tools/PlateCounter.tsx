@@ -1,7 +1,7 @@
 "use client";
 
-import { MinusIcon, PlusIcon } from "@phosphor-icons/react/ssr";
-import { Button, ResultCard, Text, TextField, VisuallyHidden } from "@ngb/ui";
+import { ResultCard, Stepper, Text, TextField, VisuallyHidden } from "@ngb/ui";
+import { useEffect, useRef } from "react";
 
 import { teluguPlateIcon } from "@/content/catalog";
 import type { Content } from "@/content";
@@ -10,7 +10,6 @@ import { proteinTarget } from "@/lib/tools/protein";
 import { MAX_PORTIONS, PLATE_FOODS, plateProtein, type PlateFoodId } from "@/lib/tools/teluguPlate";
 import { readNumber } from "@/lib/tools/validate";
 
-import { useHydrated } from "../shared/useHydrated";
 import { useUrlQuery } from "../shared/useUrlChoice";
 
 interface PlateCounterProps {
@@ -27,7 +26,12 @@ interface PlateCounterProps {
  */
 export function PlateCounter({ title, copy, weightLabel, weightError }: PlateCounterProps) {
   const [search, replaceQuery] = useUrlQuery();
-  const hydrated = useHydrated();
+  // The URL is unknown on the server; once in the browser, fill the weight from it if still empty.
+  const weightInput = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    const value = new URLSearchParams(window.location.search).get("w");
+    if (value && weightInput.current?.value === "") weightInput.current.value = value;
+  }, []);
   const params = new URLSearchParams(search);
 
   const portions: Partial<Record<PlateFoodId, number>> = {};
@@ -52,14 +56,9 @@ export function PlateCounter({ title, copy, weightLabel, weightError }: PlateCou
     replaceQuery(next.toString());
   };
 
-  const change = (id: PlateFoodId, by: number) => {
-    const count = Math.max(0, Math.min(MAX_PORTIONS, (portions[id] ?? 0) + by));
-    setParam(id, count === 0 ? null : String(count));
-  };
-
   return (
     <div className="grid gap-48 lg:grid-cols-12 lg:items-start lg:gap-24">
-      <ul aria-label={copy.foodsLabel} className="flex flex-col lg:col-span-7">
+      <ul aria-label={copy.foodsLabel} className="flex flex-col max-lg:order-last lg:col-span-7">
         {PLATE_FOODS.map((food) => {
           const name = copy.foods[food.id].name;
           const count = portions[food.id] ?? 0;
@@ -68,7 +67,7 @@ export function PlateCounter({ title, copy, weightLabel, weightError }: PlateCou
               key={food.id}
               className="flex items-center justify-between gap-16 border-t border-subtle py-12"
             >
-              <div className="flex flex-col">
+              <div className="flex min-w-0 flex-1 flex-col">
                 <Text as="span">{name}</Text>
                 <Text as="span" variant="data" tone="muted">
                   {fill(copy.perPortion, {
@@ -77,39 +76,24 @@ export function PlateCounter({ title, copy, weightLabel, weightError }: PlateCou
                   })}
                 </Text>
               </div>
-              <div className="flex shrink-0 items-center gap-8">
-                <Button
-                  as="button"
-                  variant="secondary"
-                  icon={MinusIcon}
-                  disabled={count === 0}
-                  onClick={() => {
-                    change(food.id, -1);
-                  }}
-                >
-                  <VisuallyHidden>{fill(copy.remove, { food: name })}</VisuallyHidden>
-                </Button>
-                <Text as="span" variant="data" className="w-32 text-center">
-                  {count}
-                </Text>
-                <Button
-                  as="button"
-                  variant="secondary"
-                  icon={PlusIcon}
-                  disabled={count === MAX_PORTIONS}
-                  onClick={() => {
-                    change(food.id, 1);
-                  }}
-                >
-                  <VisuallyHidden>{fill(copy.add, { food: name })}</VisuallyHidden>
-                </Button>
-              </div>
+              <Stepper
+                value={count}
+                max={MAX_PORTIONS}
+                onChange={(next) => {
+                  setParam(food.id, next === 0 ? null : String(next));
+                }}
+                decreaseLabel={fill(copy.remove, { food: name })}
+                increaseLabel={fill(copy.add, { food: name })}
+                valueLabel={fill(copy.portions, { count })}
+                className="shrink-0"
+              />
             </li>
           );
         })}
       </ul>
-      {/* Sticky on desktop only (screens.md B5); on phones it follows the list. */}
-      <div className="flex flex-col gap-24 lg:sticky lg:top-24 lg:col-span-5">
+      {/* Desktop: the summary column sticks beside the list (screens.md B5). Phones: the total alone
+          sticks to the top, above the list, so every tap shows what it changed. */}
+      <div className="flex flex-col gap-24 max-lg:contents lg:sticky lg:top-24 lg:col-span-5">
         <VisuallyHidden as="h2">{copy.today}</VisuallyHidden>
         <ResultCard
           icon={teluguPlateIcon}
@@ -117,18 +101,23 @@ export function PlateCounter({ title, copy, weightLabel, weightError }: PlateCou
           valueLabel={copy.today}
           value={fill(copy.value, { total })}
           details={details}
+          className="max-lg:sticky max-lg:top-8 max-lg:z-(--layer-raised)"
         />
         <TextField
-          key={hydrated ? "client" : "server"}
+          ref={weightInput}
           name="weight"
           label={weightLabel}
-          hint={copy.weightHint}
+          hint={target === null ? copy.weightHint : undefined}
           inputMode="decimal"
           autoComplete="off"
-          defaultValue={rawWeight ?? ""}
+          enterKeyHint="done"
           error={rawWeight && "error" in weight ? weightError : undefined}
-          onChange={(event) => {
+          // Checked when the field is left or Enter is pressed, never while a number is half typed.
+          onBlur={(event) => {
             setParam("w", event.currentTarget.value.trim());
+          }}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") setParam("w", event.currentTarget.value.trim());
           }}
         />
       </div>

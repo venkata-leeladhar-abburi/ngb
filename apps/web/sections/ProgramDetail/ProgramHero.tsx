@@ -1,5 +1,6 @@
 import {
   Button,
+  LeanFrame,
   Link,
   PhotoPlaceholder,
   PriceOption,
@@ -41,7 +42,11 @@ export async function ProgramHero({ program }: { program: Program }) {
         <nav aria-label={detail.breadcrumbLabel}>
           <ol className="flex flex-wrap items-center gap-8">
             <li>
-              <Link as={NextLink} href={localePath(lang, "/programs")}>
+              <Link
+                as={NextLink}
+                href={localePath(lang, "/programs")}
+                className="inline-flex min-h-target items-center"
+              >
                 {t.site.nav.programs}
               </Link>
             </li>
@@ -78,10 +83,9 @@ export async function ProgramHero({ program }: { program: Program }) {
               <Text>{detail.trust}</Text>
             </div>
           </div>
-          <PhotoPlaceholder
-            label={detail.photo}
-            className="aspect-4/5 w-full lg:col-span-4 lg:col-start-9"
-          />
+          <LeanFrame className="mx-32 aspect-4/5 border border-subtle bg-card lg:col-span-4 lg:col-start-9 lg:mx-0">
+            <PhotoPlaceholder lean label={detail.photo} className="size-full" />
+          </LeanFrame>
         </div>
       </div>
     </StudioBackdrop>

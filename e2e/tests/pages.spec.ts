@@ -223,11 +223,28 @@ test.describe("free tools", () => {
     await expect(page.getByText("19 g", { exact: true })).toBeVisible();
     await expect(page).toHaveURL(/egg=2&pappu=1/);
 
-    await page.getByLabel("Weight (kg)").fill("70");
+    // A half-typed weight is not judged; the target appears once the field is left.
+    const weight = page.getByLabel("Weight (kg)");
+    await weight.pressSequentially("7");
+    await expect(page.getByText("Enter a weight between 30 and 200 kg.")).toBeHidden();
+    await weight.pressSequentially("0");
+    await weight.press("Enter");
     await expect(page.getByText("Your target: 112 g. You need 93 g more.")).toBeVisible();
 
     await page.getByRole("button", { name: "Remove one Boiled egg" }).click();
     await expect(page.getByText("13 g", { exact: true })).toBeVisible();
+  });
+
+  test("Telugu Plate keeps keyboard focus when a count reaches zero", async ({ page }) => {
+    await page.goto("/tools/telugu-plate?egg=1");
+    const remove = page.getByRole("button", { name: "Remove one Boiled egg" });
+    await expect(page.getByText("6 g", { exact: true })).toBeVisible();
+
+    await remove.focus();
+    await page.keyboard.press("Enter");
+    await expect(page.getByText("0 g", { exact: true })).toBeVisible();
+    await expect(remove).toBeFocused();
+    await expect(remove).toHaveAttribute("aria-disabled", "true");
   });
 
   test("the hub links only to tools that exist", async ({ page }) => {
@@ -319,6 +336,8 @@ test("Workouts filters by muscle group and keeps the choice in the URL", async (
     "href",
     "/programs/mass-builder",
   );
+  // Videos that do not exist yet are not links.
+  await expect(page.locator("#chest").getByRole("link")).toHaveCount(1);
 });
 
 test("Club shows both prices and its own button", async ({ page }) => {

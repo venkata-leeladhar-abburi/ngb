@@ -1,4 +1,12 @@
-import { Button, Heading, Link, PhotoPlaceholder, StudioBackdrop, Wordmark } from "@ngb/ui";
+import {
+  Button,
+  Heading,
+  LeanFrame,
+  Link,
+  PhotoPlaceholder,
+  StudioBackdrop,
+  Wordmark,
+} from "@ngb/ui";
 import NextLink from "next/link";
 
 import { localePath } from "@/content";
@@ -20,7 +28,9 @@ export async function StartChoices() {
         <NextLink href={href("/")} aria-label={t.site.homeLabel} className="self-start">
           <Wordmark tone="red" size="sm" />
         </NextLink>
-        <PhotoPlaceholder label={start.photo} className="min-h-(--spacing-144) w-full grow" />
+        <LeanFrame className="mx-32 min-h-(--spacing-144) grow border border-subtle bg-card">
+          <PhotoPlaceholder lean label={start.photo} className="size-full" />
+        </LeanFrame>
         <Heading as="h1" variant="h1" className="text-balance">
           {start.headline}
         </Heading>
@@ -51,10 +61,15 @@ export async function StartChoices() {
           <Link
             as={NextLink}
             href={localePath("te", "/start")}
-            className="self-start"
+            hrefLang="te"
             lang="te-Latn"
+            className="inline-flex min-h-target items-center self-start"
           >
-            {start.telugu} → <span lang="te">తె</span>
+            {start.telugu}
+            <span aria-hidden="true">
+              {" → "}
+              <span lang="te">తె</span>
+            </span>
           </Link>
         )}
       </div>

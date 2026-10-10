@@ -30,7 +30,7 @@ export async function ProgramProof({ program }: { program: Program }) {
       variant="night"
       className="overflow-hidden border-t border-subtle px-page pt-section-top pb-section-bottom"
     >
-      <div className="mx-auto flex max-w-(--container-content) flex-col gap-64">
+      <div className="mx-auto flex max-w-(--container-content) flex-col gap-64 lg:gap-128">
         <section aria-labelledby="proof-title" className="flex flex-col gap-48">
           <SectionTitle id="proof-title">{results.headline}</SectionTitle>
           <ul className="grid gap-x-64 gap-y-48 px-16 md:grid-cols-2 md:px-32 lg:grid-cols-3">

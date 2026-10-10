@@ -33,7 +33,7 @@ export function QuizFlow({ copy, programs }: QuizFlowProps) {
   const [error, setError] = useState(false);
   // After a step change, focus goes to the new step (or the result), so keyboard and screen-reader
   // users land on what changed. Not on first load.
-  const stage = useRef<HTMLDivElement>(null);
+  const stage = useRef<HTMLDivElement & HTMLHeadingElement>(null);
   const moved = useRef(false);
   useEffect(() => {
     if (moved.current) stage.current?.focus();
@@ -55,9 +55,9 @@ export function QuizFlow({ copy, programs }: QuizFlowProps) {
     const restart = new URLSearchParams(search);
     for (const key of [...QUIZ_STEPS, "hostel"]) restart.delete(key);
     return (
-      <div ref={stage} tabIndex={-1} className="flex flex-col items-start gap-32 outline-hidden">
+      <div className="flex flex-col items-start gap-32">
         <div className="flex flex-col gap-16">
-          <Heading as="h2" variant="h2">
+          <Heading as="h2" variant="h2" ref={stage} tabIndex={-1} className="outline-hidden">
             {fill(copy.result, { program: name })}
           </Heading>
           <Text variant="lead" className="max-w-(--container-lead)">
@@ -110,7 +110,14 @@ export function QuizFlow({ copy, programs }: QuizFlowProps) {
         doneLabel={copy.done}
         counter={(current, total) => fill(copy.counter, { step: current, total })}
       />
-      <div ref={stage} tabIndex={-1} className="flex flex-col gap-24 outline-hidden">
+      {/* Named, so moving focus here reads "Question 2 of 4" and the question. */}
+      <div
+        ref={stage}
+        tabIndex={-1}
+        role="group"
+        aria-label={`${fill(copy.counter, { step: stepIndex + 1, total: QUIZ_STEPS.length })}: ${question.question}`}
+        className="flex flex-col gap-24 outline-hidden"
+      >
         <RadioGroup
           key={step}
           label={question.question}

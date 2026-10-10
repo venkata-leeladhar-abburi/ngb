@@ -511,6 +511,7 @@
         "foodsLabel": "Foods",
         "add": "Add one {food}",
         "remove": "Remove one {food}",
+        "portions": "{count} portions",
         "perPortion": "{portion} · {protein} g",
         "today": "Today",
         "value": "{total} g",
