@@ -24,6 +24,9 @@ __screenshots__/
 .env.*
 !.env.example
 
+# Local stand-ins: in-process Postgres data and the SMS outbox (server/services.ts)
+apps/web/.data/
+
 # Deploy
 .vercel/
 
