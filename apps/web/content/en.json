@@ -431,6 +431,154 @@
       }
     }
   },
+  "toolPages": {
+    "fields": {
+      "age": "Age",
+      "sex": "Gender",
+      "height": "Height (cm)",
+      "weight": "Weight (kg)",
+      "activity": "Activity",
+      "goal": "Goal",
+      "choose": "Choose one",
+      "sexes": {
+        "male": "Male",
+        "female": "Female"
+      },
+      "activities": {
+        "sitting": "Mostly sitting",
+        "light": "Light exercise",
+        "train": "Train 3 to 5 days",
+        "active": "Very active"
+      },
+      "goals": {
+        "lose": "Lose fat",
+        "same": "Stay the same",
+        "gain": "Gain weight"
+      }
+    },
+    "errors": {
+      "age": {
+        "required": "Please enter your age.",
+        "range": "Enter an age between 13 and 80."
+      },
+      "height": {
+        "required": "Please enter your height.",
+        "range": "Enter a height between 120 and 220 cm."
+      },
+      "weight": {
+        "required": "Please enter your weight.",
+        "range": "Enter a weight between 30 and 200 kg."
+      },
+      "sex": "Please choose your gender.",
+      "activity": "Please choose your activity.",
+      "goal": "Please choose your goal."
+    },
+    "submit": "Show my number",
+    "resultTitle": "Your number",
+    "dailyTarget": "Your daily target",
+    "recommendTitle": "A plan built for this",
+    "allTools": "All free tools",
+    "health": "This is general fitness guidance, not medical advice. Check with a doctor if you have a medical condition.",
+    "tools": {
+      "calorie-calculator": {
+        "headline": "How much should you eat?",
+        "sub": "Your exact daily calories for fat loss, maintenance or gain. Free, 30 seconds.",
+        "value": "{kcal} kcal",
+        "details": "Protein: {protein} g a day.",
+        "explainer": "To lose fat, eat about 500 kcal less than this. To gain, eat about 300 kcal more.",
+        "method": "Mifflin-St Jeor equation; protein at about 1.6 g per kg of body weight. Not medical advice.",
+        "recommendLose": "Your goal is fat loss. Shred 12 is built for this, on Telugu food."
+      },
+      "weight-gain": {
+        "headline": "How much should you eat to gain?",
+        "value": "{kcal} kcal",
+        "details": "Eat {kcal} kcal a day to gain about 0.25 to 0.5 kg a week."
+      },
+      "protein": {
+        "headline": "How much protein do you need?",
+        "value": "{protein} g",
+        "details": "{protein} g a day, about 1.6 g per kg."
+      },
+      "bmi": {
+        "headline": "Are you in a healthy range?",
+        "valueLabel": "Your BMI",
+        "details": "BMI {bmi} at {height} cm: healthy range is {min} to {max} kg (Asian cut-offs, 18.5 to 22.9).",
+        "healthy": "In the healthy range"
+      },
+      "telugu-plate": {
+        "headline": "How much protein is on your plate?",
+        "sub": "Tap what you ate today. We'll count it.",
+        "foodsLabel": "Foods",
+        "add": "Add one {food}",
+        "remove": "Remove one {food}",
+        "perPortion": "{portion} · {protein} g",
+        "today": "Today",
+        "value": "{total} g",
+        "todayOnly": "Today: {total} g protein.",
+        "result": "Today: {total} g protein. Your target: {target} g. You need {gap} g more.",
+        "reached": "Today: {total} g protein. Your target: {target} g. You've reached it.",
+        "weightHint": "Add your weight to see your target.",
+        "foods": {
+          "rice": {
+            "name": "Cooked rice",
+            "portion": "1 cup"
+          },
+          "pappu": {
+            "name": "Pappu (toor dal)",
+            "portion": "1 katori"
+          },
+          "perugu": {
+            "name": "Perugu (curd)",
+            "portion": "1 katori"
+          },
+          "egg": {
+            "name": "Boiled egg",
+            "portion": "1"
+          },
+          "egg-curry": {
+            "name": "Egg curry",
+            "portion": "2 eggs"
+          },
+          "chicken-curry": {
+            "name": "Chicken curry",
+            "portion": "100 g chicken"
+          },
+          "fish-curry": {
+            "name": "Fish curry",
+            "portion": "100 g fish"
+          },
+          "pesarattu": {
+            "name": "Pesarattu",
+            "portion": "1"
+          },
+          "idli": {
+            "name": "Idli",
+            "portion": "2"
+          },
+          "chapati": {
+            "name": "Chapati",
+            "portion": "1"
+          },
+          "paneer": {
+            "name": "Paneer",
+            "portion": "100 g"
+          },
+          "soya": {
+            "name": "Soya chunks",
+            "portion": "30 g dry"
+          },
+          "peanuts": {
+            "name": "Peanuts",
+            "portion": "handful (30 g)"
+          },
+          "milk": {
+            "name": "Milk",
+            "portion": "1 glass (200 ml)"
+          }
+        }
+      }
+    }
+  },
   "faq": {
     "navLabel": "Question groups",
     "groups": {

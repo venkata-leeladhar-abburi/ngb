@@ -10,13 +10,16 @@ interface SiteFooterProps {
   path: `/${string}`;
 }
 
-/** Tools listed in the footer, as screen A7 shows them. */
+/**
+ * Tools listed in the footer. Screen A7 shows one-rep max fifth; it is not built yet (no confirmed
+ * method), so the weight-gain calculator stands there until it is.
+ */
 const FOOTER_TOOLS = [
   "calorie-calculator",
   "telugu-plate",
   "protein",
   "bmi",
-  "one-rep-max",
+  "weight-gain",
 ] as const;
 
 /**

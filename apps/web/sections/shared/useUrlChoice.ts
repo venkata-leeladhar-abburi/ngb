@@ -17,6 +17,24 @@ function subscribeToHistory(onChange: () => void) {
 }
 
 /**
+ * The whole query string, for forms that keep several values in the URL (free tools, the quiz).
+ * Empty on the server and during hydration, then the real one. `replace` rewrites it in place.
+ */
+export function useUrlQuery(): [string, (query: string) => void] {
+  const search = useSyncExternalStore(
+    subscribeToHistory,
+    () => window.location.search,
+    () => "",
+  );
+  const replace = useCallback((query: string) => {
+    const { pathname, hash } = window.location;
+    window.history.replaceState(null, "", `${pathname}${query ? `?${query}` : ""}${hash}`);
+    window.dispatchEvent(new Event(URL_CHANGE));
+  }, []);
+  return [search, replace];
+}
+
+/**
  * One filter choice kept in the URL (`?result=lost`), so refresh and back work in the Instagram
  * browser. The page stays static: the HTML is rendered for the default, the query is read after
  * hydration and written with history.replaceState (no navigation, no server).

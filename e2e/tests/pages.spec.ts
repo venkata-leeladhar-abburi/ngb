@@ -8,6 +8,10 @@ const ROUTES = [
   "/transformations",
   "/programs/mass-builder",
   "/programs/shred-12",
+  "/tools",
+  "/tools/calorie-calculator",
+  "/tools/bmi",
+  "/tools/telugu-plate",
 ] as const;
 
 for (const route of ROUTES) {
@@ -155,5 +159,80 @@ test.describe("program detail", () => {
     const response = await page.goto("/programs/not-a-program");
 
     expect(response?.status()).toBe(404);
+  });
+});
+
+test.describe("free tools", () => {
+  test("the calorie calculator shows a known result and keeps it on reload", async ({ page }) => {
+    await page.goto("/tools/calorie-calculator");
+    await expect(page.getByRole("button", { name: "Show my number" })).toBeEnabled();
+
+    await page.getByLabel("Age", { exact: true }).fill("22");
+    await page.getByLabel("Gender").selectOption("male");
+    await page.getByLabel("Height (cm)").fill("172");
+    await page.getByLabel("Weight (kg)").fill("70");
+    await page.getByLabel("Activity").selectOption("train");
+    await page.getByLabel("Goal").selectOption("lose");
+    await page.getByRole("button", { name: "Show my number" }).click();
+
+    // Mifflin-St Jeor: (700 + 1075 - 110 + 5) x 1.55 = 2588.5, shown to the nearest 10.
+    await expect(page.getByText("2,590 kcal")).toBeVisible();
+    await expect(page.getByText("Protein: 112 g a day.")).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Shred 12" })).toBeVisible();
+    await expect(page).toHaveURL(/age=22&sex=male&h=172&w=70&act=train&goal=lose/);
+
+    await page.reload();
+    await expect(page.getByText("2,590 kcal")).toBeVisible();
+    await expect(page.getByLabel("Weight (kg)")).toHaveValue("70");
+  });
+
+  test("the calculator names what is missing and moves focus there", async ({ page }) => {
+    await page.goto("/tools/bmi");
+    await expect(page.getByRole("button", { name: "Show my number" })).toBeEnabled();
+
+    await page.getByLabel("Height (cm)").fill("172");
+    await page.getByLabel("Weight (kg)").fill("500");
+    await page.getByRole("button", { name: "Show my number" }).click();
+
+    await expect(page.getByText("Enter a weight between 30 and 200 kg.")).toBeVisible();
+    await expect(page.getByLabel("Weight (kg)")).toBeFocused();
+    await expect(page.getByLabel("Weight (kg)")).toHaveAttribute("aria-invalid", "true");
+  });
+
+  test("BMI uses the Asian healthy range", async ({ page }) => {
+    await page.goto("/tools/bmi?h=172&w=66.3");
+
+    await expect(page.getByText("22.4", { exact: true })).toBeVisible();
+    await expect(page.getByText(/healthy range is 55 to 68 kg/)).toBeVisible();
+    await expect(page.getByText("In the healthy range")).toBeVisible();
+  });
+
+  test("Telugu Plate counts protein as foods are added", async ({ page }) => {
+    await page.goto("/tools/telugu-plate");
+    const add = page.getByRole("button", { name: "Add one Boiled egg" });
+    await expect(add).toBeEnabled();
+
+    await add.click();
+    await add.click();
+    await page.getByRole("button", { name: "Add one Pappu (toor dal)" }).click();
+    await expect(page.getByText("19 g", { exact: true })).toBeVisible();
+    await expect(page).toHaveURL(/egg=2&pappu=1/);
+
+    await page.getByLabel("Weight (kg)").fill("70");
+    await expect(page.getByText("Your target: 112 g. You need 93 g more.")).toBeVisible();
+
+    await page.getByRole("button", { name: "Remove one Boiled egg" }).click();
+    await expect(page.getByText("13 g", { exact: true })).toBeVisible();
+  });
+
+  test("the hub links only to tools that exist", async ({ page }) => {
+    await page.goto("/tools");
+
+    const links = page.getByRole("main").getByRole("link");
+    await expect(links).toHaveCount(5);
+    for (const href of await links.evaluateAll((all) => all.map((a) => a.getAttribute("href")))) {
+      const response = await page.request.get(href ?? "/missing");
+      expect(response.status(), href ?? "").toBe(200);
+    }
   });
 });

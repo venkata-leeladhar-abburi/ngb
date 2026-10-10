@@ -422,6 +422,154 @@
       }
     }
   },
+  "toolPages": {
+    "fields": {
+      "age": "TODO(te)",
+      "sex": "TODO(te)",
+      "height": "TODO(te)",
+      "weight": "TODO(te)",
+      "activity": "TODO(te)",
+      "goal": "TODO(te)",
+      "choose": "TODO(te)",
+      "sexes": {
+        "male": "TODO(te)",
+        "female": "TODO(te)"
+      },
+      "activities": {
+        "sitting": "TODO(te)",
+        "light": "TODO(te)",
+        "train": "TODO(te)",
+        "active": "TODO(te)"
+      },
+      "goals": {
+        "lose": "TODO(te)",
+        "same": "TODO(te)",
+        "gain": "TODO(te)"
+      }
+    },
+    "errors": {
+      "age": {
+        "required": "TODO(te)",
+        "range": "TODO(te)"
+      },
+      "height": {
+        "required": "TODO(te)",
+        "range": "TODO(te)"
+      },
+      "weight": {
+        "required": "TODO(te)",
+        "range": "TODO(te)"
+      },
+      "sex": "TODO(te)",
+      "activity": "TODO(te)",
+      "goal": "TODO(te)"
+    },
+    "submit": "TODO(te)",
+    "resultTitle": "TODO(te)",
+    "dailyTarget": "TODO(te)",
+    "recommendTitle": "TODO(te)",
+    "allTools": "TODO(te)",
+    "health": "TODO(te)",
+    "tools": {
+      "calorie-calculator": {
+        "headline": "TODO(te)",
+        "sub": "TODO(te)",
+        "value": "TODO(te)",
+        "details": "TODO(te)",
+        "explainer": "TODO(te)",
+        "method": "TODO(te)",
+        "recommendLose": "TODO(te)"
+      },
+      "weight-gain": {
+        "headline": "TODO(te)",
+        "value": "TODO(te)",
+        "details": "TODO(te)"
+      },
+      "protein": {
+        "headline": "TODO(te)",
+        "value": "TODO(te)",
+        "details": "TODO(te)"
+      },
+      "bmi": {
+        "headline": "TODO(te)",
+        "valueLabel": "TODO(te)",
+        "details": "TODO(te)",
+        "healthy": "TODO(te)"
+      },
+      "telugu-plate": {
+        "headline": "TODO(te)",
+        "sub": "TODO(te)",
+        "foodsLabel": "TODO(te)",
+        "add": "TODO(te)",
+        "remove": "TODO(te)",
+        "perPortion": "TODO(te)",
+        "today": "TODO(te)",
+        "value": "TODO(te)",
+        "todayOnly": "TODO(te)",
+        "result": "TODO(te)",
+        "reached": "TODO(te)",
+        "weightHint": "TODO(te)",
+        "foods": {
+          "rice": {
+            "name": "TODO(te)",
+            "portion": "TODO(te)"
+          },
+          "pappu": {
+            "name": "TODO(te)",
+            "portion": "TODO(te)"
+          },
+          "perugu": {
+            "name": "TODO(te)",
+            "portion": "TODO(te)"
+          },
+          "egg": {
+            "name": "TODO(te)",
+            "portion": "TODO(te)"
+          },
+          "egg-curry": {
+            "name": "TODO(te)",
+            "portion": "TODO(te)"
+          },
+          "chicken-curry": {
+            "name": "TODO(te)",
+            "portion": "TODO(te)"
+          },
+          "fish-curry": {
+            "name": "TODO(te)",
+            "portion": "TODO(te)"
+          },
+          "pesarattu": {
+            "name": "TODO(te)",
+            "portion": "TODO(te)"
+          },
+          "idli": {
+            "name": "TODO(te)",
+            "portion": "TODO(te)"
+          },
+          "chapati": {
+            "name": "TODO(te)",
+            "portion": "TODO(te)"
+          },
+          "paneer": {
+            "name": "TODO(te)",
+            "portion": "TODO(te)"
+          },
+          "soya": {
+            "name": "TODO(te)",
+            "portion": "TODO(te)"
+          },
+          "peanuts": {
+            "name": "TODO(te)",
+            "portion": "TODO(te)"
+          },
+          "milk": {
+            "name": "TODO(te)",
+            "portion": "TODO(te)"
+          }
+        }
+      }
+    }
+  },
   "faq": {
     "navLabel": "TODO(te)",
     "groups": {
