@@ -23,9 +23,9 @@
   },
   "devDependencies": {
     "@ngb/config": "workspace:*",
-    "prettier": "3.9.9",
+    "prettier": "3.9.10",
     "prettier-plugin-tailwindcss": "0.8.1",
-    "stylelint": "17.15.0",
-    "turbo": "2.11.5"
+    "stylelint": "17.16.0",
+    "turbo": "2.11.7"
   }
 }
