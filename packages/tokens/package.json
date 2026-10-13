@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@ngb/config": "workspace:*",
-    "@types/node": "24.19.0",
+    "@types/node": "26.6.5",
     "eslint": "10.11.0",
     "tailwindcss": "4.3.3",
     "typescript": "6.0.3",
